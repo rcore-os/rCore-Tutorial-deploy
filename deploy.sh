@@ -1,4 +1,6 @@
 #!/bin/sh
+# 下面的 DEPLOY_DIR 目录需要关联到 github.com/os20-rCore-Tutorial/rCore-Tutorial-deploy 远程仓库
+# 随后可以通过 os20-rcore-tutorial.github.io/rCore-Tutorial-deploy 来访问
 DEPLOY_DIR=../rCore-Tutorial-deploy/
 
 # Build and copy
@@ -11,3 +13,5 @@ CURRENT_TIME=$(date +"%Y-%m-%d %H:%m:%S")
 git add *
 git commit -m "[Auto-deploy] Build $CURRENT_TIME"
 git push origin master
+
+cd -
