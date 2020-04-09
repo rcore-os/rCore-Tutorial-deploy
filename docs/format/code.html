@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Rust 基础介绍 · GitBook</title>
+        <title>代码格式规范 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -81,10 +81,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="os.html" />
+    <link rel="next" href="../pre-lab/rust.html" />
     
     
-    <link rel="prev" href="../format/code.html" />
+    <link rel="prev" href="doc.html" />
     
 
     </head>
@@ -133,9 +133,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../format/doc.html">
+        <li class="chapter " data-level="2.1" data-path="doc.html">
             
-                <a href="../format/doc.html">
+                <a href="doc.html">
             
                     
                     文档格式规范
@@ -146,9 +146,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../format/code.html">
+        <li class="chapter active" data-level="2.2" data-path="code.html">
             
-                <a href="../format/code.html">
+                <a href="code.html">
             
                     
                     代码格式规范
@@ -166,9 +166,9 @@
         
         
     
-        <li class="chapter active" data-level="3.1" data-path="rust.html">
+        <li class="chapter " data-level="3.1" data-path="../pre-lab/rust.html">
             
-                <a href="rust.html">
+                <a href="../pre-lab/rust.html">
             
                     
                     Rust 基础介绍
@@ -179,9 +179,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="os.html">
+        <li class="chapter " data-level="3.2" data-path="../pre-lab/os.html">
             
-                <a href="os.html">
+                <a href="../pre-lab/os.html">
             
                     
                     操作系统背景知识
@@ -192,9 +192,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="env.html">
+        <li class="chapter " data-level="3.3" data-path="../pre-lab/env.html">
             
-                <a href="env.html">
+                <a href="../pre-lab/env.html">
             
                     
                     环境部署
@@ -404,7 +404,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Rust 基础介绍</a>
+        <a href="../.." >代码格式规范</a>
     </h1>
 </div>
 
@@ -419,8 +419,23 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="rust-&#x57FA;&#x7840;&#x4ECB;&#x7ECD;">Rust &#x57FA;&#x7840;&#x4ECB;&#x7ECD;</h1>
-<!-- TODO -->
+                                <h2 id="&#x4EE3;&#x7801;&#x89C4;&#x8303;">&#x4EE3;&#x7801;&#x89C4;&#x8303;</h2>
+<h3 id="&#x6CE8;&#x91CA;&#x89C4;&#x8303;">&#x6CE8;&#x91CA;&#x89C4;&#x8303;</h3>
+<ul>
+<li>&#x7528; <code>//!</code> &#x6CE8;&#x91CA;&#x5916;&#x5C42;&#x5185;&#x5BB9;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x6587;&#x4EF6;&#x5F00;&#x59CB;&#x6CE8;&#x91CA;&#x6574;&#x4E2A;&#x6A21;&#x5757;</li>
+<li>&#x7528; <code>///</code> &#x4E3A;&#x51FD;&#x6570;&#x6DFB;&#x52A0; doc &#x6CE8;&#x91CA;&#xFF0C;&#x5176;&#x5185;&#x90E8;&#x4F7F;&#x7528; markdown &#x8BED;&#x6CD5;</li>
+<li>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; markdown &#x683C;&#x5F0F;&#x7684;&#x94FE;&#x63A5;&#xFF0C;&#x94FE;&#x63A5;&#x5185;&#x5BB9;&#x4F7F;&#x7528; rust &#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x94FE;&#x4E0A;&#xFF0C;&#x4F8B;&#x5982;<pre><code class="lang-rust">/// &#x6837;&#x4F8B;&#x6CE8;&#x91CA;
+/// [`link`](crate::xxx::xxx)
+fn some_func() {}
+</code></pre>
+</li>
+</ul>
+<h3 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h3>
+<ul>
+<li><a href="https://doc.rust-lang.org/1.26.2/book/first-edition/comments.html" target="_blank">https://doc.rust-lang.org/1.26.2/book/first-edition/comments.html</a></li>
+<li><a href="https://doc.rust-lang.org/1.26.2/book/second-edition/ch14-02-publishing-to-crates-io.html" target="_blank">https://doc.rust-lang.org/1.26.2/book/second-edition/ch14-02-publishing-to-crates-io.html</a></li>
+</ul>
+
                                 
                                 </section>
                             
@@ -447,12 +462,12 @@
 
             
                 
-                <a href="../format/code.html" class="navigation navigation-prev " aria-label="Previous page: 代码格式规范">
+                <a href="doc.html" class="navigation navigation-prev " aria-label="Previous page: 文档格式规范">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="os.html" class="navigation navigation-next " aria-label="Next page: 操作系统背景知识">
+                <a href="../pre-lab/rust.html" class="navigation navigation-next " aria-label="Next page: Rust 基础介绍">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -463,7 +478,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Rust 基础介绍","level":"3.1","depth":1,"next":{"title":"操作系统背景知识","level":"3.2","depth":1,"path":"docs/pre-lab/os.md","ref":"docs/pre-lab/os.md","articles":[]},"previous":{"title":"代码格式规范","level":"2.2","depth":1,"path":"docs/format/code.md","ref":"docs/format/code.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","-highlight","mermaid-gb3","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/pre-lab/rust.md","mtime":"2020-04-08T15:00:21.407Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T10:44:00.966Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"代码格式规范","level":"2.2","depth":1,"next":{"title":"Rust 基础介绍","level":"3.1","depth":1,"path":"docs/pre-lab/rust.md","ref":"docs/pre-lab/rust.md","articles":[]},"previous":{"title":"文档格式规范","level":"2.1","depth":1,"path":"docs/format/doc.md","ref":"docs/format/doc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","-highlight","mermaid-gb3","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/format/code.md","mtime":"2020-04-09T10:41:26.006Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T10:44:00.966Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
