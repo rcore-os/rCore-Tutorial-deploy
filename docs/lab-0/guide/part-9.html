@@ -1,0 +1,994 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>接口封装和代码整理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-codeblock-label/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-interactive/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="summary.html" />
+    
+    
+    <link rel="prev" href="part-8.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    实验简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">开发笔记</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../format/doc.html">
+            
+                <a href="../../format/doc.html">
+            
+                    
+                    文档格式规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../format/code.html">
+            
+                <a href="../../format/code.html">
+            
+                    
+                    代码格式规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验之前</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
+            
+                <a href="../../pre-lab/rust.html">
+            
+                    
+                    Rust 基础介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
+            
+                <a href="../../pre-lab/os.html">
+            
+                    
+                    操作系统背景知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+            
+                <a href="../../pre-lab/env.html">
+            
+                    
+                    环境部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验指导</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" >
+            
+                <span>
+            
+                    
+                    零：一个运行在 OpenSBI 之上的程序
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="intro.html">
+            
+                <a href="intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="part-1.html">
+            
+                <a href="part-1.html">
+            
+                    
+                    创建项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="part-2.html">
+            
+                <a href="part-2.html">
+            
+                    
+                    移除标准库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="part-3.html">
+            
+                <a href="part-3.html">
+            
+                    
+                    移除运行时环境依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="part-4.html">
+            
+                <a href="part-4.html">
+            
+                    
+                    编译为裸机目标
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="part-5.html">
+            
+                <a href="part-5.html">
+            
+                    
+                    生成内核镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="part-6.html">
+            
+                <a href="part-6.html">
+            
+                    
+                    调整内存布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="part-7.html">
+            
+                <a href="part-7.html">
+            
+                    
+                    重写程序入口点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9" data-path="part-8.html">
+            
+                <a href="part-8.html">
+            
+                    
+                    使用 QEMU 运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.1.10" data-path="part-9.html">
+            
+                <a href="part-9.html">
+            
+                    
+                    接口封装和代码整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.11" data-path="summary.html">
+            
+                <a href="summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+                <span>
+            
+                    
+                    一：中断处理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../lab-1/guide/intro.html">
+            
+                <a href="../../lab-1/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../lab-1/guide/part-1.html">
+            
+                <a href="../../lab-1/guide/part-1.html">
+            
+                    
+                    背景知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../../lab-1/guide/part-2.html">
+            
+                <a href="../../lab-1/guide/part-2.html">
+            
+                    
+                    RISC-V 中的中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../../lab-1/guide/part-3.html">
+            
+                <a href="../../lab-1/guide/part-3.html">
+            
+                    
+                    程序运行状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="../../lab-1/guide/part-4.html">
+            
+                <a href="../../lab-1/guide/part-4.html">
+            
+                    
+                    状态的保存与恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="../../lab-1/guide/part-5.html">
+            
+                <a href="../../lab-1/guide/part-5.html">
+            
+                    
+                    进入中断处理流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.7" data-path="../../lab-1/guide/part-6.html">
+            
+                <a href="../../lab-1/guide/part-6.html">
+            
+                    
+                    时钟中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.8" data-path="../../lab-1/guide/summary.html">
+            
+                <a href="../../lab-1/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验题目</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../exercise/intro.html">
+            
+                <a href="../exercise/intro.html">
+            
+                    
+                    零：TODO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../lab-1/exercise/intro.html">
+            
+                <a href="../../lab-1/exercise/intro.html">
+            
+                    
+                    一：异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >接口封装和代码整理</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x63A5;&#x53E3;&#x5C01;&#x88C5;&#x548C;&#x4EE3;&#x7801;&#x6574;&#x7406;">&#x63A5;&#x53E3;&#x5C01;&#x88C5;&#x548C;&#x4EE3;&#x7801;&#x6574;&#x7406;</h2>
+<h3 id="&#x4F7F;&#x7528;-opensbi-&#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;">&#x4F7F;&#x7528; OpenSBI &#x63D0;&#x4F9B;&#x7684;&#x670D;&#x52A1;</h3>
+<p>OpenSBI &#x5B9E;&#x9645;&#x4E0A;&#x4E0D;&#x4EC5;&#x8D77;&#x5230;&#x4E86; bootloader &#x7684;&#x4F5C;&#x7528;&#xFF0C;&#x8FD8;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x670D;&#x52A1;&#x4F9B;&#x6211;&#x4EEC;&#x5728;&#x7F16;&#x5199;&#x5185;&#x6838;&#x65F6;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x5C42;&#x63A5;&#x53E3;&#x79F0;&#x4E3A; SBI&#xFF08;Supervisor Binary Interface&#xFF09;&#xFF0C;&#x662F; S Mode &#x7684; OS &#x548C; M Mode &#x6267;&#x884C;&#x73AF;&#x5883;&#x4E4B;&#x95F4;&#x7684;&#x6807;&#x51C6;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x53C2;&#x8003; <a href="https://github.com/riscv/riscv-sbi-doc/blob/master/riscv-sbi.adoc#legacy-sbi-extension-extension-ids-0x00-through-0x0f" target="_blank">OpenSBI &#x6587;&#x6863;</a> &#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#x91CC;&#x9762;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E9B;&#x4EE5; C &#x51FD;&#x6570;&#x683C;&#x5F0F;&#x7ED9;&#x51FA;&#x7684;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x4E0A;&#x4E00;&#x8282;&#x4E2D;&#x6211;&#x4EEC;&#x7684; <code>console_putchar</code> &#x51FD;&#x6570;&#x7C7B;&#x4F3C;&#x4E8E;&#x8C03;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x63A5;&#x53E3;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sbi_console_putchar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ch)</span>
+</span></code></pre>
+<p>&#x800C;&#x5B9E;&#x9645;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;&#x6211;&#x4EEC;&#x901A;&#x8FC7; ecall &#x53D1;&#x8D77;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x3002;OpenSBI &#x4F1A;&#x68C0;&#x67E5;&#x53D1;&#x8D77;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x7684;&#x7F16;&#x53F7;&#xFF0C;&#x5982;&#x679C;&#x7F16;&#x53F7;&#x5728; 0-8 &#x4E4B;&#x95F4;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x5426;&#x5219;&#x4EA4;&#x7531;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5904;&#x7406;&#xFF08;&#x6682;&#x672A;&#x5B9E;&#x73B0;&#xFF09;&#x3002;</p>
+<blockquote>
+<p>&#x7F16;&#x53F7;&#x5728; 0-8 &#x4E4B;&#x95F4;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF0C;&#x5177;&#x4F53;&#x8BF7;&#x770B; <a href="https://github.com/riscv/riscv-sbi-doc/blob/master/riscv-sbi.adoc#function-listing-1" target="_blank">OpenSBI &#x6587;&#x6863;</a></p>
+</blockquote>
+<p>&#x6267;&#x884C; ecall &#x524D;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x7684;&#x7F16;&#x53F7;&#xFF0C;&#x4F20;&#x9012;&#x53C2;&#x6570;&#x3002;&#x4E00;&#x822C;&#x800C;&#x8A00;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">a_7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x4E3A;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x7F16;&#x53F7;&#xFF0C;<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">a_0 , a_1 , a_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x4E3A;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// src/sbi.rs</span>
+
+<span class="hljs-comment">//! &#x8C03;&#x7528; Machine &#x5C42;&#x7684;&#x64CD;&#x4F5C;</span>
+<span class="hljs-comment">// &#x76EE;&#x524D;&#x8FD8;&#x4E0D;&#x4F1A;&#x7528;&#x5230;&#x5168;&#x90E8;&#x7684; SBI &#x8C03;&#x7528;&#xFF0C;&#x6682;&#x65F6;&#x5141;&#x8BB8;&#x672A;&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#x6216;&#x51FD;&#x6570;</span>
+<span class="hljs-meta">#![allow(unused)]</span>
+
+<span class="hljs-comment">/// SBI &#x8C03;&#x7528;</span>
+<span class="hljs-meta">#[inline(always)]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sbi_call</span></span>(which: usize, arg0: usize, arg1: usize, arg2: usize) -&gt; usize {
+    <span class="hljs-keyword">let</span> ret;
+    <span class="hljs-keyword">unsafe</span> {
+        asm!(<span class="hljs-string">&quot;ecall&quot;</span>
+            : <span class="hljs-string">&quot;={x10}&quot;</span> (ret)
+            : <span class="hljs-string">&quot;{x10}&quot;</span> (arg0), <span class="hljs-string">&quot;{x11}&quot;</span> (arg1), <span class="hljs-string">&quot;{x12}&quot;</span> (arg2), <span class="hljs-string">&quot;{x17}&quot;</span> (which)
+            : <span class="hljs-string">&quot;memory&quot;</span>
+            : <span class="hljs-string">&quot;volatile&quot;</span>);
+    }
+    ret
+}
+</code></pre>
+<blockquote>
+<p><strong>[info] &#x51FD;&#x6570;&#x8C03;&#x7528;&#x4E0E; Calling convention </strong></p>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5C06;&#x9AD8;&#x7EA7;&#x8BED;&#x8A00;&#x6E90;&#x4EE3;&#x7801;&#x7FFB;&#x8BD1;&#x6210;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x3002;&#x5BF9;&#x4E8E;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x800C;&#x8A00;&#xFF0C;&#x5728;&#x6700;&#x7B80;&#x5355;&#x7684;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x6240;&#x80FD;&#x591F;&#x5229;&#x7528;&#x7684;&#x53EA;&#x6709;&#x6307;&#x4EE4;&#x96C6;&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x6307;&#x4EE4;&#x3001;&#x5404;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;&#x3001; CPU &#x7684;&#x72B6;&#x6001;&#x3001;&#x5185;&#x5B58;&#x8D44;&#x6E90;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5728;&#x9AD8;&#x7EA7;&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x8981;&#x505A;&#x54EA;&#x4E9B;&#x5DE5;&#x4F5C;&#x5229;&#x7528;&#x6C47;&#x7F16;&#x8BED;&#x8A00;&#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4E00;&#x529F;&#x80FD;&#x5462;&#xFF1F;</p>
+<p>&#x663E;&#x7136;&#x5E76;&#x4E0D;&#x662F;&#x4EC5;&#x7528;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x8DF3;&#x8F6C;&#x5230;&#x88AB;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x5F00;&#x5934;&#x5730;&#x5740;&#x5C31;&#x884C;&#x4E86;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x8003;&#x8651;&#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x4F55;&#x4F20;&#x9012;&#x53C2;&#x6570;&#xFF1F;</li>
+<li>&#x5982;&#x4F55;&#x4F20;&#x9012;&#x8FD4;&#x56DE;&#x503C;&#xFF1F;</li>
+<li>&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x540E;&#x80FD;&#x4ECE;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x7684;&#x4F4D;&#x7F6E;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF1F;</li>
+</ul>
+<p>&#x7B49;&#x66F4;&#x591A;&#x4E8B;&#x9879;&#x3002;&#x901A;&#x5E38;&#x7F16;&#x8BD1;&#x5668;&#x6309;&#x7167;&#x67D0;&#x79CD;&#x89C4;&#x8303;&#x53BB;&#x7FFB;&#x8BD1;&#x6240;&#x6709;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x79CD;&#x89C4;&#x8303;&#x88AB;&#x79F0;&#x4E3A; <a href="https://en.wikipedia.org/wiki/Calling_convention" target="_blank">Calling convention</a> &#x3002;&#x503C;&#x5F97;&#x4E00;&#x63D0;&#x7684;&#x662F;&#xFF0C;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x9884;&#x5148;&#x5206;&#x914D;&#x4E00;&#x5757;&#x5185;&#x5B58;&#x4F5C;&#x4E3A; <strong>&#x8C03;&#x7528;&#x6808;</strong> &#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x770B;&#x5230;&#x8C03;&#x7528;&#x6808;&#x5728;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x6781;&#x5176;&#x91CD;&#x8981;&#x3002;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4EC0;&#x4E48;&#x7B2C;&#x4E00;&#x7AE0;&#x521A;&#x5F00;&#x59CB;&#x6211;&#x4EEC;&#x5C31;&#x8981;&#x5206;&#x914D;&#x6808;&#x4E86;&#x3002;</p>
+</blockquote>
+<p>&#x5BF9;&#x4E8E;&#x53C2;&#x6570;&#x6BD4;&#x8F83;&#x5C11;&#x4E14;&#x662F;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x4F7F;&#x7528;&#x5BC4;&#x5B58;&#x5668; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>&#x223C;</mo><msub><mi>a</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">a_0 \sim a_7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">&#x223C;</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x53C2;&#x6570;&#x7684;&#x4F20;&#x9012;&#x3002;&#x5177;&#x4F53;&#x89C4;&#x8303;&#x53EF;&#x53C2;&#x8003; <a href="https://riscv.org/wp-content/uploads/2015/01/riscv-calling.pdf" target="_blank">RISC-V calling convention</a>&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5982;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E00;&#x6837;&#xFF0C;&#x8BBE;&#x7F6E;&#x5BC4;&#x5B58;&#x5668;&#x5E76;&#x6267;&#x884C;&#x6C47;&#x7F16;&#x6307;&#x4EE4;&#xFF0C;&#x8FD9;&#x8D85;&#x51FA;&#x4E86; Rust &#x8BED;&#x8A00;&#x7684;&#x63CF;&#x8FF0;&#x80FD;&#x529B;&#x3002;&#x7136;&#x800C;&#x53C8;&#x4E0E;&#x4E4B;&#x524D; <code>global_asm!</code> &#x5927;&#x6BB5;&#x63D2;&#x5165;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E0D;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x628A; <code>u8</code> &#x7C7B;&#x578B;&#x7684;&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x4F20;&#x7ED9; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x8F83;&#x4E3A;&#x5F3A;&#x8C03; Rust &#x4E0E;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x4F7F;&#x7528;<strong>&#x5185;&#x8054;&#x6C47;&#x7F16;&#xFF08;inline assembly&#xFF09;</strong>&#x3002;</p>
+<blockquote>
+<p><strong>[info] &#x5185;&#x8054;&#x6C47;&#x7F16;</strong></p>
+<p>Rust &#x4E2D;&#x62D3;&#x5C55;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x7684;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust">asm!(assembler template
+    : <span class="hljs-comment">/* output operands */</span>
+    : <span class="hljs-comment">/* input operands */</span>
+    : <span class="hljs-comment">/* clobbered registers list */</span>
+    : <span class="hljs-comment">/* option */</span>
+);
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF1A;</p>
+<ul>
+<li>assembler template &#x7ED9;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x5F62;&#x5F0F;&#x7684;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#xFF1B;</li>
+<li>output operands &#x4EE5;&#x53CA; input operands &#x5206;&#x522B;&#x8868;&#x793A;&#x8F93;&#x51FA;&#x548C;&#x8F93;&#x5165;&#xFF0C;&#x4F53;&#x73B0;&#x7740;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E0E; Rust &#x4EE3;&#x7801;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x6BCF;&#x4E2A;&#x8F93;&#x51FA;&#x548C;&#x8F93;&#x5165;&#x90FD;&#x662F;&#x7528; &quot;constraint&quot;(expr) &#x7684;&#x5F62;&#x5F0F;&#x7ED9;&#x51FA;&#x7684;&#xFF0C;&#x5176;&#x4E2D; expr &#x90E8;&#x5206;&#x662F;&#x4E00;&#x4E2A; Rust &#x8868;&#x8FBE;&#x5F0F;&#x4F5C;&#x4E3A;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x7684;&#x8F93;&#x5165;&#x3001;&#x8F93;&#x51FA;&#xFF0C;&#x901A;&#x5E38;&#x4E3A;&#x4E86;&#x7B80;&#x5355;&#x8D77;&#x89C1;&#x4EC5;&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x3002;&#x800C; constraint &#x5219;&#x662F;&#x4F60;&#x7528;&#x6765;&#x544A;&#x8BC9;&#x7F16;&#x8BD1;&#x5668;&#x5982;&#x4F55;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x4F20;&#x9012;&#xFF1B;</li>
+<li>clobbered registers list &#x9700;&#x8981;&#x7ED9;&#x51FA;&#x4F60;&#x5728;&#x6574;&#x6BB5;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x9664;&#x4E86;&#x7528;&#x6765;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x3001;&#x8F93;&#x51FA;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x66FE;&#x7ECF;&#x663E;&#x5F0F;/&#x9690;&#x5F0F;&#x7684;&#x4FEE;&#x6539;&#x8FC7;&#x54EA;&#x4E9B;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x7531;&#x4E8E;&#x7F16;&#x8BD1;&#x5668;&#x5BF9;&#x4E8E;&#x6C47;&#x7F16;&#x6307;&#x4EE4;&#x6240;&#x77E5;&#x6709;&#x9650;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x624B;&#x52A8;&#x544A;&#x8BC9;&#x5B83;&#x201C;&#x6211;&#x53EF;&#x80FD;&#x4F1A;&#x4FEE;&#x6539;&#x8FD9;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x201D;&#xFF0C;&#x8FD9;&#x6837;&#x5B83;&#x5728;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x65F6;&#x5C31;&#x4F1A;&#x66F4;&#x52A0;&#x5C0F;&#x5FC3;&#xFF1B;</li>
+<li>option &#x662F; Rust &#x8BED;&#x8A00;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x7279;&#x6709;&#x7684;&#xFF08;&#x76F8;&#x5BF9;&#x4E8E; C &#x8BED;&#x8A00;&#xFF09;&#xFF0C;&#x7528;&#x6765;&#x5BF9;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x6574;&#x4F53;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x3002;<!-- TODO 进一步参考 -->
+</li>
+</ul>
+</blockquote>
+<p>&#x8F93;&#x51FA;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x5230;&#x53D8;&#x91CF; <code>ret</code> &#x4E2D;&#xFF0C;&#x9650;&#x5236;&#x6761;&#x4EF6; <code>{x10}</code> &#x544A;&#x8BC9;&#x7F16;&#x8BD1;&#x5668;&#x4F7F;&#x7528;&#x5BC4;&#x5B58;&#x5668; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mrow><mn>1</mn><mn>0</mn></mrow></msub></mrow><annotation encoding="application/x-tex">x_{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span><span class="mord mathrm mtight">0</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>&#xFF08;&#x5373; <code>a0</code> &#x5BC4;&#x5B58;&#x5668;&#xFF09;&#xFF0C;&#x524D;&#x9762;&#x7684; <code>=</code> &#x8868;&#x660E;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4F1A;&#x4FEE;&#x6539;&#x8BE5;&#x5BC4;&#x5B58;&#x5668;&#x5E76;&#x4F5C;&#x4E3A;&#x6700;&#x540E;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B; output operands &#x7684; constraint &#x90E8;&#x5206;&#x524D;&#x9762;&#x90FD;&#x8981;&#x52A0;&#x4E0A; <code>=</code> &#x3002;</p>
+<p>&#x8F93;&#x5165;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x5206;&#x522B;&#x901A;&#x8FC7;&#x5BC4;&#x5B58;&#x5668; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mrow><mn>1</mn><mn>0</mn></mrow></msub><mo>(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>)</mo><mo separator="true">,</mo><msub><mi>x</mi><mrow><mn>1</mn><mn>1</mn></mrow></msub><mo>(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>)</mo><mo separator="true">,</mo><msub><mi>x</mi><mrow><mn>1</mn><mn>2</mn></mrow></msub><mo>(</mo><msub><mi>a</mi><mn>2</mn></msub><mo>)</mo><mo separator="true">,</mo><msub><mi>x</mi><mrow><mn>1</mn><mn>7</mn></mrow></msub><mo>(</mo><msub><mi>a</mi><mn>7</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">x_{10}(a_0),x_{11}(a_1),x_{12}(a_2),x_{17}(a_7)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span><span class="mord mathrm mtight">0</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span><span class="mord mathrm mtight">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span><span class="mord mathrm mtight">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathrm mtight">1</span><span class="mord mathrm mtight">7</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span> &#x4F20;&#x5165;&#x53C2;&#x6570; <code>arg0</code>&#x3001;<code>arg1</code>&#x3001;<code>arg2</code> &#x548C; <code>which</code> &#xFF0C;&#x5176;&#x4E2D;&#x524D;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x5206;&#x522B;&#x4EE3;&#x8868;&#x63A5;&#x53E3;&#x53EF;&#x80FD;&#x6240;&#x9700;&#x7684;&#x4E09;&#x4E2A;&#x8F93;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x4E2A; <code>which</code> &#x7528;&#x6765;&#x533A;&#x5206;&#x6211;&#x4EEC;&#x8C03;&#x7528;&#x7684;&#x662F;&#x54EA;&#x4E2A;&#x63A5;&#x53E3;&#xFF08;SBI Extension ID&#xFF09;&#x3002;&#x8FD9;&#x91CC;&#x4E4B;&#x6240;&#x4EE5;&#x63D0;&#x4F9B;&#x4E09;&#x4E2A;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x662F;&#x4E3A;&#x4E86;&#x5C06;&#x6240;&#x6709;&#x63A5;&#x53E3;&#x56CA;&#x62EC;&#x8FDB;&#x53BB;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x63A5;&#x53E3;&#x6709;&#x7684;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x662F;&#x5197;&#x4F59;&#x7684;&#xFF0C;&#x6BD4;&#x5982; <code>sbi_console_putchar</code> &#x7531;&#x4E8E;&#x53EA;&#x9700;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x5B83;&#x5C31;&#x53EA;&#x5173;&#x5FC3;&#x5BC4;&#x5B58;&#x5668; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> &#x7684;&#x503C;&#x3002;</p>
+<p>&#x5728; clobbered registers list &#x4E2D;&#xFF0C;&#x51FA;&#x73B0;&#x4E86;&#x4E00;&#x4E2A; <code>&quot;memory&quot;</code> &#xFF0C;&#x8FD9;&#x7528;&#x6765;&#x544A;&#x8BC9;&#x7F16;&#x8BD1;&#x5668;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x9690;&#x5F0F;&#x7684;&#x4FEE;&#x6539;&#x4E86;&#x5728;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E2D;&#x672A;&#x66FE;&#x51FA;&#x73B0;&#x7684;&#x67D0;&#x4E9B;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5B83;&#x4E5F;&#x4E0D;&#x80FD;&#x8BA4;&#x4E3A;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E2D;&#x672A;&#x51FA;&#x73B0;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x5C31;&#x4F1A;&#x5728;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x524D;&#x540E;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#x4E86;&#x3002;</p>
+<p>&#x5728; option &#x90E8;&#x5206;&#x51FA;&#x73B0;&#x4E86; <code>&quot;volatile&quot;</code> &#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x5728;&#x5F88;&#x591A;&#x5730;&#x65B9;&#x770B;&#x5230;&#x8FC7;&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;&#x3002;&#x4E0D;&#x8FC7;&#x5728;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x4E2D;&#xFF0C;&#x4E3B;&#x8981;&#x610F;&#x601D;&#x662F;&#x544A;&#x8BC9;&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x4E0D;&#x8981;&#x5C06;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x79FB;&#x52A8;&#x5230;&#x522B;&#x7684;&#x5730;&#x65B9;&#x53BB;&#x3002;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x901A;&#x5E38;&#x4F1A;&#x5BF9;&#x7FFB;&#x8BD1;&#x5B8C;&#x7684;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x5176;&#x4E2D;&#x5C31;&#x5305;&#x62EC;&#x5BF9;&#x6307;&#x4EE4;&#x7684;&#x4F4D;&#x7F6E;&#x8FDB;&#x884C;&#x8C03;&#x6362;&#x3002;&#x50CF;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x8C03;&#x6362;&#x53EF;&#x80FD;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;&#x6211;&#x4EEC;&#x9884;&#x671F;&#x4E4B;&#x5916;&#x7684;&#x7ED3;&#x679C;&#x3002;&#x8C28;&#x614E;&#x8D77;&#x89C1;&#xFF0C;&#x6211;&#x4EEC;&#x9488;&#x5BF9;&#x5185;&#x8054;&#x6C47;&#x7F16;&#x7981;&#x7528;&#x8FD9;&#x4E00;&#x4F18;&#x5316;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x5229;&#x7528; <code>sbi_call</code> &#x51FD;&#x6570;&#x53C2;&#x8003; OpenSBI &#x6587;&#x6863;&#x5B9E;&#x73B0;&#x5BF9;&#x5E94;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x987A;&#x5E26;&#x4E5F;&#x53EF;&#x4EE5;&#x628A;&#x5173;&#x673A;&#x51FD;&#x6570;&#x901A;&#x8FC7; SBI &#x63A5;&#x53E3;&#x4E00;&#x5E76;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// src/sbi.rs</span>
+
+<span class="hljs-keyword">const</span> SBI_SET_TIMER: usize = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">const</span> SBI_CONSOLE_PUTCHAR: usize = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">const</span> SBI_CONSOLE_GETCHAR: usize = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">const</span> SBI_CLEAR_IPI: usize = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">const</span> SBI_SEND_IPI: usize = <span class="hljs-number">4</span>;
+<span class="hljs-keyword">const</span> SBI_REMOTE_FENCE_I: usize = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">const</span> SBI_REMOTE_SFENCE_VMA: usize = <span class="hljs-number">6</span>;
+<span class="hljs-keyword">const</span> SBI_REMOTE_SFENCE_VMA_ASID: usize = <span class="hljs-number">7</span>;
+<span class="hljs-keyword">const</span> SBI_SHUTDOWN: usize = <span class="hljs-number">8</span>;
+
+<span class="hljs-comment">/// &#x5411;&#x63A7;&#x5236;&#x53F0;&#x8F93;&#x51FA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x9700;&#x8981;&#x6CE8;&#x610F;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x4F7F;&#x7528; Rust &#x4E2D;&#x7684; char &#x7C7B;&#x578B;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">console_putchar</span></span>(c: usize) {
+    sbi_call(SBI_CONSOLE_PUTCHAR, c, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+}
+
+<span class="hljs-comment">/// &#x4ECE;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#x8BFB;&#x53D6;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x6CA1;&#x6709;&#x8BFB;&#x53D6;&#x5230;&#x5B57;&#x7B26;&#x5219;&#x8FD4;&#x56DE; -1</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">console_getchar</span></span>() -&gt; usize {
+    sbi_call(SBI_CONSOLE_GETCHAR, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+}
+
+<span class="hljs-comment">/// &#x8C03;&#x7528; SBI_SHUTDOWN &#x6765;&#x5173;&#x95ED;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF08;&#x76F4;&#x63A5;&#x9000;&#x51FA; QEMU&#xFF09;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">shutdown</span></span>() -&gt; ! {
+    sbi_call(SBI_SHUTDOWN, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-built_in">unreachable!</span>()
+}
+</code></pre>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x6BD4;&#x8F83;&#x6DF1;&#x5165;&#x7684;&#x7406;&#x89E3;&#x4E86; <code>console_putchar</code> &#x5230;&#x5E95;&#x662F;&#x600E;&#x4E48;&#x4E00;&#x56DE;&#x4E8B;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x4F7F;&#x7528; <code>console_putchar</code> &#x5B9E;&#x73B0;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#xFF0C;&#x4E3A;&#x540E;&#x9762;&#x7684;&#x8C03;&#x8BD5;&#x63D0;&#x4F9B;&#x65B9;&#x4FBF;&#x3002;</p>
+<h3 id="&#x5B9E;&#x73B0;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;">&#x5B9E;&#x73B0;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</h3>
+<p>&#x53EA;&#x80FD;&#x4F7F;&#x7528; <code>console_putchar</code> &#x8FD9;&#x79CD;&#x82CD;&#x767D;&#x65E0;&#x529B;&#x7684;&#x8F93;&#x51FA;&#x624B;&#x6BB5;&#x8BA9;&#x4EBA;&#x5934;&#x76AE;&#x53D1;&#x9EBB;&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x80FD;&#x4F7F;&#x7528; <code>println!</code> &#x5B8F;&#x7684;&#x8BDD;&#x8BE5;&#x6709;&#x591A;&#x597D;&#x554A;&#xFF01;&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684; <code>print!</code>&#x5B8F;&#x548C; <code>println!</code>&#x5B8F;&#xFF01;</p>
+<p>&#x6211;&#x4EEC;&#x5C06;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x653E;&#x5728; <code>src/conosle.rs</code> &#x4E2D;&#xFF0C;&#x5173;&#x4E8E;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#xFF0C;Rust &#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x63A5;&#x53E3; <code>core::fmt::Write</code>&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_str</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, s: &amp;<span class="hljs-keyword">str</span>) -&gt; <span class="hljs-built_in">Result</span>
+</code></pre>
+<p>&#x968F;&#x540E;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x5982;&#x4E0B;&#x51FD;&#x6570;&#xFF08;&#x4F1A;&#x8FDB;&#x4E00;&#x6B65;&#x8C03;&#x7528;<code>write_str</code> &#x5B9E;&#x73B0;&#x51FD;&#x6570;&#xFF09;&#x6765;&#x8FDB;&#x884C;&#x663E;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_fmt</span></span>(<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>: &amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">Self</span>, args: Arguments&lt;<span class="hljs-symbol">&apos;_</span>&gt;) -&gt; <span class="hljs-built_in">Result</span>
+</code></pre>
+<p><code>write_fmt</code> &#x51FD;&#x6570;&#x9700;&#x8981;&#x5904;&#x7406; <code>Arguments</code> &#x7C7B;&#x5C01;&#x88C5;&#x7684;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x800C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x6709;&#x73B0;&#x6210;&#x7684; <code>format_args!</code> &#x5B8F;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5C06;&#x6A21;&#x5F0F;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x53C2;&#x6570;&#x5217;&#x8868;&#x7684;&#x8F93;&#x5165;&#x8F6C;&#x5316;&#x4E3A; <code>Arguments</code> &#x7C7B;&#xFF0C;&#x6BD4;&#x5982; <code>format_args!(&quot;{} {}&quot;, 1, 2)</code> &#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5B8F;&#x7684;&#x5B9E;&#x73B0;&#x601D;&#x8DEF;&#x4FBF;&#x4E3A;&#xFF1A;</p>
+<ul>
+<li>&#x89E3;&#x6790;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x8F6C;&#x5316;&#x4E3A; <code>format_args!</code> &#x53EF;&#x63A5;&#x53D7;&#x7684;&#x8F93;&#x5165;&#xFF08;&#x4E8B;&#x5B9E;&#x4E0A;&#x539F;&#x5C01;&#x4E0D;&#x52A8;&#x5C31;&#x884C;&#x4E86;&#xFF09;&#xFF0C;&#x5E76;&#x901A;&#x8FC7; <code>format_args!</code> &#x5B8F;&#x5F97;&#x5230; <code>Arguments</code> &#x7C7B;</li>
+<li>&#x8C03;&#x7528; <code>write_fmt</code> &#x51FD;&#x6570;&#x8F93;&#x51FA;&#x8FD9;&#x4E2A;&#x7C7B;</li>
+</ul>
+<p>&#x800C;&#x4E3A;&#x4E86;&#x8C03;&#x7528; <code>write_fmt</code> &#x51FD;&#x6570;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x5B9E;&#x73B0; <code>write_str</code> &#x51FD;&#x6570;&#xFF0C;&#x800C;&#x5B83;&#x53EF;&#x7528; <code>console_putchar</code> &#x51FD;&#x6570;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x6574;&#x4E2A; <code>print</code> &#x548C; <code>println</code> &#x5B8F;&#x6309;&#x7167;&#x903B;&#x8F91;&#x5199;&#x51FA;&#x5373;&#x53EF;&#xFF0C;&#x6574;&#x4F53;&#x903B;&#x8F91;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// src/console.rs</span>
+
+<span class="hljs-comment">//! &#x5B9E;&#x73B0;&#x63A7;&#x5236;&#x53F0;&#x7684;&#x5B57;&#x7B26;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;</span>
+<span class="hljs-comment">//! </span>
+<span class="hljs-comment">//! # &#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</span>
+<span class="hljs-comment">//! </span>
+<span class="hljs-comment">//! [`core::fmt::Write`] trait &#x5305;&#x542B;</span>
+<span class="hljs-comment">//! - &#x9700;&#x8981;&#x5B9E;&#x73B0;&#x7684; [`write_str`] &#x65B9;&#x6CD5;</span>
+<span class="hljs-comment">//! - &#x81EA;&#x5E26;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x4F9D;&#x8D56;&#x4E8E; [`write_str`] &#x7684; [`write_fmt`] &#x65B9;&#x6CD5;</span>
+<span class="hljs-comment">//! </span>
+<span class="hljs-comment">//! &#x6211;&#x4EEC;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#xFF0C;&#x4E3A;&#x5176;&#x5B9E;&#x73B0; [`write_str`] &#x65B9;&#x6CD5;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; [`write_fmt`] &#x6765;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</span>
+<span class="hljs-comment">//! </span>
+<span class="hljs-comment">//! [`write_str`]: core::fmt::Write::write_str</span>
+<span class="hljs-comment">//! [`write_fmt`]: core::fmt::Write::write_fmt</span>
+
+<span class="hljs-keyword">use</span> crate::sbi::*;
+<span class="hljs-keyword">use</span> core::fmt::{<span class="hljs-keyword">self</span>, Write};
+
+<span class="hljs-comment">/// &#x4E00;&#x4E2A; [Zero-Sized Type]&#xFF0C;&#x5B9E;&#x73B0; [`core::fmt::Write`] trait &#x6765;&#x8FDB;&#x884C;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// ZST &#x53EA;&#x53EF;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x503C;&#xFF08;&#x5373;&#x4E3A;&#x7A7A;&#xFF09;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x672C;&#x8EAB;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x4EF6;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// [Zero-Sized Type]: https://doc.rust-lang.org/nomicon/exotic-sizes.html#zero-sized-types-zsts</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Stdout</span></span>;
+
+<span class="hljs-keyword">impl</span> Write <span class="hljs-keyword">for</span> Stdout {
+    <span class="hljs-comment">/// &#x6253;&#x5370;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;</span>
+    <span class="hljs-comment">/// </span>
+    <span class="hljs-comment">/// &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8C03;&#x7528; [`console_putchar`]</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_str</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, s: &amp;<span class="hljs-keyword">str</span>) -&gt; fmt::<span class="hljs-built_in">Result</span> {
+        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> s.chars() {
+            console_putchar(c <span class="hljs-keyword">as</span> usize);
+        }
+        <span class="hljs-literal">Ok</span>(())
+    }
+}
+
+<span class="hljs-comment">/// &#x6253;&#x5370;&#x7531; [`core::format_args!`] &#x683C;&#x5F0F;&#x5316;&#x540E;&#x7684;&#x6570;&#x636E;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// [`print!`] &#x548C; [`println!`] &#x5B8F;&#x90FD;&#x5C06;&#x5C55;&#x5F00;&#x6210;&#x6B64;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// [`core::format_args!`]: https://doc.rust-lang.org/nightly/core/macro.format_args.html</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">print</span></span>(args: fmt::Arguments) {
+    Stdout.write_fmt(args).unwrap();
+}
+
+<span class="hljs-comment">/// &#x5B9E;&#x73B0;&#x7C7B;&#x4F3C;&#x4E8E;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684; `print!` &#x5B8F;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// &#x4F7F;&#x7528;&#x5B9E;&#x73B0;&#x4E86; [`core::fmt::Write`] trait &#x7684; [`console::Stdout`]</span>
+<span class="hljs-meta">#[macro_export]</span>
+<span class="hljs-built_in">macro_rules!</span> print {
+    ($fmt: literal $(, $($arg: tt)+)?) =&gt; {
+        $crate::console::print(<span class="hljs-built_in">format_args!</span>($fmt $(, $($arg)+)?));
+    }
+}
+
+<span class="hljs-comment">/// &#x5B9E;&#x73B0;&#x7C7B;&#x4F3C;&#x4E8E;&#x6807;&#x51C6;&#x5E93;&#x4E2D;&#x7684; `println!` &#x5B8F;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// &#x4F7F;&#x7528;&#x5B9E;&#x73B0;&#x4E86; [`core::fmt::Write`] trait &#x7684; [`console::Stdout`]</span>
+<span class="hljs-meta">#[macro_export]</span>
+<span class="hljs-built_in">macro_rules!</span> println {
+    ($fmt: literal $(, $($arg: tt)+)?) =&gt; {
+        $crate::console::print(<span class="hljs-built_in">format_args!</span>(<span class="hljs-built_in">concat!</span>($fmt, <span class="hljs-string">&quot;\n&quot;</span>) $(, $($arg)+)?));
+    }
+}
+</code></pre>
+<h3 id="&#x6574;&#x7406;-panic-&#x5904;&#x7406;&#x6A21;&#x5757;">&#x6574;&#x7406; panic &#x5904;&#x7406;&#x6A21;&#x5757;</h3>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x7528;&#x521A;&#x521A;&#x5B9E;&#x73B0;&#x7684;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#x548C;&#x5173;&#x673A;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5C06; <code>main.rs</code> &#x4E2D;&#x5904;&#x7406; panic &#x7684;&#x8BED;&#x4E49;&#x9879;&#x62BD;&#x53D6;&#x5E76;&#x5B8C;&#x5584;&#x5230; <code>panic.rs</code> &#x4E2D;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">//! &#x4EE3;&#x66FF; std &#x5E93;&#xFF0C;&#x5B9E;&#x73B0; panic &#x548C; abort &#x7684;&#x529F;&#x80FD;</span>
+
+<span class="hljs-keyword">use</span> core::panic::PanicInfo;
+<span class="hljs-keyword">use</span> crate::sbi::shutdown;
+
+<span class="hljs-comment">/// &#x6253;&#x5370; panic &#x7684;&#x4FE1;&#x606F;&#x5E76; [`shutdown`]</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// ### `#[panic_handler]` &#x5C5E;&#x6027;</span>
+<span class="hljs-comment">/// &#x58F0;&#x660E;&#x6B64;&#x51FD;&#x6570;&#x662F; panic &#x7684;&#x56DE;&#x8C03;</span>
+<span class="hljs-meta">#[panic_handler]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">panic_handler</span></span>(info: &amp;PanicInfo) -&gt; ! {
+    <span class="hljs-comment">// `\x1b[??m` &#x662F;&#x63A7;&#x5236;&#x7EC8;&#x7AEF;&#x5B57;&#x7B26;&#x8F93;&#x51FA;&#x683C;&#x5F0F;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x5728;&#x652F;&#x6301;&#x7684;&#x5E73;&#x53F0;&#x4E0A;&#x53EF;&#x4EE5;&#x6539;&#x53D8;&#x6587;&#x5B57;&#x989C;&#x8272;&#x7B49;&#x7B49;</span>
+    <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x9519;&#x8BEF;&#x7EA2;</span>
+    <span class="hljs-comment">// &#x9700;&#x8981;&#x5168;&#x5C40;&#x5F00;&#x542F; feature(panic_info_message) &#x624D;&#x53EF;&#x4EE5;&#x8C03;&#x7528; .message() &#x51FD;&#x6570;</span>
+    <span class="hljs-comment">// &#x53C2;&#x8003;&#xFF1A;https://misc.flogisoft.com/bash/tip_colors_and_formatting</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;\x1b[1;31mpanic: &apos;{}&apos;\x1b[0m&quot;</span>, info.message().unwrap());
+    shutdown()
+}
+
+<span class="hljs-comment">/// &#x7EC8;&#x6B62;&#x7A0B;&#x5E8F;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// &#x8C03;&#x7528; [`panic_handler`]</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">abort</span></span>() -&gt; ! {
+    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;abort()&quot;</span>)
+}
+</code></pre>
+<h3 id="&#x68C0;&#x9A8C;&#x6211;&#x4EEC;&#x7684;&#x6210;&#x679C;">&#x68C0;&#x9A8C;&#x6211;&#x4EEC;&#x7684;&#x6210;&#x679C;</h3>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5; <code>src/main.rs</code> &#x4E2D;&#x53BB;&#x6389;&#x4E4B;&#x524D;&#x5199;&#x7684; <code>console_putchar</code>&#x5E76;&#x8C03;&#x7528;&#x6211;&#x4EEC;&#x65B0;&#x5199;&#x7684;&#x4E00;&#x7CFB;&#x5217;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x5728; Rust &#x5165;&#x53E3;&#x5904;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;&#x8F93;&#x51FA;&#x770B;&#x4E00;&#x770B;&#x6211;&#x4EEC;&#x7684;&#x903B;&#x8F91;&#x662F;&#x5426;&#x6B63;&#x786E;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">//! # &#x5168;&#x5C40;&#x5C5E;&#x6027;</span>
+<span class="hljs-comment">//! - `#![no_std]`  </span>
+<span class="hljs-comment">//!   &#x7981;&#x7528;&#x6807;&#x51C6;&#x5E93;</span>
+<span class="hljs-meta">#![no_std]</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! - `#![no_main]`  </span>
+<span class="hljs-comment">//!   &#x4E0D;&#x4F7F;&#x7528; `main` &#x51FD;&#x6570;&#x7B49;&#x5168;&#x90E8; Rust-level &#x5165;&#x53E3;&#x70B9;&#x6765;&#x4F5C;&#x4E3A;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;</span>
+<span class="hljs-meta">#![no_main]</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! - `#![deny(missing_docs)]`  </span>
+<span class="hljs-comment">//!   &#x4EFB;&#x4F55;&#x6CA1;&#x6709;&#x6CE8;&#x91CA;&#x7684;&#x5730;&#x65B9;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x8B66;&#x544A;&#xFF1A;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x7528;&#x6765;&#x538B;&#x69A8;&#x5199;&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;&#x7684;&#x5B66;&#x957F;&#xFF0C;&#x540C;&#x5B66;&#x53EF;&#x4EE5;&#x5220;&#x6389;&#x4E86;</span>
+<span class="hljs-meta">#![warn(missing_docs)]</span>
+<span class="hljs-comment">//! # &#x4E00;&#x4E9B; unstable &#x7684;&#x529F;&#x80FD;&#x9700;&#x8981;&#x5728; crate &#x5C42;&#x7EA7;&#x58F0;&#x660E;&#x540E;&#x624D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</span>
+<span class="hljs-comment">//! - `#![feature(asm)]`  </span>
+<span class="hljs-comment">//!   &#x5185;&#x5D4C;&#x6C47;&#x7F16;</span>
+<span class="hljs-meta">#![feature(asm)]</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! - `#![feature(global_asm)]`  </span>
+<span class="hljs-comment">//!   &#x5185;&#x5D4C;&#x6574;&#x4E2A;&#x6C47;&#x7F16;&#x6587;&#x4EF6;</span>
+<span class="hljs-meta">#![feature(global_asm)]</span>
+<span class="hljs-comment">//!</span>
+<span class="hljs-comment">//! - `#![feature(panic_info_message)]`  </span>
+<span class="hljs-comment">//!   panic! &#x65F6;&#xFF0C;&#x83B7;&#x53D6;&#x5176;&#x4E2D;&#x7684;&#x4FE1;&#x606F;&#x5E76;&#x6253;&#x5370;</span>
+<span class="hljs-meta">#![feature(panic_info_message)]</span>
+
+<span class="hljs-meta">#[macro_use]</span>
+<span class="hljs-keyword">mod</span> console;
+<span class="hljs-keyword">mod</span> panic;
+<span class="hljs-keyword">mod</span> sbi;
+
+<span class="hljs-comment">// &#x6C47;&#x7F16;&#x7F16;&#x5199;&#x7684;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#xFF0C;&#x5177;&#x4F53;&#x89C1;&#x8BE5;&#x6587;&#x4EF6;</span>
+global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-string">&quot;asm/entry.asm&quot;</span>));
+
+<span class="hljs-comment">/// Rust &#x7684;&#x5165;&#x53E3;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x5728; `_start` &#x4E3A;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x51C6;&#x5907;&#x4E4B;&#x540E;&#xFF0C;&#x8FD9;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x88AB;&#x8C03;&#x7528;&#x7684; Rust &#x51FD;&#x6570;</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rust_main</span></span>() -&gt; ! {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Hello rCore-Tutorial!&quot;</span>);
+    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;end of rust_main&quot;</span>)
+}
+</code></pre>
+<p>&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8F93;&#x5165; <code>make run</code>&#xFF0C;&#x6211;&#x4EEC;&#x6210;&#x529F;&#x770B;&#x5230;&#x4E86; <code>println</code> &#x5B8F;&#x8F93;&#x51FA;&#x7684; &quot;Hello rCore-Tutorial!&quot; &#x548C;&#x4E00;&#x884C;&#x7EA2;&#x8272;&#x7684; &quot;panic: &apos;end of rust_main&apos;&quot;&#xFF01;
+```</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="part-8.html" class="navigation navigation-prev " aria-label="Previous page: 使用 QEMU 运行">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="summary.html" class="navigation navigation-next " aria-label="Next page: 小结">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"接口封装和代码整理","level":"4.1.10","depth":2,"next":{"title":"小结","level":"4.1.11","depth":2,"path":"docs/lab-0/guide/summary.md","ref":"docs/lab-0/guide/summary.md","articles":[]},"previous":{"title":"使用 QEMU 运行","level":"4.1.9","depth":2,"path":"docs/lab-0/guide/part-8.md","ref":"docs/lab-0/guide/part-8.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-9.md","mtime":"2020-04-12T13:05:55.072Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T13:16:56.326Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters-interactive/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+

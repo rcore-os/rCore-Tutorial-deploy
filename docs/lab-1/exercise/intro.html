@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>实验练习 · GitBook</title>
+        <title>一：异常处理 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -38,7 +38,27 @@
                 
             
                 
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-codeblock-label/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-interactive/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
@@ -82,7 +102,7 @@
 
     
     
-    <link rel="prev" href="../guide/summary.html" />
+    <link rel="prev" href="../../lab-0/exercise/intro.html" />
     
 
     </head>
@@ -206,27 +226,40 @@
 
     
         
-        <li class="header">实验一</li>
+        <li class="header">实验指导</li>
         
         
     
-        <li class="chapter " data-level="4.1" data-path="../guide/intro.html">
+        <li class="chapter " data-level="4.1" >
             
-                <a href="../guide/intro.html">
+                <span>
             
                     
-                    实验指导
+                    零：一个运行在 OpenSBI 之上的程序
             
-                </a>
+                </span>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1.1" data-path="../guide/part-1.html">
+        <li class="chapter " data-level="4.1.1" data-path="../../lab-0/guide/intro.html">
             
-                <a href="../guide/part-1.html">
+                <a href="../../lab-0/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../lab-0/guide/part-1.html">
+            
+                <a href="../../lab-0/guide/part-1.html">
             
                     
                     创建项目
@@ -237,9 +270,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.2" data-path="../guide/part-2.html">
+        <li class="chapter " data-level="4.1.3" data-path="../../lab-0/guide/part-2.html">
             
-                <a href="../guide/part-2.html">
+                <a href="../../lab-0/guide/part-2.html">
             
                     
                     移除标准库依赖
@@ -250,9 +283,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.3" data-path="../guide/part-3.html">
+        <li class="chapter " data-level="4.1.4" data-path="../../lab-0/guide/part-3.html">
             
-                <a href="../guide/part-3.html">
+                <a href="../../lab-0/guide/part-3.html">
             
                     
                     移除运行时环境依赖
@@ -263,9 +296,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.4" data-path="../guide/part-4.html">
+        <li class="chapter " data-level="4.1.5" data-path="../../lab-0/guide/part-4.html">
             
-                <a href="../guide/part-4.html">
+                <a href="../../lab-0/guide/part-4.html">
             
                     
                     编译为裸机目标
@@ -276,9 +309,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.5" data-path="../guide/part-5.html">
+        <li class="chapter " data-level="4.1.6" data-path="../../lab-0/guide/part-5.html">
             
-                <a href="../guide/part-5.html">
+                <a href="../../lab-0/guide/part-5.html">
             
                     
                     生成内核镜像
@@ -289,9 +322,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.6" data-path="../guide/part-6.html">
+        <li class="chapter " data-level="4.1.7" data-path="../../lab-0/guide/part-6.html">
             
-                <a href="../guide/part-6.html">
+                <a href="../../lab-0/guide/part-6.html">
             
                     
                     调整内存布局
@@ -302,9 +335,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.7" data-path="../guide/part-7.html">
+        <li class="chapter " data-level="4.1.8" data-path="../../lab-0/guide/part-7.html">
             
-                <a href="../guide/part-7.html">
+                <a href="../../lab-0/guide/part-7.html">
             
                     
                     重写程序入口点
@@ -315,9 +348,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="../guide/part-8.html">
+        <li class="chapter " data-level="4.1.9" data-path="../../lab-0/guide/part-8.html">
             
-                <a href="../guide/part-8.html">
+                <a href="../../lab-0/guide/part-8.html">
             
                     
                     使用 QEMU 运行
@@ -328,9 +361,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.9" data-path="../guide/part-9.html">
+        <li class="chapter " data-level="4.1.10" data-path="../../lab-0/guide/part-9.html">
             
-                <a href="../guide/part-9.html">
+                <a href="../../lab-0/guide/part-9.html">
             
                     
                     接口封装和代码整理
@@ -341,7 +374,130 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.10" data-path="../guide/summary.html">
+        <li class="chapter " data-level="4.1.11" data-path="../../lab-0/guide/summary.html">
+            
+                <a href="../../lab-0/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+                <span>
+            
+                    
+                    一：中断处理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../guide/intro.html">
+            
+                <a href="../guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../guide/part-1.html">
+            
+                <a href="../guide/part-1.html">
+            
+                    
+                    背景知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../guide/part-2.html">
+            
+                <a href="../guide/part-2.html">
+            
+                    
+                    RISC-V 中的中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../guide/part-3.html">
+            
+                <a href="../guide/part-3.html">
+            
+                    
+                    程序运行状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="../guide/part-4.html">
+            
+                <a href="../guide/part-4.html">
+            
+                    
+                    状态的保存与恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="../guide/part-5.html">
+            
+                <a href="../guide/part-5.html">
+            
+                    
+                    进入中断处理流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.7" data-path="../guide/part-6.html">
+            
+                <a href="../guide/part-6.html">
+            
+                    
+                    时钟中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.8" data-path="../guide/summary.html">
             
                 <a href="../guide/summary.html">
             
@@ -359,12 +515,32 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.2" data-path="intro.html">
+
+    
+        
+        <li class="header">实验题目</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../lab-0/exercise/intro.html">
+            
+                <a href="../../lab-0/exercise/intro.html">
+            
+                    
+                    零：TODO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.2" data-path="intro.html">
             
                 <a href="intro.html">
             
                     
-                    实验练习
+                    一：异常处理
             
                 </a>
             
@@ -402,7 +578,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >实验练习</a>
+        <a href="../../.." >一：异常处理</a>
     </h1>
 </div>
 
@@ -415,12 +591,33 @@
 <div id="book-search-results">
     <div class="search-noresults">
     
+<div id="book-search-results">
+    <div class="search-noresults">
+    
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="&#x5B9E;&#x9A8C;&#x4E00;&#xFF1A;&#x5F02;&#x5E38;&#x5904;&#x7406;">&#x5B9E;&#x9A8C;&#x4E00;&#xFF1A;&#x5F02;&#x5E38;&#x5904;&#x7406;</h1>
+<h2 id="&#x5B9E;&#x9A8C;&#x76EE;&#x6807;">&#x5B9E;&#x9A8C;&#x76EE;&#x6807;</h2>
+
                                 
                                 </section>
                             
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
     </div>
     <div class="search-results">
         <div class="has-results">
@@ -444,7 +641,7 @@
 
             
                 
-                <a href="../guide/summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 小结">
+                <a href="../../lab-0/exercise/intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 零：TODO">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -456,7 +653,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实验练习","level":"4.2","depth":1,"previous":{"title":"小结","level":"4.1.10","depth":2,"path":"docs/lab-1/guide/summary.md","ref":"docs/lab-1/guide/summary.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","-highlight","mermaid-gb3","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/exercise/intro.md","mtime":"2020-04-08T14:37:46.130Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T10:44:00.966Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"一：异常处理","level":"5.2","depth":1,"previous":{"title":"零：TODO","level":"5.1","depth":1,"path":"docs/lab-0/exercise/intro.md","ref":"docs/lab-0/exercise/intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/exercise/intro.md","mtime":"2020-04-12T13:05:55.081Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T13:16:56.326Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -480,6 +677,22 @@
     
         
         <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
         
     
         
