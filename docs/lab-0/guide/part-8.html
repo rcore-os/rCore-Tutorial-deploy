@@ -601,6 +601,7 @@
                                 <h2 id="&#x4F7F;&#x7528;-qemu-&#x8FD0;&#x884C;&#x5185;&#x6838;">&#x4F7F;&#x7528; QEMU &#x8FD0;&#x884C;&#x5185;&#x6838;</h2>
 <h3 id="&#x4F7F;&#x7528;-opensbi">&#x4F7F;&#x7528; OpenSBI</h3>
 <p>&#x65B0;&#x7248; QEMU &#x4E2D;&#x5185;&#x7F6E;&#x4E86; OpenSBI &#x56FA;&#x4EF6;&#xFF0C;&#x5B83;&#x4E3B;&#x8981;&#x8D1F;&#x8D23;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x524D;&#x7684;&#x786C;&#x4EF6;&#x521D;&#x59CB;&#x5316;&#x548C;&#x52A0;&#x8F7D;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x529F;&#x80FD;&#x3002;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5C1D;&#x8BD5;&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<p></p><p class="code-label">&#x8FD0;&#x884C;&#x8F93;&#x51FA;</p><p></p>
 <pre><code class="lang-bash">$ qemu-system-riscv64 \
   --machine virt \
   --nographic \
@@ -630,9 +631,8 @@ PMP1: 0x0000000000000000-0xffffffffffffffff (A,R,W,X)
 <p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x5728; qemu-system-riscv64 &#x6A21;&#x62DF;&#x7684; QEMU Virt Machine &#x786C;&#x4EF6;&#x4E0A;&#x5C06; OpenSBI &#x8FD9;&#x4E2A;&#x56FA;&#x4EF6;&#x8DD1;&#x8D77;&#x6765;&#x4E86;&#x3002;QEMU &#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>ctrl+a</code> &#xFF08;macOS &#x4E3A; <code>control+a</code>&#xFF09; &#x518D;&#x6309;&#x4E0B; <code>x</code> &#x952E;&#x9000;&#x51FA;&#x3002;</p>
 <h3 id="&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x955C;&#x50CF;">&#x52A0;&#x8F7D;&#x5185;&#x6838;&#x955C;&#x50CF;</h3>
 <p>&#x4E3A;&#x4E86;&#x786E;&#x4FE1;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x8DD1;&#x8D77;&#x6765;&#x4E86;&#x5185;&#x6838;&#x91CC;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x6700;&#x597D;&#x5728; <code>rust_main</code> &#x91CC;&#x9762;&#x52A0;&#x4E0A;&#x7B80;&#x5355;&#x7684;&#x8F93;&#x51FA;&#xFF1A;</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// src/main.rs</span>
-
-<span class="hljs-comment">//! # &#x5168;&#x5C40;&#x5C5E;&#x6027;</span>
+<p></p><p class="code-label">os/src/main.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">//! # &#x5168;&#x5C40;&#x5C5E;&#x6027;</span>
 <span class="hljs-comment">//! - `#![no_std]`  </span>
 <span class="hljs-comment">//!   &#x7981;&#x7528;&#x6807;&#x51C6;&#x5E93;</span>
 <span class="hljs-meta">#![no_std]</span>
@@ -645,7 +645,7 @@ PMP1: 0x0000000000000000-0xffffffffffffffff (A,R,W,X)
 <span class="hljs-comment">//!   &#x5185;&#x5D4C;&#x6C47;&#x7F16;</span>
 <span class="hljs-meta">#![feature(asm)]</span>
 <span class="hljs-comment">//!</span>
-<span class="hljs-comment">//! - `#![feature(global_asm)]`  </span>
+<span class="hljs-comment">//! - `#![feature(global_asm)]`</span>
 <span class="hljs-comment">//!   &#x5185;&#x5D4C;&#x6574;&#x4E2A;&#x6C47;&#x7F16;&#x6587;&#x4EF6;</span>
 <span class="hljs-meta">#![feature(global_asm)]</span>
 
@@ -694,9 +694,8 @@ global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-st
 <p>&#x8FD9;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5C06;&#x5185;&#x6838;&#x955C;&#x50CF;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5C4F;&#x5E55;&#x4E0A;&#x51FA;&#x73B0;&#x4E86; OK &#xFF0C;&#x5C31;&#x8BF4;&#x660E;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x3002;</p>
 <!-- TODO：内联汇编讲解 -->
 <p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x751F;&#x6210;&#x5185;&#x6838;&#x955C;&#x50CF;&#x8981;&#x901A;&#x8FC7;&#x591A;&#x6761;&#x547D;&#x4EE4;&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728; os &#x76EE;&#x5F55;&#x4E0B;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A; Makefile &#x6765;&#x7B80;&#x5316;&#x8FD9;&#x4E00;&#x8FC7;&#x7A0B;&#xFF1A;</p>
-<pre><code class="lang-makefile"><span class="hljs-comment"># Makefile</span>
-
-TARGET      := riscv64imac-unknown-none-elf
+<p></p><p class="code-label">os/Makefile</p><p></p>
+<pre><code class="lang-makefile">TARGET      := riscv64imac-unknown-none-elf
 MODE        := debug
 KERNEL_FILE := target/<span class="hljs-variable">$(TARGET)</span>/<span class="hljs-variable">$(MODE)</span>/os
 BIN_FILE    := target/<span class="hljs-variable">$(TARGET)</span>/<span class="hljs-variable">$(MODE)</span>/kernel.bin
@@ -802,7 +801,7 @@ run: build qemu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"使用 QEMU 运行","level":"4.1.9","depth":2,"next":{"title":"接口封装和代码整理","level":"4.1.10","depth":2,"path":"docs/lab-0/guide/part-9.md","ref":"docs/lab-0/guide/part-9.md","articles":[]},"previous":{"title":"重写程序入口点","level":"4.1.8","depth":2,"path":"docs/lab-0/guide/part-7.md","ref":"docs/lab-0/guide/part-7.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-8.md","mtime":"2020-04-13T03:35:19.130Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T09:45:44.770Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"使用 QEMU 运行","level":"4.1.9","depth":2,"next":{"title":"接口封装和代码整理","level":"4.1.10","depth":2,"path":"docs/lab-0/guide/part-9.md","ref":"docs/lab-0/guide/part-9.md","articles":[]},"previous":{"title":"重写程序入口点","level":"4.1.8","depth":2,"path":"docs/lab-0/guide/part-7.md","ref":"docs/lab-0/guide/part-7.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-8.md","mtime":"2020-04-13T14:18:49.197Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T16:51:55.145Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

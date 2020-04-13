@@ -601,14 +601,17 @@
                                 <h2 id="&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;">&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;</h2>
 <p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x8981;&#x624B;&#x52A8;&#x89E6;&#x53D1;&#x4E00;&#x4E2A; Trap&#xFF08;<code>ebreak</code>&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x3002;</p>
 <h3 id="&#x5F00;&#x542F;&#x4E2D;&#x65AD;">&#x5F00;&#x542F;&#x4E2D;&#x65AD;</h3>
-<p>&#x4E3A;&#x4E86;&#x8BA9;&#x786C;&#x4EF6;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x7684; <code>__interrupt</code> &#x5165;&#x53E3;&#xFF0C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5199;&#x5165; <code>stvec</code> &#x5BC4;&#x5B58;&#x5668;&#x4E2D;</p>
+<p>&#x4E3A;&#x4E86;&#x8BA9;&#x786C;&#x4EF6;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x7684; <code>__interrupt</code> &#x5165;&#x53E3;&#xFF0C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5199;&#x5165; <code>stvec</code> &#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
 <pre><code class="lang-rust">global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-string">&quot;../asm/interrupt.asm&quot;</span>));
 
+<span class="hljs-comment">/// &#x521D;&#x59CB;&#x5316;&#x4E2D;&#x65AD;&#x5904;&#x7406;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// &#x628A;&#x4E2D;&#x65AD;&#x5165;&#x53E3; `__interrupt` &#x5199;&#x5165; `stvec` &#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x5F00;&#x542F;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">init</span></span>() {
     <span class="hljs-keyword">unsafe</span> {
         <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> {
-            <span class="hljs-comment">/// `asm/interrupt.asm` &#x4E2D;&#x7684;&#x4E2D;&#x65AD;&#x5165;&#x53E3;</span>
+            <span class="hljs-comment">/// `interrupt.asm` &#x4E2D;&#x7684;&#x4E2D;&#x65AD;&#x5165;&#x53E3;</span>
             <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">__interrupt</span></span>();
         }
         <span class="hljs-comment">// &#x4F7F;&#x7528; Direct &#x6A21;&#x5F0F;&#xFF0C;&#x5C06;&#x4E2D;&#x65AD;&#x5165;&#x53E3;&#x8BBE;&#x7F6E;&#x4E3A; `__interrupt`</span>
@@ -617,9 +620,13 @@
 }
 </code></pre>
 <h3 id="&#x5904;&#x7406;&#x4E2D;&#x65AD;">&#x5904;&#x7406;&#x4E2D;&#x65AD;</h3>
-<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x8865;&#x4E0A; <code>__interrupt</code> &#x540E;&#x8DF3;&#x8F6C;&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B; <code>handle_interrupt()</code></p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x8865;&#x4E0A; <code>__interrupt</code> &#x540E;&#x8DF3;&#x8F6C;&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B; <code>handle_interrupt()</code>&#xFF1A;</p>
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-meta">#[no_mangle]</span>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x4E2D;&#x65AD;&#x7684;&#x5904;&#x7406;&#x5165;&#x53E3;</span>
+<span class="hljs-comment">/// </span>
+<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; TrapFrame&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;  </span>
+<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; TrapFram::scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
+<span class="hljs-meta">#[no_mangle]</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) {
     <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;Interrupted: {:?}&quot;</span>, trap_frame.scause.cause());
 }
@@ -628,19 +635,22 @@
 <p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5728; main &#x51FD;&#x6570;&#x4E2D;&#x4E3B;&#x52A8;&#x4F7F;&#x7528; <code>ebreak</code> &#x6765;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x3002;</p>
 <p></p><p class="code-label">os/src/main.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rust_main</span></span>() -&gt; ! {
+    <span class="hljs-comment">// &#x521D;&#x59CB;&#x5316;&#x5404;&#x79CD;&#x6A21;&#x5757;</span>
     interrupt::init();
-    <span class="hljs-keyword">unsafe</span> { asm!(<span class="hljs-string">&quot;ebreak&quot;</span>::::<span class="hljs-string">&quot;volatile&quot;</span>); }
+
+    <span class="hljs-keyword">unsafe</span> {
+        asm!(<span class="hljs-string">&quot;ebreak&quot;</span>::::<span class="hljs-string">&quot;volatile&quot;</span>);
+    };
+
     <span class="hljs-built_in">unreachable!</span>();
 }
 </code></pre>
-<p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230; <code>ebreak</code> &#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x8FDB;&#x5165;&#x4E86;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x5E76;&#x9000;&#x51FA;&#xFF0C;&#x800C;&#x6CA1;&#x6709;&#x6267;&#x884C;&#x5230;&#x540E;&#x9762;&#x7684; <code>unreachable!()</code></p>
+<p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230; <code>ebreak</code> &#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x8FDB;&#x5165;&#x4E86;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x5E76;&#x9000;&#x51FA;&#xFF0C;&#x800C;&#x6CA1;&#x6709;&#x6267;&#x884C;&#x5230;&#x540E;&#x9762;&#x7684; <code>unreachable!()</code>&#xFF1A;</p>
 <p></p><p class="code-label">&#x8FD0;&#x884C;&#x8F93;&#x51FA;</p><p></p>
 <pre><code>Hello rCore-Tutorial!
 mod interrupt initialized
 panic: &apos;Interrupted: Exception(Breakpoint)&apos;
-</code></pre><h3 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h3>
-<p>&#x81F3;&#x6B64;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x627E;&#x5230; TODO</p>
-
+</code></pre>
                                 
                                 </section>
                             
@@ -699,7 +709,7 @@ panic: &apos;Interrupted: Exception(Breakpoint)&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"next":{"title":"时钟中断","level":"4.2.7","depth":2,"path":"docs/lab-1/guide/part-6.md","ref":"docs/lab-1/guide/part-6.md","articles":[]},"previous":{"title":"状态的保存与恢复","level":"4.2.5","depth":2,"path":"docs/lab-1/guide/part-4.md","ref":"docs/lab-1/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-5.md","mtime":"2020-04-13T03:35:19.141Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T09:45:44.770Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"next":{"title":"时钟中断","level":"4.2.7","depth":2,"path":"docs/lab-1/guide/part-6.md","ref":"docs/lab-1/guide/part-6.md","articles":[]},"previous":{"title":"状态的保存与恢复","level":"4.2.5","depth":2,"path":"docs/lab-1/guide/part-4.md","ref":"docs/lab-1/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-5.md","mtime":"2020-04-13T16:51:05.478Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T16:51:55.145Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
