@@ -153,7 +153,20 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../../format/doc.html">
+        <li class="chapter " data-level="2.1" data-path="../../format/partition.html">
+            
+                <a href="../../format/partition.html">
+            
+                    
+                    文档代码划分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../format/doc.html">
             
                 <a href="../../format/doc.html">
             
@@ -166,7 +179,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../../format/code.html">
+        <li class="chapter " data-level="2.3" data-path="../../format/code.html">
             
                 <a href="../../format/code.html">
             
@@ -237,7 +250,7 @@
                 <span>
             
                     
-                    零：一个运行在 OpenSBI 之上的程序
+                    实验指导零
             
                 </span>
             
@@ -399,7 +412,7 @@
                 <span>
             
                     
-                    一：中断处理
+                    实验指导一
             
                 </span>
             
@@ -524,25 +537,12 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../exercise/intro.html">
-            
-                <a href="../exercise/intro.html">
-            
-                    
-                    零：TODO
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../../lab-1/exercise/intro.html">
+        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
             
                 <a href="../../lab-1/exercise/intro.html">
             
                     
-                    一：异常处理
+                    实验题目一
             
                 </a>
             
@@ -600,7 +600,8 @@
                                 
                                 <h2 id="&#x521B;&#x5EFA;-rust-&#x9879;&#x76EE;">&#x521B;&#x5EFA; Rust &#x9879;&#x76EE;</h2>
 <h3 id="&#x521B;&#x5EFA;&#x9879;&#x76EE;">&#x521B;&#x5EFA;&#x9879;&#x76EE;</h3>
-<p>&#x6211;&#x4EEC;&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6574;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x5728;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E2D;&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>rust-toolchain</code> &#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x5199;&#x5165;&#x6240;&#x9700;&#x8981;&#x7684;&#x5DE5;&#x5177;&#x94FE;&#x7248;&#x672C;&#xFF1A;</p>
+<p>&#x6211;&#x4EEC;&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6574;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x5E76;&#x5728;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E2D;&#x9996;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; <code>rust-toolchain</code> &#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x5199;&#x5165;&#x6240;&#x9700;&#x8981;&#x7684;&#x5DE5;&#x5177;&#x94FE;&#x7248;&#x672C;&#xFF1A;
+</p><p class="code-label">rust-toolchain</p><p></p>
 <pre><code>nightly-2020-03-06
 </code></pre><p>&#x4E4B;&#x540E;&#x5728;&#x76EE;&#x5F55;&#x5185;&#x90E8;&#x4F7F;&#x7528; <code>cargo new</code> &#x547D;&#x4EE4;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x5185;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; Rust &#x9879;&#x76EE; os&#xFF0C;&#x547D;&#x4EE4;&#x5982;&#x4E0B;&#xFF1A;</p>
 <pre><code class="lang-bash">cargo new os
@@ -617,11 +618,12 @@
 </code></pre>
 <h3 id="&#x6784;&#x5EFA;&#x548C;&#x8FD0;&#x884C;">&#x6784;&#x5EFA;&#x548C;&#x8FD0;&#x884C;</h3>
 <p>&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x8FDB;&#x5165; os &#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5E76;&#x5C1D;&#x8BD5;&#x6784;&#x5EFA;&#x3001;&#x8FD0;&#x884C;&#x9879;&#x76EE;&#xFF1A;</p>
+<p></p><p class="code-label">&#x8FD0;&#x884C;&#x8F93;&#x51FA;</p><p></p>
 <pre><code class="lang-bash">$ cargo run
    ...
 Hello, world!
 </code></pre>
-<p>&#x6253;&#x5F00; <code>os/src/main.rs</code> &#x53D1;&#x73B0;&#x91CC;&#x9762;&#x786E;&#x5B9E;&#x53EA;&#x662F;&#x8F93;&#x51FA;&#x4E86;&#x4E00;&#x884C; <code>Hello, world!</code>&#x3002;&#x8FD9;&#x4E2A;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x5373;&#x4F7F;&#x53EA;&#x662F;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E5F;&#x79BB;&#x4E0D;&#x5F00;&#x6240;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5E2E;&#x52A9;&#x3002;&#x6211;&#x4EEC;&#x65E2;&#x7136;&#x8981;&#x5199;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5C31;&#x4E0D;&#x80FD;&#x4F9D;&#x8D56;&#x4E8E;&#x4EFB;&#x4F55;&#x5DF2;&#x6709;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x79FB;&#x9664;&#x8BE5;&#x5E94;&#x7528;&#x5BF9;&#x4E8E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x4F9D;&#x8D56;&#x3002;</p>
+<p>&#x6253;&#x5F00; <code>os/src/main.rs</code> &#x53D1;&#x73B0;&#x91CC;&#x9762;&#x786E;&#x5B9E;&#x53EA;&#x662F;&#x8F93;&#x51FA;&#x4E86;&#x4E00;&#x884C; <code>Hello, world!</code>&#x3002;&#x8FD9;&#x4E2A;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x5373;&#x4F7F;&#x53EA;&#x662F;&#x8FD9;&#x4E48;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E5F;&#x79BB;&#x4E0D;&#x5F00;&#x6240;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5E2E;&#x52A9;&#x3002;&#x6211;&#x4EEC;&#x65E2;&#x7136;&#x8981;&#x5199;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5C31;&#x4E0D;&#x80FD;&#x4F9D;&#x8D56;&#x4E8E;&#x4EFB;&#x4F55;&#x5DF2;&#x6709;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x5C1D;&#x8BD5;&#x79FB;&#x9664;&#x8BE5;&#x9879;&#x76EE;&#x5BF9;&#x4E8E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x4F9D;&#x8D56;&#x3002;</p>
 
                                 
                                 </section>
@@ -681,7 +683,7 @@ Hello, world!
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"创建项目","level":"4.1.2","depth":2,"next":{"title":"移除标准库依赖","level":"4.1.3","depth":2,"path":"docs/lab-0/guide/part-2.md","ref":"docs/lab-0/guide/part-2.md","articles":[]},"previous":{"title":"摘要","level":"4.1.1","depth":2,"path":"docs/lab-0/guide/intro.md","ref":"docs/lab-0/guide/intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-1.md","mtime":"2020-04-12T13:05:55.068Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T13:16:56.326Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"创建项目","level":"4.1.2","depth":2,"next":{"title":"移除标准库依赖","level":"4.1.3","depth":2,"path":"docs/lab-0/guide/part-2.md","ref":"docs/lab-0/guide/part-2.md","articles":[]},"previous":{"title":"摘要","level":"4.1.1","depth":2,"path":"docs/lab-0/guide/intro.md","ref":"docs/lab-0/guide/intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-1.md","mtime":"2020-04-13T08:32:03.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T09:45:44.770Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

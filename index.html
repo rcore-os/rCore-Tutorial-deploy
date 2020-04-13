@@ -101,7 +101,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="docs/format/doc.html" />
+    <link rel="next" href="docs/format/partition.html" />
     
     
 
@@ -151,7 +151,20 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="docs/format/doc.html">
+        <li class="chapter " data-level="2.1" data-path="docs/format/partition.html">
+            
+                <a href="docs/format/partition.html">
+            
+                    
+                    文档代码划分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/format/doc.html">
             
                 <a href="docs/format/doc.html">
             
@@ -164,7 +177,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="docs/format/code.html">
+        <li class="chapter " data-level="2.3" data-path="docs/format/code.html">
             
                 <a href="docs/format/code.html">
             
@@ -235,7 +248,7 @@
                 <span>
             
                     
-                    零：一个运行在 OpenSBI 之上的程序
+                    实验指导零
             
                 </span>
             
@@ -397,7 +410,7 @@
                 <span>
             
                     
-                    一：中断处理
+                    实验指导一
             
                 </span>
             
@@ -522,25 +535,12 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="docs/lab-0/exercise/intro.html">
-            
-                <a href="docs/lab-0/exercise/intro.html">
-            
-                    
-                    零：TODO
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="docs/lab-1/exercise/intro.html">
+        <li class="chapter " data-level="5.1" data-path="docs/lab-1/exercise/intro.html">
             
                 <a href="docs/lab-1/exercise/intro.html">
             
                     
-                    一：异常处理
+                    实验题目一
             
                 </a>
             
@@ -597,23 +597,33 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="rcore-&#x6559;&#x5B66;&#x5B9E;&#x9A8C;&#xFF08;&#x5F00;&#x53D1;&#x4E2D;&#xFF09;">rCore &#x6559;&#x5B66;&#x5B9E;&#x9A8C;&#xFF08;&#x5F00;&#x53D1;&#x4E2D;&#xFF09;</h1>
-<p><em>&#xFF08;&#x4ECB;&#x7ECD;&#xFF09;</em></p>
+<p>&#x672C;&#x6559;&#x5B66;&#x4ED3;&#x5E93;&#x662F;&#x7EE7; <a href="https://rcore-os.github.io/rCore_tutorial_doc/" target="_blank">rCore_tutorial</a> &#x540E;&#x91CD;&#x6784;&#x7684;&#x7248;&#x672C;&#x3002;</p>
 <h2 id="&#x4ED3;&#x5E93;&#x76EE;&#x5F55;">&#x4ED3;&#x5E93;&#x76EE;&#x5F55;</h2>
 <ul>
-<li><code>docs/</code>&#xFF1A;&#x6559;&#x5B66;&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;&#x5206;&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;</li>
-<li><code>notes/</code>&#xFF1A;&#x5F00;&#x53D1;&#x65E5;&#x5FD7;</li>
+<li><code>docs/</code>&#xFF1A;&#x6559;&#x5B66;&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;&#x5206;&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;&#x548C;&#x5F00;&#x53D1;&#x89C4;&#x8303;</li>
+<li><code>notes/</code>&#xFF1A;&#x5F00;&#x9898;&#x62A5;&#x544A;&#x548C;&#x82E5;&#x5E72;&#x8BA8;&#x8BBA;</li>
 <li><code>os/</code>&#xFF1A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;</li>
 <li><code>SUMMARY.md</code>&#xFF1A;GitBook &#x76EE;&#x5F55;&#x9875;</li>
 <li><code>book.json</code>&#xFF1A;GitBook &#x914D;&#x7F6E;&#x6587;&#x4EF6;</li>
-<li><code>rust-toolchain</code>&#xFF1A;&#x9650;&#x5B9A; Rust &#x5DE5;&#x5177;&#x94FE;&#x7248;&#x672C;<br><em>note &#x76EE;&#x524D;&#x4F7F;&#x7528;&#x6BD4;&#x8F83;&#x65E7;&#x7684;&#xFF0C;&#x6574;&#x4F53;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x5728;&#x8003;&#x8651;&#x66F4;&#x65B0;</em></li>
+<li><code>rust-toolchain</code>&#xFF1A;&#x9650;&#x5B9A; Rust &#x5DE5;&#x5177;&#x94FE;&#x7248;&#x672C;<!-- Rust 工具链版本需要根据时间更新 -->
+</li>
 </ul>
 <h2 id="&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;">&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;</h2>
-<p>&#x57FA;&#x4E8E; GitBook&#xFF0C;&#x76EE;&#x524D;&#x5C1A;&#x672A;&#x90E8;&#x7F72;&#x5230;&#x670D;&#x52A1;&#x5668;</p>
-<p><em>&#x90E8;&#x7F72;&#x597D;&#x50CF;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x9700;&#x8981; Tsinghua Git &#x63D0;&#x4F9B;&#x57DF;&#x540D;&#xFF0C;&#x4EE5;&#x53CA;&#x6DFB;&#x52A0;&#x670D;&#x52A1;&#x5668;&#xFF08;&#x5728; gitlab.io &#x4E0A;&#x7684;&#x8BDD;&#x4F3C;&#x4E4E;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x641E;&#xFF09;</em></p>
+<p>&#x57FA;&#x4E8E; GitBook&#xFF0C;&#x76EE;&#x524D;&#x5DF2;&#x7ECF;&#x90E8;&#x7F72;&#x5230;&#x4E86; <a href="https://os20-rcore-tutorial.github.io/rCore-Tutorial-deploy" target="_blank">GitHub Pages</a>
+ &#x4E0A;&#x9762;&#x3002;</p>
 <h3 id="&#x672C;&#x5730;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;">&#x672C;&#x5730;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h3>
-<pre><code class="lang-shell">npm install -g gitbook-cli
+<pre><code class="lang-bash">npm install -g gitbook-cli
 gitbook install
 gitbook serve
+</code></pre>
+<h2 id="&#x4EE3;&#x7801;">&#x4EE3;&#x7801;</h2>
+<h3 id="&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4EE3;&#x7801;</h3>
+<p>&#x57FA;&#x4E8E; cargo &#x9879;&#x76EE;&#xFF0C;&#x8FDB;&#x5165; <code>os</code> &#x76EE;&#x5F55;&#x901A;&#x8FC7;&#x76F8;&#x5173;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1A;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> os
+<span class="hljs-comment"># &#x7F16;&#x8BD1;&#x5E76;&#x8FD0;&#x884C;</span>
+make run
+<span class="hljs-comment"># &#x6839;&#x636E;&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#x751F;&#x6210;&#x6587;&#x6863;</span>
+cargo doc
 </code></pre>
 
                                 
@@ -659,7 +669,7 @@ gitbook serve
             
                 
                 
-                <a href="docs/format/doc.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 文档格式规范">
+                <a href="docs/format/partition.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 文档代码划分">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -670,7 +680,7 @@ gitbook serve
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实验简介","level":"1.1","depth":1,"next":{"title":"文档格式规范","level":"2.1","depth":1,"path":"docs/format/doc.md","ref":"docs/format/doc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-04-09T10:46:15.658Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T13:16:56.326Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实验简介","level":"1.1","depth":1,"next":{"title":"文档代码划分","level":"2.1","depth":1,"path":"docs/format/partition.md","ref":"docs/format/partition.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-04-13T08:24:53.748Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T09:45:44.770Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
