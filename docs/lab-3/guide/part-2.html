@@ -596,9 +596,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.5" data-path="summary.html">
+        <li class="chapter " data-level="4.3.5" data-path="../../lab-2/guide/summary.html">
             
-                <a href="summary.html">
+                <a href="../../lab-2/guide/summary.html">
             
                     
                     小结
@@ -936,12 +936,12 @@ bootstacktop:
     .section .data
     .align 12
 boot_page_table:
-    # 0x8000_0000 -&gt; 0x8000_0000
-    # 0xffff_ffff_8000_0000 -&gt; 0x8000_0000
     .quad 0
     .quad 0
+    # &#x7B2C; 2 &#x9879;&#xFF1A;0x8000_0000 -&gt; 0x8000_0000&#xFF0C;0xcf &#x8868;&#x793A; VRWXAD &#x5747;&#x4E3A; 1
     .quad (0x80000 &lt;&lt; 10) | 0xcf
     .zero 507 * 8
+    # &#x7B2C; 510 &#x9879;&#xFF1A;0xffff_ffff_8000_0000 -&gt; 0x8000_0000&#xFF0C;0xcf &#x8868;&#x793A; VRWXAD &#x5747;&#x4E3A; 1
     .quad (0x80000 &lt;&lt; 10) | 0xcf
     .quad 0
 </code></pre>
@@ -1024,7 +1024,7 @@ boot_page_table:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"修改内核","level":"4.4.3","depth":2,"next":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"previous":{"title":"从虚拟地址到物理地址","level":"4.4.2","depth":2,"path":"docs/lab-3/guide/part-1.md","ref":"docs/lab-3/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-2.md","mtime":"2020-04-20T15:31:06.817Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-20T15:34:42.413Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"修改内核","level":"4.4.3","depth":2,"next":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"previous":{"title":"从虚拟地址到物理地址","level":"4.4.2","depth":2,"path":"docs/lab-3/guide/part-1.md","ref":"docs/lab-3/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-2.md","mtime":"2020-04-28T06:40:14.765Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T07:45:41.691Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
