@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>抽象的处理器 · GitBook</title>
+        <title>调度器 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -101,7 +101,7 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="part-4.html" />
+    <link rel="next" href="summary.html" />
     
     
     <link rel="prev" href="part-2.html" />
@@ -769,7 +769,7 @@
                 <a href="part-3.html">
             
                     
-                    抽象的处理器
+                    调度器
             
                 </a>
             
@@ -777,20 +777,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5.5" data-path="part-4.html">
-            
-                <a href="part-4.html">
-            
-                    
-                    简单的测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.5.6" data-path="summary.html">
+        <li class="chapter " data-level="4.5.5" data-path="summary.html">
             
                 <a href="summary.html">
             
@@ -858,7 +845,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >抽象的处理器</a>
+        <a href="../../.." >调度器</a>
     </h1>
 </div>
 
@@ -876,7 +863,166 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h2 id="&#x8C03;&#x5EA6;&#x5668;">&#x8C03;&#x5EA6;&#x5668;</h2>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x5C0F;&#x8282;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E86;&#x5BF9;&#x8FDB;&#x7A0B;&#x548C;&#x7EBF;&#x7A0B;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x4E0B;&#x9762;&#x4E3A;&#x4E86;&#x80FD;&#x8BA9;&#x4ED6;&#x4EEC;&#x8FD0;&#x884C;&#x8D77;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x62BD;&#x8C61;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x6240;&#x8C13;&#x7684;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x8FD9;&#x91CC;&#x66F4;&#x50CF;&#x662F;&#x4E00;&#x4E2A; CPU &#x7684;&#x6838;&#x5FC3;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4E3A;&#x4E86;&#x8868;&#x793A;&#x6267;&#x884C;&#x6D41;&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x5176;&#x5B9E;&#x91CC;&#x9762;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5F53;&#x524D;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8F6F;&#x4EF6;&#x5C42;&#x9762;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x5173;&#x5FC3;&#x8C03;&#x5EA6;&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x5C31;&#x662F;&#x8BF4;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x4E86;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x6765;&#x9009;&#x62E9;&#x4E0B;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x8FD0;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</p>
+<p></p><p class="code-label">os/src/process/processor.rs</p><p></p>
+<pre><code class="lang-rust">lazy_static! {
+    <span class="hljs-comment">/// &#x5168;&#x5C40;&#x7684; [`Processor`]</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> PROCESSOR: UnsafeWrapper&lt;Processor&gt; = <span class="hljs-built_in">Default</span>::default();
+}
+
+<span class="hljs-comment">/// &#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x548C;&#x7BA1;&#x7406;</span>
+<span class="hljs-meta">#[derive(Default)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Processor</span></span> {
+    <span class="hljs-comment">/// &#x5F53;&#x524D;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;</span>
+    current_thread: <span class="hljs-built_in">Option</span>&lt;Arc&lt;Thread&gt;&gt;,
+    <span class="hljs-comment">/// &#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5668;&#xFF0C;&#x5176;&#x4E2D;&#x4E0D;&#x5305;&#x62EC;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;</span>
+    scheduler: Scheduler,
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7528;&#x4E86;&#x4E00;&#x4E2A; <code>UnsafeWrapper</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x4E1C;&#x897F;&#x7C7B;&#x4F3C;&#x4E8E; Rust &#x81EA;&#x5E26;&#x7684; <code>UnsafeCell</code> &#x53EA;&#x4E0D;&#x8FC7;&#x8C03;&#x7528; Rust &#x63D0;&#x4F9B;&#x7684; <code>UnsafeCell</code> &#x65F6;&#x8FD8;&#x9700;&#x8981;&#x6BCF;&#x6B21;&#x52A0;&#x4E00;&#x4E2A; unsafe &#x6807;&#x8BC6;&#xFF0C;&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x5C31;&#x6709;&#x5305;&#x4E86;&#x4E00;&#x5C42;&#xFF0C;&#x4E0D;&#x81F3;&#x4E8E;&#x6BCF;&#x6B21;&#x7528;&#x5230; <code>PROCESSOR</code> &#x7684;&#x65F6;&#x5019;&#x90FD;&#x8981;&#x5199;&#x4E2A; unsafe&#x3002;&#x800C;&#x4E3A;&#x4EC0;&#x4E48; Rust &#x8BA4;&#x4E3A;&#x8FD9;&#x662F;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x662F;&#x56E0;&#x4E3A; Rust &#x8BA4;&#x4E3A;&#x5B83;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x5168;&#x90E8;&#x5BF9; <code>PROCESSOR</code> &#x7684;&#x4F7F;&#x7528;&#x4EC5;&#x4EC5;&#x4F1A;&#x5728;&#x542F;&#x52A8;&#x7684;&#x4E00;&#x77AC;&#x95F4;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x4E4B;&#x540E;&#x53EA;&#x4F1A;&#x5728;&#x4E2D;&#x65AD;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x5B83;&#xFF0C;&#x81F3;&#x5C11;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x5F88;&#x5B89;&#x5168;&#xFF08;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x63A7;&#x5236;&#xFF09;&#x3002;</p>
+<p>&#x800C;&#x5173;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x8C03;&#x5EA6;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x5404;&#x79CD;&#x7B97;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x4E0B;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;&#x4E2D;&#x4F53;&#x73B0;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E3A;&#x4E86;&#x5C55;&#x793A;&#x6211;&#x4EEC;&#x524D;&#x9762;&#x5DE5;&#x4F5C;&#x7684;&#x6548;&#x679C;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x8C03;&#x5EA6;&#x5668;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x8C03;&#x5EA6;&#x5668;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x6362;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x8F6E;&#x6D41;&#x6362;&#xFF0C;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x7247;&#x6BB5;&#x7ED3;&#x675F;&#x4E4B;&#x540E;&#x5C31;&#x628A;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x653E;&#x5728;&#x961F;&#x5C3E;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x961F;&#x9996;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</p>
+<p></p><p class="code-label">os/src/process/scheduler.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">//! &#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5668; [`Scheduler`]</span>
+
+<span class="hljs-keyword">use</span> super::*;
+<span class="hljs-keyword">use</span> alloc::collections::LinkedList;
+
+<span class="hljs-comment">/// &#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5668;&#xFF08;FIFO &#x5B9E;&#x73B0;&#xFF09;</span>
+<span class="hljs-meta">#[derive(Default)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Scheduler</span></span> {
+    pool: LinkedList&lt;Arc&lt;Thread&gt;&gt;,
+}
+
+<span class="hljs-keyword">impl</span> Scheduler {
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">store</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, thread: Arc&lt;Thread&gt;) {
+        <span class="hljs-keyword">self</span>.pool.push_back(thread);
+    }
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; Arc&lt;Thread&gt; {
+        <span class="hljs-keyword">self</span>.pool.pop_front().unwrap()
+    }
+}
+</code></pre>
+<p>&#x968F;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x5B9E;&#x73B0;&#x52A0;&#x5165;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#xFF1A;</p>
+<p></p><p class="code-label">os/src/process/processor.rs: impl Processor</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5F85;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">schedule_thread</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, thread: Arc&lt;Thread&gt;) {
+    <span class="hljs-comment">// &#x5982;&#x679C; current_thread &#x4E3A;&#x7A7A;&#x5C31;&#x6DFB;&#x52A0;&#x4E3A; current_thread&#xFF0C;&#x5426;&#x5219;&#x4E22;&#x7ED9; scheduler</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.current_thread.is_none() {
+        <span class="hljs-keyword">self</span>.current_thread.replace(thread);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">self</span>.scheduler.store(thread);
+    }
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x7684;&#x884C;&#x4E3A;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x6211;&#x4EEC;&#x7528; <code>current_thread</code> &#x8868;&#x793A;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x73B0;&#x5728;&#x8FD8;&#x6CA1;&#x6709;&#xFF08;&#x8FD8;&#x6CA1;&#x6709;&#x521D;&#x59CB;&#x5316;&#xFF09;&#xFF0C;&#x5C31;&#x628A;&#x7EBF;&#x7A0B;&#x653E;&#x5728; <code>current_thread</code> &#x91CC;&#x9762;&#xFF0C;&#x5426;&#x5219;&#x653E;&#x5728;&#x8C03;&#x5EA6;&#x5668;&#x91CC;&#x9762;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x662F;&#x5F53;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x5230;&#x6765;&#x65F6;&#x53D6;&#x51FA;&#x6682;&#x505C;&#x5F53;&#x524D;&#x7684;&#x7EBF;&#x7A0B;&#x7136;&#x540E;&#x6362;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#xFF08;&#x8FD9;&#x91CC;&#x548C;&#x4E0A;&#x4E00;&#x4E2A;&#x5C0F;&#x8282;&#x7684; <code>PROCESSOR.get().tick(context)</code> &#x547C;&#x5E94;&#xFF0C;&#x5904;&#x7406;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x51FD;&#x6570;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684; <code>Context</code>&#xFF09;&#xFF1A;</p>
+<p></p><p class="code-label">os/src/process/processor.rs: impl Processor</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x66FF;&#x6362;&#x6389; context</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">tick</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, context: &amp;<span class="hljs-keyword">mut</span> Context) -&gt; *<span class="hljs-keyword">mut</span> Context {
+    <span class="hljs-comment">// &#x6682;&#x505C;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-keyword">let</span> current_thread = <span class="hljs-keyword">self</span>.current_thread.take().unwrap();
+    current_thread.park(*context);
+    <span class="hljs-comment">// &#x5C06;&#x5176;&#x653E;&#x56DE;&#x8C03;&#x5EA6;&#x5668;</span>
+    <span class="hljs-keyword">self</span>.scheduler.store(current_thread);
+
+    <span class="hljs-comment">// &#x53D6;&#x51FA;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-keyword">let</span> next_thread = <span class="hljs-keyword">self</span>.scheduler.get();
+    <span class="hljs-keyword">let</span> context = next_thread.run();
+    <span class="hljs-comment">// &#x4F5C;&#x4E3A;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-keyword">self</span>.current_thread.replace(next_thread);
+    context
+}
+</code></pre>
+<p>&#x6700;&#x540E;&#x7684;&#x6700;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5230;&#x6211;&#x4EEC;&#x5F00;&#x59CB;&#x4ECE; <code>_start</code> &#x5230; <code>rust_main</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E00;&#x76F4;&#x662F;&#x4E00;&#x4E2A;&#x6240;&#x8C13;&#x7684;&#x542F;&#x52A8;&#x7EBF;&#x7A0B;&#x5728;&#x505A;&#xFF0C;&#x540E;&#x9762;&#xFF0C;&#x4E3A;&#x4E86;&#x5B8C;&#x5168;&#x66FF;&#x6362;&#x4E3A;&#x6211;&#x4EEC;&#x65B0;&#x7684;&#x903B;&#x8F91;&#x548C;&#x7BA1;&#x7406;&#xFF0C;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6211;&#x4EEC;&#x5C06;&#x5B8C;&#x5168;&#x6254;&#x6389;&#xFF0C;&#x518D;&#x4E5F;&#x4E0D;&#x56DE;&#x5934;&#xFF0C;&#x800C;&#x505A;&#x8FD9;&#x4EF6;&#x4E8B;&#x60C5;&#x7684;&#x4E5F;&#x662F; <code>Processor</code> &#x8FD9;&#x4E2A;&#x7C7B;&#xFF1A;</p>
+<p></p><p class="code-label">os/src/process/processor.rs: impl Processor</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x7B2C;&#x4E00;&#x6B21;&#x5F00;&#x59CB;&#x8FD0;&#x884C;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x4ECE; `current_thread` &#x4E2D;&#x53D6;&#x51FA; [`Context`]&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x8C03;&#x7528; `interrupt.asm` &#x4E2D;&#x7684; `__restore`</span>
+<span class="hljs-comment">/// &#x6765;&#x4ECE; `Context` &#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x8BE5;&#x7EBF;&#x7A0B;&#x3002;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x6CE8;&#x610F;&#x8C03;&#x7528; `run()` &#x7684;&#x7EBF;&#x7A0B;&#x4F1A;&#x5C31;&#x6B64;&#x6B65;&#x5165;&#x865A;&#x65E0;&#xFF0C;&#x4E0D;&#x518D;&#x88AB;&#x4F7F;&#x7528;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">run</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; ! {
+    <span class="hljs-comment">// interrupt.asm &#x4E2D;&#x7684;&#x6807;&#x7B7E;</span>
+    <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> {
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">__restore</span></span>(context: *<span class="hljs-keyword">mut</span> Context);
+    }
+    <span class="hljs-comment">// &#x4ECE; current_thread &#x4E2D;&#x53D6;&#x51FA; Context</span>
+    <span class="hljs-keyword">let</span> thread = <span class="hljs-keyword">self</span>.current_thread.as_ref().unwrap().clone();
+    <span class="hljs-keyword">let</span> context = thread.run();
+    <span class="hljs-comment">// &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF08;&#x6307;&#x7684;&#x4E0D;&#x662F; thread&#xFF0C;&#x662F;&#x8FD0;&#x884C; run &#x51FD;&#x6570;&#x7684;&#x7EBF;&#x7A0B;&#xFF09;&#x4E0D;&#x4F1A;&#x56DE;&#x6765;&#x56DE;&#x6536;&#xFF0C;&#x6240;&#x4EE5;&#x624B;&#x52A8; drop &#x6389; thread &#x7684;&#x4E00;&#x4E2A; Arc</span>
+    <span class="hljs-built_in">drop</span>(thread);
+    <span class="hljs-comment">// &#x4ECE;&#x6B64;&#x5C06;&#x6CA1;&#x6709;&#x56DE;&#x5934;</span>
+    <span class="hljs-keyword">unsafe</span> {
+        __restore(context);
+    }
+    <span class="hljs-built_in">unreachable!</span>()
+}
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x628A; <code>current_thread</code> &#x7684;&#x5185;&#x5BB9;&#x53D6;&#x4E86;&#x51FA;&#x6765;&#x8C03;&#x7528;&#x4E86; <code>__restore</code> &#x6765;&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;&#xFF0C;&#x4ECE;&#x6B64;&#x518D;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x800C;&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A; <code>thread</code> &#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E0D;&#x4F1A;&#x7ED3;&#x675F;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x624B;&#x52A8;&#x628A;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x53BB;&#x6389;&#x3002;</p>
+<h3 id="&#x6D4B;&#x8BD5;">&#x6D4B;&#x8BD5;</h3>
+<p>&#x7EC8;&#x4E8E;&#xFF0C;&#x6211;&#x4EEC;&#x641E;&#x5B9A;&#x4E86;&#x5168;&#x90E8;&#x7684;&#x903B;&#x8F91;&#xFF08;&#x770B;&#x8D77;&#x6765;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF09;&#xFF01;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x8BD5;&#x4E00;&#x8BD5;&#xFF1A;</p>
+<p></p><p class="code-label">os/src/main.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// Rust &#x7684;&#x5165;&#x53E3;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x5728; `_start` &#x4E3A;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x51C6;&#x5907;&#x4E4B;&#x540E;&#xFF0C;&#x8FD9;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x88AB;&#x8C03;&#x7528;&#x7684; Rust &#x51FD;&#x6570;</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rust_main</span></span>() -&gt; ! {
+    memory::init();
+    interrupt::init();
+
+    <span class="hljs-keyword">let</span> process = Process::new_kernel().unwrap();
+
+    <span class="hljs-keyword">let</span> thread = Thread::new(process.clone(), sample_process <span class="hljs-keyword">as</span> usize, <span class="hljs-literal">Some</span>(&amp;[<span class="hljs-number">12345usize</span>])).unwrap();
+    PROCESSOR.get().schedule_thread(thread);
+    <span class="hljs-keyword">let</span> thread = Thread::new(process, sample_process <span class="hljs-keyword">as</span> usize, <span class="hljs-literal">Some</span>(&amp;[<span class="hljs-number">12345usize</span>])).unwrap();
+    PROCESSOR.get().schedule_thread(thread);
+
+    PROCESSOR.get().run();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sample_process</span></span>(arg: usize) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;sample_process called with argument {}&quot;</span>, arg);
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">3000000</span> {}
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;i&apos;m back&quot;</span>);
+    <span class="hljs-keyword">loop</span> {}
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x9996;&#x5148;&#x65B0;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x8FDB;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FDB;&#x7A0B;&#x91CC;&#x9762;&#x653E;&#x4E86;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x6700;&#x540E;&#x628A;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x653E;&#x5165; <code>PROCESSOR</code> &#x91CC;&#x9762;&#x8FD0;&#x884C;&#xFF0C;&#x8FD9;&#x770B;&#x8D77;&#x6765;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4ED4;&#x7EC6;&#x60F3;&#x4E00;&#x60F3;&#xFF0C;&#x5982;&#x679C;&#x5728; <code>interrupt::init()</code> &#x548C; <code>PROCESSOR.get().run()</code> &#x4E4B;&#x95F4;&#x53D1;&#x751F;&#x4E86;&#x4E2D;&#x65AD;&#x600E;&#x4E48;&#x529E;&#x5462;&#xFF1F;&#x8FD9;&#x5C06;&#x4F1A;&#x4EA7;&#x751F;&#x65E0;&#x6CD5;&#x542F;&#x52A8;&#x7684;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5230;&#x7684;&#x662F;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5728;&#x65B0;&#x5EFA; <code>Thread</code> &#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x8BBE;&#x7F6E;&#x597D;&#x4E86; <code>sstatus</code>&#xFF0C;&#x5728;&#x5207;&#x6362;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x7EBF;&#x7A0B;&#x65F6;&#x4F1A;&#x5F00;&#x542F;&#x4E2D;&#x65AD;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x7684; <code>interrupt::init()</code> &#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x628A;&#x4E2D;&#x65AD;&#x5173;&#x6389;&#xFF08;&#x8BA9; <code>sie</code> &#x4E3A; 0&#xFF09;&#xFF0C;&#x7B49;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x542F;&#x52A8;&#x65F6;&#x518D;&#x81EA;&#x52A8;&#x6253;&#x5F00;&#x3002;</p>
+<p></p><p class="code-label">os/interrupt/timer.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x521D;&#x59CB;&#x5316;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x5F00;&#x542F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x4F7F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x9884;&#x7EA6;&#x7B2C;&#x4E00;&#x6B21;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">init</span></span>() {
+    <span class="hljs-keyword">unsafe</span> {
+        <span class="hljs-comment">// &#x5F00;&#x542F; STIE&#xFF0C;&#x5141;&#x8BB8;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+        sie::set_stimer();
+        <span class="hljs-comment">// &#xFF08;&#x5220;&#x9664;&#xFF09;&#x5F00;&#x542F; SIE&#xFF08;&#x4E0D;&#x662F; sie &#x5BC4;&#x5B58;&#x5668;&#xFF09;&#xFF0C;&#x5141;&#x8BB8;&#x5185;&#x6838;&#x6001;&#x88AB;&#x4E2D;&#x65AD;&#x6253;&#x65AD;</span>
+        <span class="hljs-comment">// sstatus::set_sie();</span>
+    }
+    <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x4E0B;&#x4E00;&#x6B21;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+    set_next_timeout();
+}
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5F97;&#x5230;&#x7C7B;&#x4F3C;&#x7684;&#x8F93;&#x51FA;&#xFF1A;</p>
+<p></p><p class="code-label">&#x8FD0;&#x884C;&#x8F93;&#x51FA;</p><p></p>
+<pre><code>sample_process called with argument 12345
+sample_process called with argument 12345
+100 tick
+200 tick
+i&apos;m back
+i&apos;m back
+300 tick
+</code></pre><p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x90FD;&#x5DF2;&#x7ECF;&#x662F;&#x8FD0;&#x884C;&#x597D;&#x7684;&#x72B6;&#x6001;&#x4E86;&#xFF0C;&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x5B8C;&#x6210;&#x4E86;&#x5168;&#x90E8;&#x672C;&#x7AE0;&#x5168;&#x90E8;&#x5185;&#x5BB9;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x4ED4;&#x7EC6;&#x60F3;&#x4E00;&#x60F3;&#xFF0C;&#x73B0;&#x5728;&#x7684;&#x903B;&#x8F91;&#x8FD8;&#x6CA1;&#x6709;&#x5927;&#x95EE;&#x9898;&#xFF1F;</p>
+<h3 id="&#x601D;&#x8003;">&#x601D;&#x8003;</h3>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x8BA1;&#x4E2D;&#x7528;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x9501;&#x7ED3;&#x6784;&#xFF0C;&#x5F88;&#x591A;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x8BA9; Rust &#x77E5;&#x9053;&#x6211;&#x4EEC;&#x662F;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x4E0B;&#x6211;&#x4EEC;<strong>&#x4EC5;&#x4EC5;</strong>&#x4F1A;&#x5728;&#x4E2D;&#x65AD;&#x53D1;&#x751F;&#x7684;&#x65F6;&#x5019;&#x6765;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x53EA;&#x8981;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x91CC;&#x9762;&#x4E0D;&#x7528;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x6B7B;&#x9501;&#xFF0C;&#x4F46;&#x662F;&#x771F;&#x7684;&#x662F;&#x8FD9;&#x6837;&#x5417;&#xFF1F;&#x5373;&#x4F7F;&#x6211;&#x4EEC;&#x4E0D;&#x5728;&#x5185;&#x6838;&#x4E2D;&#x4F7F;&#x7528;&#x5404;&#x79CD; <code>Processor</code> &#x548C; <code>Thread</code> &#x7B49;&#x7B49;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x4EC5;&#x4EC5;&#x5B8C;&#x6210;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;&#x8FD0;&#x7B97;&#xFF0C;&#x771F;&#x7684;&#x6CA1;&#x6709;&#x6B7B;&#x9501;&#x5417;&#xFF1F;</p>
+<div class="click_reveal"><span> Click to show </span><div><blockquote>
+<p>&#x4F1A;&#x6709;&#x6B7B;&#x9501;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x5728;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x4E2D;&#x6784;&#x9020;&#x4E00;&#x4E2A; <code>Vec</code>&#xFF0C;&#x7136;&#x540E;&#x5728;&#x91CC;&#x9762; push &#x51E0;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x53EF;&#x80FD;&#x4EA7;&#x751F;&#x6B7B;&#x9501;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5668;&#x662F;&#x4E00;&#x4E2A; <code>LockedHeap</code>&#xFF0C;&#x662F;&#x5916;&#x9762;&#x52A0;&#x4E86;&#x9501;&#x7684;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x5668;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x7EBF;&#x7A0B;&#x91CC;&#x9762; push &#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x52A8;&#x6001;&#x5206;&#x914D;&#xFF0C;&#x7136;&#x540E;&#x6B63;&#x597D;&#x5728;&#x4E0A;&#x5B8C;&#x9501;&#x800C;&#x4E14;&#x6CA1;&#x6709;&#x91CA;&#x653E;&#x9501;&#x7684;&#x65F6;&#x5019;&#x4EA7;&#x751F;&#x4E86;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x4E2D;&#x65AD;&#x4E2D;&#x6211;&#x4EEC;&#x7684; <code>Scheduler</code> &#x4E5F;&#x7528;&#x5230;&#x4E86; <code>Vec</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4F1A;&#x518D;&#x53BB;&#x9501;&#x4F4F;&#xFF0C;&#x4F46;&#x662F;&#x53C8;&#x62FF;&#x4E0D;&#x5230;&#xFF0C;&#x540C;&#x65F6;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5728;&#x5904;&#x7406;&#x4E2D;&#x65AD;&#x672C;&#x8EAB;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x662F;&#x5173;&#x6389;&#x7684;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x7684;&#x9501;&#x4F1A;&#x4E00;&#x76F4;&#x53BB;&#x7533;&#x8BF7;&#xFF0C;&#x5C31;&#x5F62;&#x6210;&#x4E86;&#x7C7B;&#x4F3C;&#x6B7B;&#x9501;&#x7684;&#x6B7B;&#x5FAA;&#x73AF;&#x3002;</p>
+<p>&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x9700;&#x8981;&#x628A;&#x7533;&#x8BF7;&#x5230;&#x9501;&#x4E4B;&#x540E;&#x52A0;&#x4E0A;&#x5173;&#x95ED;&#x4E2D;&#x65AD;&#xFF0C;&#x901A;&#x8FC7;&#x8FD9;&#x79CD;&#x62A2;&#x5360;&#x5F0F;&#x7684;&#x65B9;&#x6CD5;&#x5F7B;&#x5E95;&#x6267;&#x884C;&#x5B8C;&#x5206;&#x914D;&#x903B;&#x8F91;&#x4E4B;&#x540E;&#x518D;&#x5173;&#x95ED;&#x9501;&#x540C;&#x65F6;&#x6253;&#x5F00;&#x4E2D;&#x65AD;&#x3002;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x4E00;&#x4E2A;&#x8BBE;&#x8BA1;&#x4E0A;&#x7684;&#x53D6;&#x820D;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4E0D;&#x652F;&#x6301;&#x5185;&#x6838;&#x62A2;&#x5360;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5F88;&#x591A;&#x7CBE;&#x5999;&#x7684;&#x8BBE;&#x8BA1;&#x6765;&#x7ED5;&#x5F00;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x4E0D;&#x4F1A;&#x7406;&#x4F1A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+</blockquote>
+</div></div>
                                 
                                 </section>
                             
@@ -924,7 +1070,7 @@
                 </a>
                 
                 
-                <a href="part-4.html" class="navigation navigation-next " aria-label="Next page: 简单的测试">
+                <a href="summary.html" class="navigation navigation-next " aria-label="Next page: 小结">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -935,7 +1081,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"抽象的处理器","level":"4.5.4","depth":2,"next":{"title":"简单的测试","level":"4.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"previous":{"title":"线程切换","level":"4.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-05-04T14:35:07.079Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T06:50:51.130Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"调度器","level":"4.5.4","depth":2,"next":{"title":"小结","level":"4.5.5","depth":2,"path":"docs/lab-4/guide/summary.md","ref":"docs/lab-4/guide/summary.md","articles":[]},"previous":{"title":"线程切换","level":"4.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-05-05T09:48:57.612Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T10:31:57.165Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -769,7 +769,7 @@
                 <a href="../../lab-4/guide/part-3.html">
             
                     
-                    抽象的处理器
+                    调度器
             
                 </a>
             
@@ -777,20 +777,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5.5" data-path="../../lab-4/guide/part-4.html">
-            
-                <a href="../../lab-4/guide/part-4.html">
-            
-                    
-                    简单的测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.5.6" data-path="../../lab-4/guide/summary.html">
+        <li class="chapter " data-level="4.5.5" data-path="../../lab-4/guide/summary.html">
             
                 <a href="../../lab-4/guide/summary.html">
             
@@ -881,7 +868,7 @@
 <h3 id="&#x5F00;&#x542F;&#x4E2D;&#x65AD;">&#x5F00;&#x542F;&#x4E2D;&#x65AD;</h3>
 <p>&#x4E3A;&#x4E86;&#x8BA9;&#x786C;&#x4EF6;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x7684; <code>__interrupt</code> &#x5165;&#x53E3;&#xFF0C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5199;&#x5165; <code>stvec</code> &#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-keyword">use</span> super::trap_frame::TrapFrame;
+<pre><code class="lang-rust"><span class="hljs-keyword">use</span> super::context::Context;
 <span class="hljs-keyword">use</span> riscv::register::stvec;
 
 global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-string">&quot;../asm/interrupt.asm&quot;</span>));
@@ -905,11 +892,11 @@ global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-st
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x4E2D;&#x65AD;&#x7684;&#x5904;&#x7406;&#x5165;&#x53E3;</span>
 <span class="hljs-comment">/// </span>
-<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; TrapFrame&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;  </span>
-<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; TrapFram::scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
+<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; Context&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x548C; scause &#x4EE5;&#x53CA; stval &#x4E00;&#x5E76;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
 <span class="hljs-meta">#[no_mangle]</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) {
-    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;Interrupted: {:?}&quot;</span>, trap_frame.scause.cause());
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(context: &amp;<span class="hljs-keyword">mut</span> Context, scause: Scause, stval: usize) {
+    <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;Interrupted: {:?}&quot;</span>, scause.cause());
 }
 </code></pre>
 <h3 id="&#x89E6;&#x53D1;&#x4E2D;&#x65AD;">&#x89E6;&#x53D1;&#x4E2D;&#x65AD;</h3>
@@ -920,7 +907,7 @@ global_asm!(<span class="hljs-built_in">include_str!</span>(<span class="hljs-st
 <span class="hljs-comment">//! </span>
 
 <span class="hljs-keyword">mod</span> handler;
-<span class="hljs-keyword">mod</span> trap_frame;
+<span class="hljs-keyword">mod</span> context;
 
 <span class="hljs-comment">/// &#x521D;&#x59CB;&#x5316;&#x4E2D;&#x65AD;&#x76F8;&#x5173;&#x7684;&#x5B50;&#x6A21;&#x5757;</span>
 <span class="hljs-comment">/// </span>
@@ -1015,7 +1002,7 @@ panic: &apos;Interrupted: Exception(Breakpoint)&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"next":{"title":"时钟中断","level":"4.2.7","depth":2,"path":"docs/lab-1/guide/part-6.md","ref":"docs/lab-1/guide/part-6.md","articles":[]},"previous":{"title":"状态的保存与恢复","level":"4.2.5","depth":2,"path":"docs/lab-1/guide/part-4.md","ref":"docs/lab-1/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-5.md","mtime":"2020-04-29T03:29:39.944Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T06:50:51.130Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"next":{"title":"时钟中断","level":"4.2.7","depth":2,"path":"docs/lab-1/guide/part-6.md","ref":"docs/lab-1/guide/part-6.md","articles":[]},"previous":{"title":"状态的保存与恢复","level":"4.2.5","depth":2,"path":"docs/lab-1/guide/part-4.md","ref":"docs/lab-1/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-5.md","mtime":"2020-05-05T10:00:59.235Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T10:31:57.165Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

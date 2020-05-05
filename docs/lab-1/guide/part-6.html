@@ -769,7 +769,7 @@
                 <a href="../../lab-4/guide/part-3.html">
             
                     
-                    抽象的处理器
+                    调度器
             
                 </a>
             
@@ -777,20 +777,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5.5" data-path="../../lab-4/guide/part-4.html">
-            
-                <a href="../../lab-4/guide/part-4.html">
-            
-                    
-                    简单的测试
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.5.6" data-path="../../lab-4/guide/summary.html">
+        <li class="chapter " data-level="4.5.5" data-path="../../lab-4/guide/summary.html">
             
                 <a href="../../lab-4/guide/summary.html">
             
@@ -953,7 +940,7 @@
 <p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x5728; <code>handle_interrupt()</code> &#x6839;&#x636E;&#x4E0D;&#x540C;&#x4E2D;&#x65AD;&#x79CD;&#x7C7B;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x3002;</p>
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-keyword">use</span> super::timer;
-<span class="hljs-keyword">use</span> super::trap_frame::TrapFrame;
+<span class="hljs-keyword">use</span> super::context::Context;
 <span class="hljs-keyword">use</span> riscv::register::{
     stvec,
     scause::{Trap, Exception, Interrupt},
@@ -962,34 +949,34 @@
 
 <span class="hljs-comment">/// &#x4E2D;&#x65AD;&#x7684;&#x5904;&#x7406;&#x5165;&#x53E3;</span>
 <span class="hljs-comment">/// </span>
-<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; TrapFrame&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;  </span>
-<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; TrapFram::scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
+<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; Context&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x548C; scause &#x4EE5;&#x53CA; stval &#x4E00;&#x5E76;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
 <span class="hljs-meta">#[no_mangle]</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) {
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(context: &amp;<span class="hljs-keyword">mut</span> Context, scause: Scause, stval: usize) {
     <span class="hljs-comment">// &#x53EF;&#x4EE5;&#x901A;&#x8FC7; Debug &#x6765;&#x67E5;&#x770B;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4E2D;&#x65AD;</span>
-    <span class="hljs-comment">// println!(&quot;{:x?}&quot;, trap_frame.scause.cause());</span>
-    <span class="hljs-keyword">match</span> trap_frame.scause.cause() {
+    <span class="hljs-comment">// println!(&quot;{:x?}&quot;, context.scause.cause());</span>
+    <span class="hljs-keyword">match</span> scause.cause() {
         <span class="hljs-comment">// &#x65AD;&#x70B9;&#x4E2D;&#x65AD;&#xFF08;ebreak&#xFF09;</span>
-        Trap::Exception(Exception::Breakpoint) =&gt; breakpoint(trap_frame),
+        Trap::Exception(Exception::Breakpoint) =&gt; breakpoint(context),
         <span class="hljs-comment">// &#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
-        Trap::Interrupt(Interrupt::SupervisorTimer) =&gt; supervisor_timer(trap_frame),
+        Trap::Interrupt(Interrupt::SupervisorTimer) =&gt; supervisor_timer(context),
         <span class="hljs-comment">// &#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x672A;&#x5B9E;&#x73B0;</span>
-        trap =&gt; <span class="hljs-built_in">unimplemented!</span>(<span class="hljs-string">&quot;{:?}&quot;</span>, trap),
+        _ =&gt; <span class="hljs-built_in">unimplemented!</span>(<span class="hljs-string">&quot;{:?}: {:x?}, stval: 0x{:x}&quot;</span>, scause.cause(), context, stval),
     }
 }
 
 <span class="hljs-comment">/// &#x5904;&#x7406; ebreak &#x65AD;&#x70B9;</span>
 <span class="hljs-comment">/// </span>
 <span class="hljs-comment">/// &#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5176;&#x4E2D; `sepc` &#x589E;&#x52A0; 2 &#x5B57;&#x8282;&#xFF0C;&#x4EE5;&#x8DF3;&#x8FC7;&#x5F53;&#x524D;&#x8FD9;&#x6761; `ebreak` &#x6307;&#x4EE4;</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">breakpoint</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) {
-    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Breakpoint at 0x{:x}&quot;</span>, trap_frame.sepc);
-    trap_frame.sepc += <span class="hljs-number">2</span>;
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">breakpoint</span></span>(context: &amp;<span class="hljs-keyword">mut</span> Context) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Breakpoint at 0x{:x}&quot;</span>, context.sepc);
+    context.sepc += <span class="hljs-number">2</span>;
 }
 
 <span class="hljs-comment">/// &#x5904;&#x7406;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
 <span class="hljs-comment">/// </span>
 <span class="hljs-comment">/// &#x76EE;&#x524D;&#x53EA;&#x4F1A;&#x5728; [`timer`] &#x6A21;&#x5757;&#x4E2D;&#x8FDB;&#x884C;&#x8BA1;&#x6570;</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">supervisor_timer</span></span>(_: &amp;TrapFrame) {
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">supervisor_timer</span></span>(_: &amp;Context) {
     timer::tick();
 }
 </code></pre>
@@ -1054,7 +1041,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"时钟中断","level":"4.2.7","depth":2,"next":{"title":"小结","level":"4.2.8","depth":2,"path":"docs/lab-1/guide/summary.md","ref":"docs/lab-1/guide/summary.md","articles":[]},"previous":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"path":"docs/lab-1/guide/part-5.md","ref":"docs/lab-1/guide/part-5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-6.md","mtime":"2020-04-28T07:54:36.568Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T06:50:51.130Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"时钟中断","level":"4.2.7","depth":2,"next":{"title":"小结","level":"4.2.8","depth":2,"path":"docs/lab-1/guide/summary.md","ref":"docs/lab-1/guide/summary.md","articles":[]},"previous":{"title":"进入中断处理流程","level":"4.2.6","depth":2,"path":"docs/lab-1/guide/part-5.md","ref":"docs/lab-1/guide/part-5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-6.md","mtime":"2020-05-05T10:00:34.878Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T10:31:57.165Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
