@@ -1,0 +1,1228 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>线程切换 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-codeblock-label/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-interactive/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="part-3.html" />
+    
+    
+    <link rel="prev" href="part-1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    实验简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">开发笔记</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../format/partition.html">
+            
+                <a href="../../format/partition.html">
+            
+                    
+                    文档代码划分
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../format/doc.html">
+            
+                <a href="../../format/doc.html">
+            
+                    
+                    文档格式规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../format/code.html">
+            
+                <a href="../../format/code.html">
+            
+                    
+                    代码格式规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验之前</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
+            
+                <a href="../../pre-lab/rust.html">
+            
+                    
+                    Rust 基础介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
+            
+                <a href="../../pre-lab/os.html">
+            
+                    
+                    操作系统背景知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+            
+                <a href="../../pre-lab/env.html">
+            
+                    
+                    环境部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验指导</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" >
+            
+                <span>
+            
+                    
+                    实验指导零
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../../lab-0/guide/intro.html">
+            
+                <a href="../../lab-0/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../../lab-0/guide/part-1.html">
+            
+                <a href="../../lab-0/guide/part-1.html">
+            
+                    
+                    创建项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../../lab-0/guide/part-2.html">
+            
+                <a href="../../lab-0/guide/part-2.html">
+            
+                    
+                    移除标准库依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../../lab-0/guide/part-3.html">
+            
+                <a href="../../lab-0/guide/part-3.html">
+            
+                    
+                    移除运行时环境依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../../lab-0/guide/part-4.html">
+            
+                <a href="../../lab-0/guide/part-4.html">
+            
+                    
+                    编译为裸机目标
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="../../lab-0/guide/part-5.html">
+            
+                <a href="../../lab-0/guide/part-5.html">
+            
+                    
+                    生成内核镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.7" data-path="../../lab-0/guide/part-6.html">
+            
+                <a href="../../lab-0/guide/part-6.html">
+            
+                    
+                    调整内存布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.8" data-path="../../lab-0/guide/part-7.html">
+            
+                <a href="../../lab-0/guide/part-7.html">
+            
+                    
+                    重写程序入口点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.9" data-path="../../lab-0/guide/part-8.html">
+            
+                <a href="../../lab-0/guide/part-8.html">
+            
+                    
+                    使用 QEMU 运行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.10" data-path="../../lab-0/guide/part-9.html">
+            
+                <a href="../../lab-0/guide/part-9.html">
+            
+                    
+                    接口封装和代码整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.11" data-path="../../lab-0/guide/summary.html">
+            
+                <a href="../../lab-0/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+                <span>
+            
+                    
+                    实验指导一
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="../../lab-1/guide/intro.html">
+            
+                <a href="../../lab-1/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.2" data-path="../../lab-1/guide/part-1.html">
+            
+                <a href="../../lab-1/guide/part-1.html">
+            
+                    
+                    背景知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.3" data-path="../../lab-1/guide/part-2.html">
+            
+                <a href="../../lab-1/guide/part-2.html">
+            
+                    
+                    RISC-V 中的中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.4" data-path="../../lab-1/guide/part-3.html">
+            
+                <a href="../../lab-1/guide/part-3.html">
+            
+                    
+                    程序运行状态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.5" data-path="../../lab-1/guide/part-4.html">
+            
+                <a href="../../lab-1/guide/part-4.html">
+            
+                    
+                    状态的保存与恢复
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.6" data-path="../../lab-1/guide/part-5.html">
+            
+                <a href="../../lab-1/guide/part-5.html">
+            
+                    
+                    进入中断处理流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.7" data-path="../../lab-1/guide/part-6.html">
+            
+                <a href="../../lab-1/guide/part-6.html">
+            
+                    
+                    时钟中断
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2.8" data-path="../../lab-1/guide/summary.html">
+            
+                <a href="../../lab-1/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" >
+            
+                <span>
+            
+                    
+                    实验指导二
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="../../lab-2/guide/intro.html">
+            
+                <a href="../../lab-2/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="../../lab-2/guide/part-1.html">
+            
+                <a href="../../lab-2/guide/part-1.html">
+            
+                    
+                    动态内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="../../lab-2/guide/part-2.html">
+            
+                <a href="../../lab-2/guide/part-2.html">
+            
+                    
+                    物理内存探测
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.4" data-path="../../lab-2/guide/part-3.html">
+            
+                <a href="../../lab-2/guide/part-3.html">
+            
+                    
+                    物理内存管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.5" data-path="../../lab-2/guide/summary.html">
+            
+                <a href="../../lab-2/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" >
+            
+                <span>
+            
+                    
+                    实验指导三
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="../../lab-3/guide/intro.html">
+            
+                <a href="../../lab-3/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.2" data-path="../../lab-3/guide/part-1.html">
+            
+                <a href="../../lab-3/guide/part-1.html">
+            
+                    
+                    从虚拟地址到物理地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.3" data-path="../../lab-3/guide/part-2.html">
+            
+                <a href="../../lab-3/guide/part-2.html">
+            
+                    
+                    修改内核
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.4" data-path="../../lab-3/guide/part-3.html">
+            
+                <a href="../../lab-3/guide/part-3.html">
+            
+                    
+                    实现页表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.5" data-path="../../lab-3/guide/part-4.html">
+            
+                <a href="../../lab-3/guide/part-4.html">
+            
+                    
+                    实现内核重映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.6" data-path="../../lab-3/guide/summary.html">
+            
+                <a href="../../lab-3/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" >
+            
+                <span>
+            
+                    
+                    实验指导四
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.5.1" data-path="intro.html">
+            
+                <a href="intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.2" data-path="part-1.html">
+            
+                <a href="part-1.html">
+            
+                    
+                    线程和进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.5.3" data-path="part-2.html">
+            
+                <a href="part-2.html">
+            
+                    
+                    线程切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.4" data-path="part-3.html">
+            
+                <a href="part-3.html">
+            
+                    
+                    抽象的处理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.5" data-path="part-4.html">
+            
+                <a href="part-4.html">
+            
+                    
+                    简单的测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.6" data-path="summary.html">
+            
+                <a href="summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">实验题目</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
+            
+                <a href="../../lab-1/exercise/intro.html">
+            
+                    
+                    实验题目一
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >线程切换</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x7EBF;&#x7A0B;&#x5207;&#x6362;">&#x7EBF;&#x7A0B;&#x5207;&#x6362;</h2>
+<h3 id="trapframe">TrapFrame</h3>
+<p>&#x5728;&#x4E2D;&#x65AD;&#x7684;&#x7AE0;&#x8282;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x7528; <code>TrapFrame</code> &#x7684;&#x6982;&#x5FF5;&#x6765;&#x5E2E;&#x52A9;&#x4E00;&#x4E2A;&#x6D41;&#x7A0B;&#x88AB;&#x4E2D;&#x65AD;&#x6216;&#x5F02;&#x5E38;&#x6253;&#x65AD;&#x5904;&#x7406;&#x5B8C;&#x518D;&#x6062;&#x590D;&#x56DE;&#x53BB;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x800C;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x7528;&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x5B8C;&#x6210;&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;&#x3002;&#x56DE;&#x987E;&#x4E00;&#x4E0B;&#xFF0C;<code>TrapFrame</code> &#x662F;&#x957F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<p></p><p class="code-label">os/src/interrupt/trap_frame.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-meta">#[repr(C)]</span>
+<span class="hljs-meta">#[derive(Clone, Copy)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TrapFrame</span></span> {
+    <span class="hljs-comment">/// &#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;</span>
+    <span class="hljs-keyword">pub</span> x: [usize; <span class="hljs-number">32</span>],
+    <span class="hljs-comment">/// &#x4FDD;&#x5B58;&#x8BF8;&#x591A;&#x72B6;&#x6001;&#x4F4D;&#x7684;&#x7279;&#x6743;&#x6001;&#x5BC4;&#x5B58;&#x5668;</span>
+    <span class="hljs-keyword">pub</span> sstatus: Sstatus,
+    <span class="hljs-comment">/// &#x4FDD;&#x5B58;&#x4E2D;&#x65AD;&#x5730;&#x5740;&#x7684;&#x7279;&#x6743;&#x6001;&#x5BC4;&#x5B58;&#x5668;</span>
+    <span class="hljs-keyword">pub</span> sepc: usize,
+}
+</code></pre>
+<p>&#x4E8E;&#x662F;&#xFF0C;&#x4E3A;&#x4E86;&#x5B8C;&#x6210;&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x628A;&#x5F53;&#x524D;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#x5B58;&#x5728;&#x4E0A;&#x9762;&#x7684; <code>x</code> &#x548C; <code>sstatus</code> &#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x4E3A;&#x4E86;&#x4EE5;&#x540E;&#x53EF;&#x4EE5;&#x5207;&#x6362;&#x56DE;&#x53BB;&#xFF0C;&#x5C31;&#x628A;&#x8FD4;&#x56DE;&#x4E4B;&#x540E;&#x7EE7;&#x7EED;&#x8981;&#x6267;&#x884C;&#x7684;&#x5730;&#x5740;&#x653E;&#x5728; <code>sepc</code> &#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x539F;&#x6765;&#x7684;&#x4E2D;&#x65AD;&#x6062;&#x590D;&#x8FD4;&#x56DE;&#x673A;&#x5236;&#x5B9E;&#x73B0;&#x8DF3;&#x8F6C;&#x548C;&#x5207;&#x6362;&#x3002;</p>
+<h3 id="&#x4FEE;&#x6539;&#x4E2D;&#x65AD;&#x5904;&#x7406;">&#x4FEE;&#x6539;&#x4E2D;&#x65AD;&#x5904;&#x7406;</h3>
+<p>&#x5728;&#x4E4B;&#x524D;&#x7684; rCore &#x8BBE;&#x8BA1;&#x4E2D;&#x91C7;&#x7528;&#x4E86; idle &#x7EBF;&#x7A0B;&#x6765;&#x7BA1;&#x7406;&#x7EBF;&#x7A0B;&#x7684;&#x8C03;&#x5EA6;&#xFF0C;&#x4F46;&#x662F;&#x4ED4;&#x7EC6;&#x601D;&#x8003;&#x4E00;&#x4E0B;&#xFF0C;&#x8C03;&#x5EA6;&#x6216;&#x8005;&#x8BF4;&#x5207;&#x6362;&#x7EBF;&#x7A0B;&#x4E00;&#x5B9A;&#x4F1A;&#x53D1;&#x751F;&#x5728;&#x67D0;&#x4E2A;&#x4E2D;&#x65AD;&#x5230;&#x6765;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x4E4B;&#x524D;&#x7684;&#x8BBE;&#x8BA1;&#x591A;&#x5C11;&#x8FD8;&#x662F;&#x6709;&#x4E9B;&#x5197;&#x4F59;&#x7684;&#x6210;&#x5206;&#x3002;&#x800C;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5F7B;&#x5E95;&#x53D6;&#x6D88; idle &#x7EBF;&#x7A0B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5728;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x65F6;&#xFF0C;&#x8981;&#x6062;&#x590D;&#x56DE;&#x53BB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76F4;&#x63A5;&#x628A;&#x8981;&#x5207;&#x6362;&#x7684;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x6389;&#x3002;</p>
+<p>&#x4E8E;&#x662F;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E4B;&#x524D;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x8BA9; <code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684; <code>TrapFrame</code>&#xFF0C;&#x8BA9;&#x4E4B;&#x524D;&#x7684; <code>__restore</code> &#x673A;&#x5236;&#x8BFB;&#x53D6;&#x8FD9;&#x4E2A;&#x8FD4;&#x56DE;&#x503C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x7EBF;&#x7A0B;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x3002;</p>
+<p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x4E2D;&#x65AD;&#x7684;&#x5904;&#x7406;&#x5165;&#x53E3;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// `interrupt.asm` &#x9996;&#x5148;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x81F3; TrapFrame&#xFF0C;&#x5176;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6B64;&#x51FD;&#x6570;</span>
+<span class="hljs-comment">/// &#x5177;&#x4F53;&#x7684;&#x4E2D;&#x65AD;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x6839;&#x636E; TrapFram::scause &#x6765;&#x63A8;&#x65AD;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x5904;&#x7406;</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">handle_interrupt</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame, scause: Scause, stval: usize) -&gt; *<span class="hljs-keyword">mut</span> TrapFrame{
+    <span class="hljs-keyword">match</span> scause.cause() {
+        <span class="hljs-comment">// &#x65AD;&#x70B9;&#x4E2D;&#x65AD;&#xFF08;ebreak&#xFF09;</span>
+        Trap::Exception(Exception::Breakpoint) =&gt; breakpoint(trap_frame),
+        <span class="hljs-comment">// &#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+        Trap::Interrupt(Interrupt::SupervisorTimer) =&gt; supervisor_timer(trap_frame),
+        <span class="hljs-comment">// &#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x672A;&#x5B9E;&#x73B0;</span>
+        _ =&gt; <span class="hljs-built_in">unimplemented!</span>(<span class="hljs-string">&quot;{:?}: {:x?}, stval: 0x{:x}&quot;</span>, scause.cause(), trap_frame, stval),
+    }
+}
+
+<span class="hljs-comment">/// &#x5904;&#x7406; ebreak &#x65AD;&#x70B9;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5176;&#x4E2D; `sepc` &#x589E;&#x52A0; 2 &#x5B57;&#x8282;&#xFF0C;&#x4EE5;&#x8DF3;&#x8FC7;&#x5F53;&#x524D;&#x8FD9;&#x6761; `ebreak` &#x6307;&#x4EE4;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">breakpoint</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) -&gt; *<span class="hljs-keyword">mut</span> TrapFrame {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;Breakpoint at 0x{:x}&quot;</span>, trap_frame.sepc);
+    trap_frame.sepc += <span class="hljs-number">2</span>;
+    trap_frame
+}
+
+<span class="hljs-comment">/// &#x5904;&#x7406;&#x65F6;&#x949F;&#x4E2D;&#x65AD;</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">supervisor_timer</span></span>(trap_frame: &amp;<span class="hljs-keyword">mut</span> TrapFrame) -&gt; *<span class="hljs-keyword">mut</span> TrapFrame {
+    timer::tick();
+    PROCESSOR.get().tick(trap_frame)
+}
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5F53;&#x53D1;&#x751F;&#x65AD;&#x70B9;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x539F;&#x6765;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF08;&#x4FEE;&#x6539;&#x4E00;&#x4E0B; <code>sepc</code>&#xFF09;&#xFF1B;&#x800C;&#x5982;&#x679C;&#x662F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x8FD4;&#x56DE;&#x4E86; <code>PROCESSOR.get().tick(trap_frame)</code> &#x4F5C;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x5230;&#x8FD9;&#x91CC; <code>PROCESSOR</code> &#x4F60;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x4E2A;&#x8C03;&#x5EA6;&#x5668;&#xFF0C;&#x8FD9;&#x4E2A; <code>tick</code> &#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E86;&#x6211;&#x4EEC;&#x8981;&#x5207;&#x6362;&#x5230;&#x7684;&#x7EBF;&#x7A0B;&#x7684;&#x4E0A;&#x4E0B;&#x6587; <code>TrapFrame</code>&#x3002;&#x66F4;&#x5177;&#x4F53;&#x7684; <code>PROCESSOR</code> &#x7684;&#x8BBE;&#x8BA1;&#x53EF;&#x4EE5;&#x5728;&#x540E;&#x9762;&#x89C1;&#x5230;&#x3002;</p>
+<h3 id="interruptasm">interrupt.asm</h3>
+<p>&#x8FD8;&#x8BB0;&#x5F97;&#x6211;&#x4EEC;&#x662F;&#x8C03;&#x7528; <code>handle_interrupt</code> &#x800C;&#x4E14;&#x5982;&#x4F55;&#x5177;&#x4F53;&#x6062;&#x590D;&#x7684;&#x5417;&#xFF1F;&#x662F;&#x5229;&#x7528;&#x4E86; <code>os/src/asm/interrupt.asm</code>&#xFF0C;&#x73B0;&#x5728;&#x591A;&#x4E86;&#x7EBF;&#x7A0B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6211;&#x4EEC;&#x4E0A;&#x9762;&#x7684; <code>handle_interrupt</code> &#x4E5F;&#x6709;&#x4E86;&#x4E9B;&#x53D8;&#x5316;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x4E5F;&#x9700;&#x8981;&#x5BF9;&#x5E94;&#x7684;&#x4FEE;&#x6539;&#xFF1A;</p>
+<p></p><p class="code-label">os/asm/interrupt.asm</p><p></p>
+<pre><code class="lang-asm"># &#x5B8F;&#xFF1A;&#x5C06;&#x5BC4;&#x5B58;&#x5668;&#x5B58;&#x5230;&#x6808;&#x4E0A;
+.macro SAVE reg, offset
+    sd  \reg, \offset*8(sp)
+.endm
+
+# &#x5B8F;&#xFF1A;&#x5C06;&#x5BC4;&#x5B58;&#x5668;&#x4ECE;&#x6808;&#x4E2D;&#x53D6;&#x51FA;
+.macro LOAD reg, offset
+    ld  \reg, \offset*8(sp)
+.endm
+
+    .section .text
+    .globl __interrupt
+# &#x8FDB;&#x5165;&#x4E2D;&#x65AD;
+# &#x4FDD;&#x5B58; TrapFrame &#x5E76;&#x4E14;&#x8FDB;&#x5165; rust &#x4E2D;&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x51FD;&#x6570; interrupt::handler::handle_interrupt()
+__interrupt:
+    # &#x6D89;&#x53CA;&#x5230;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58; TrapFrame &#x5C31;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x5185;&#x6838;&#x6808;
+    # &#x5426;&#x5219;&#x5982;&#x679C;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x53D1;&#x751F;&#x7F3A;&#x9875;&#x5F02;&#x5E38;&#xFF0C;&#x5C06;&#x65E0;&#x6CD5;&#x4FDD;&#x5B58; TrapFrame
+    # &#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528; sscratch &#x5BC4;&#x5B58;&#x5668;&#xFF1A;
+    # &#x5904;&#x4E8E;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58;&#x5185;&#x6838;&#x6808;&#x5730;&#x5740;&#xFF1B;&#x5904;&#x4E8E;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x65F6;&#xFF0C;&#x4FDD;&#x5B58; 0
+
+    # csrrw rd, csr, rs1&#xFF1A;csr &#x7684;&#x503C;&#x5199;&#x5165; rd&#xFF1B;&#x540C;&#x65F6; rs1 &#x7684;&#x503C;&#x5199;&#x5165; csr
+    csrrw   sp, sscratch, sp
+    bnez    sp, _from_user
+_from_kernel:
+    csrr    sp, sscratch
+_from_user:
+    # &#x6B64;&#x65F6; sscratch&#xFF1A;&#x539F;&#x5148;&#x7684; sp&#xFF1B;sp&#xFF1A;&#x5185;&#x6838;&#x6808;&#x5730;&#x5740;
+    # &#x5728;&#x5185;&#x6838;&#x6808;&#x5F00;&#x8F9F; TrapFrame &#x7684;&#x7A7A;&#x95F4;
+    addi    sp, sp, -36*8
+
+    # &#x4FDD;&#x5B58;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x9664;&#x4E86; x0&#xFF08;&#x56FA;&#x5B9A;&#x4E3A; 0&#xFF09;
+    SAVE    x1, 1
+    # &#x5C06;&#x539F;&#x6765;&#x7684; sp&#xFF08;&#x5373; x2&#xFF09;&#x4FDD;&#x5B58;
+    # &#x540C;&#x65F6; sscratch &#x5199; 0&#xFF0C;&#x56E0;&#x4E3A;&#x5373;&#x5C06;&#x8FDB;&#x5165;*&#x5185;&#x6838;&#x7EBF;&#x7A0B;*&#x7684;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;
+    csrrw   x1, sscratch, x0
+    SAVE    x1, 2
+    SAVE    x3, 3
+    SAVE    x4, 4
+    SAVE    x5, 5
+    SAVE    x6, 6
+    SAVE    x7, 7
+    SAVE    x8, 8
+    SAVE    x9, 9
+    SAVE    x10, 10
+    SAVE    x11, 11
+    SAVE    x12, 12
+    SAVE    x13, 13
+    SAVE    x14, 14
+    SAVE    x15, 15
+    SAVE    x16, 16
+    SAVE    x17, 17
+    SAVE    x18, 18
+    SAVE    x19, 19
+    SAVE    x20, 20
+    SAVE    x21, 21
+    SAVE    x22, 22
+    SAVE    x23, 23
+    SAVE    x24, 24
+    SAVE    x25, 25
+    SAVE    x26, 26
+    SAVE    x27, 27
+    SAVE    x28, 28
+    SAVE    x29, 29
+    SAVE    x30, 30
+    SAVE    x31, 31
+
+    # &#x53D6;&#x51FA; CSR &#x5E76;&#x4FDD;&#x5B58;
+    csrr    t0, sstatus
+    csrr    t1, sepc
+    SAVE    t0, 32
+    SAVE    t1, 33
+    # &#x8C03;&#x7528; handle_interrupt&#xFF0C;&#x4F20;&#x5165;&#x53C2;&#x6570;
+    # trap_frame: &amp;mut TrapFrame
+    mv      a0, sp
+    # scause: Scause
+    csrr    a1, scause
+    # stval: usize
+    csrr    a2, stval
+    jal handle_interrupt
+
+    .globl __restore
+# &#x79BB;&#x5F00;&#x4E2D;&#x65AD;
+# &#x4ECE; TrapFrame &#x4E2D;&#x6062;&#x590D;&#x6240;&#x6709;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x5E76;&#x8DF3;&#x8F6C;&#x81F3; TrapFrame &#x4E2D; sepc &#x7684;&#x4F4D;&#x7F6E;
+__restore:
+    # &#x4ECE; a0 &#x4E2D;&#x8BFB;&#x53D6; sp
+    mv      sp, a0
+    # &#x6062;&#x590D; CSR
+    LOAD    t0, 32
+    LOAD    t1, 33
+    # &#x601D;&#x8003;&#xFF1A;&#x5982;&#x679C;&#x6062;&#x590D;&#x7684;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#xFF0C;&#x6B64;&#x65F6;&#x7684; sstatus &#x662F;&#x7528;&#x6237;&#x6001;&#x8FD8;&#x662F;&#x5185;&#x6838;&#x6001;
+    csrw    sstatus, t0
+    csrw    sepc, t1
+    # &#x6839;&#x636E;&#x5373;&#x5C06;&#x6062;&#x590D;&#x7684;&#x7EBF;&#x7A0B;&#x5C5E;&#x4E8E;&#x7528;&#x6237;&#x8FD8;&#x662F;&#x5185;&#x6838;&#xFF0C;&#x6062;&#x590D; sscratch
+    # &#x68C0;&#x67E5; sstatus &#x4E0A;&#x7684; SPP &#x6807;&#x8BB0;
+    andi    t0, t0, 1 &lt;&lt; 8
+    bnez    t0, _to_kernel
+_to_user:
+    # &#x5C06;&#x8981;&#x8FDB;&#x5165;&#x7528;&#x6237;&#x6001;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5185;&#x6838;&#x6808;&#x5730;&#x5740;&#x5199;&#x5165; sscratch
+    addi    t0, sp, 36*8
+    csrw    sscratch, t0
+_to_kernel:
+    # &#x5982;&#x679C;&#x8981;&#x8FDB;&#x5165;&#x5185;&#x6838;&#x6001;&#xFF0C;sscratch &#x4FDD;&#x6301;&#x4E3A; 0 &#x4E0D;&#x53D8;
+
+    # &#x6062;&#x590D;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;
+    LOAD    x1, 1
+    LOAD    x3, 3
+    LOAD    x4, 4
+    LOAD    x5, 5
+    LOAD    x6, 6
+    LOAD    x7, 7
+    LOAD    x8, 8
+    LOAD    x9, 9
+    LOAD    x10, 10
+    LOAD    x11, 11
+    LOAD    x12, 12
+    LOAD    x13, 13
+    LOAD    x14, 14
+    LOAD    x15, 15
+    LOAD    x16, 16
+    LOAD    x17, 17
+    LOAD    x18, 18
+    LOAD    x19, 19
+    LOAD    x20, 20
+    LOAD    x21, 21
+    LOAD    x22, 22
+    LOAD    x23, 23
+    LOAD    x24, 24
+    LOAD    x25, 25
+    LOAD    x26, 26
+    LOAD    x27, 27
+    LOAD    x28, 28
+    LOAD    x29, 29
+    LOAD    x30, 30
+    LOAD    x31, 31
+
+    # &#x6062;&#x590D; sp&#xFF08;&#x53C8;&#x540D; x2&#xFF09;&#x8FD9;&#x91CC;&#x6700;&#x540E;&#x6062;&#x590D;&#x662F;&#x4E3A;&#x4E86;&#x4E0A;&#x9762;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528; LOAD &#x5B8F;
+    LOAD    x2, 2
+    sret
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x8FDB;&#x5165; <code>__interrupt</code> &#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x6839;&#x636E; <code>sscratch</code> &#x7684;&#x503C;&#x5224;&#x65AD;&#x662F;&#x4ECE;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x8FD8;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x6765;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F; 0 &#x5C31;&#x662F;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x5426;&#x5219;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#xFF08;&#x5B58;&#x7684;&#x662F;&#x5171;&#x7528;&#x7684;&#x5185;&#x6838;&#x6808;&#xFF09;&#x3002;&#x5982;&#x679C;&#x662F;&#x4ECE;&#x5185;&#x6838;&#x6765;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x7528;&#x5171;&#x7528;&#x7684;&#x5185;&#x6838;&#x6808;&#x4E86;&#xFF0C;&#x76F4;&#x63A5;&#x8FD8;&#x662F;&#x7528;&#x5B83;&#x81EA;&#x5DF1;&#x7684;&#x5185;&#x6838;&#x6808;&#x3002;&#x540E;&#x9762;&#x4E0D;&#x8BBA;&#x662F;&#x5185;&#x6838;&#x8FD8;&#x662F;&#x7528;&#x6237;&#xFF0C;&#x90FD;&#x4F1A;&#x628A;&#x5F53;&#x524D;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4FE1;&#x606F;&#x538B;&#x5728;&#x5BF9;&#x5E94;&#x7684;&#x6808;&#x4E0A;&#xFF0C;&#x538B;&#x6210;&#x4E00;&#x4E2A; <code>TrapFrame</code>&#x3001;<code>scause</code> &#x548C; <code>stval</code>&#xFF0C;&#x6700;&#x540E;&#x518D;&#x8DF3;&#x8F6C;&#x5230; <code>handle_interrupt</code> &#x7684; Rust &#x903B;&#x8F91;&#x4E2D;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x628A; <code>sscratch</code> &#x5BC4;&#x5B58;&#x5668;&#x6539;&#x6210; 0&#xFF0C;&#x8868;&#x793A;&#x5F02;&#x5E38;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x662F;&#x5185;&#x6838;&#x6001;&#x3002;</p>
+<p>&#x601D;&#x8003;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x4EEC;&#x4E0D;&#x628A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x4E5F;&#x5171;&#x7528;&#x5185;&#x6838;&#x6808;&#x5462;&#xFF1F;</p>
+<div class="click_reveal"><span> Click to show </span><div><blockquote>
+<p>&#x5982;&#x679C;&#x5728;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7684;&#x65F6;&#x5019;&#xFF08;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x662F;&#x5185;&#x6838;&#x6001;&#xFF09;&#xFF0C;&#x53C8;&#x53D1;&#x751F;&#x4E86;&#x5F02;&#x5E38;&#xFF08;&#x6BD4;&#x5982;&#x7F3A;&#x9875;&#xFF09;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5982;&#x679C;&#x8FD8;&#x7528;&#x90A3;&#x4E2A;&#x5171;&#x7528;&#x7684;&#x6808;&#xFF0C;&#x5C31;&#x4F1A;&#x5D29;&#x6E83;&#x3002;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x7684;&#x662F;&#x5171;&#x7528;&#x7684;&#x6808;&#x5728;&#x9700;&#x8981;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4E00;&#x5B9A;&#x662F;&#x7A7A;&#x7684;&#xFF08;&#x4E2D;&#x65AD;&#x7684;&#x903B;&#x8F91;&#x8FD4;&#x56DE;&#x4E4B;&#x540E;&#x5C31;&#x6CA1;&#x7528;&#x4E86;&#xFF09;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E3A;&#x4E86;&#x652F;&#x6301;&#x5D4C;&#x5957;&#x5F02;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x5185;&#x6838;&#x6808;&#x9700;&#x8981;&#x4E0D;&#x65AD;&#x53E0;&#x52A0;&#xFF0C;&#x4E0D;&#x65AD;&#x628A;&#x5D4C;&#x5957;&#x4EA7;&#x751F;&#x7684; <code>TrapFrame</code> &#x5F80;&#x4E0A;&#x538B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x538B;&#x5728;&#x6700;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x3002;</p>
+</blockquote>
+</div></div>
+
+<p>&#x601D;&#x8003;&#xFF0C;&#x5982;&#x679C;&#x8FD0;&#x884C;&#x8FD9;&#x90E8;&#x5206;&#x903B;&#x8F91;&#x7684;&#x65F6;&#x5019;&#x6765;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x600E;&#x4E48;&#x529E;&#xFF1F;</p>
+<div class="click_reveal"><span> Click to show </span><div><blockquote>
+<p>&#x6839;&#x672C;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#xFF0C;&#x56E0;&#x4E3A; RISC-V &#x4E0D;&#x652F;&#x6301;&#x786C;&#x4EF6;&#x57FA;&#x672C;&#x7684;&#x4E2D;&#x65AD;&#x5D4C;&#x5957;&#xFF0C;&#x5728;&#x8FDB;&#x4E2D;&#x65AD;&#x540E;&#x4F1A;&#x5C4F;&#x853D;&#x6389;&#x5168;&#x90E8;&#x7684;&#x4E2D;&#x65AD;&#x3002;&#x4F46;&#x662F;&#x662F;&#x53EF;&#x4EE5;&#x5D4C;&#x5957;&#x5F02;&#x5E38;&#x7684;&#xFF08;&#x4E0A;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF09;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7684;&#x65F6;&#x5019;&#x7F3A;&#x9875;&#x4E86;&#x3002;</p>
+</blockquote>
+</div></div>
+
+<p>&#x6700;&#x540E;&#x662F;&#x6062;&#x590D;&#x7684;&#x903B;&#x8F91;&#xFF0C;<code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x4E86;&#x4E00;&#x4E2A; <code>TrapFrame</code> &#x7684;&#x5730;&#x5740;&#xFF0C;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x628A;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x4E0A;&#x7684; <code>TrapFrame</code> &#x8BFB;&#x51FA;&#x6765;&#xFF0C;&#x6839;&#x636E;&#x662F;&#x5426;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x8BBE;&#x7F6E;&#x597D; <code>sscratch</code> &#x6700;&#x540E;&#x8FD4;&#x56DE;&#x5230; <code>sepc</code> &#x4E0A;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#x5207;&#x6362;&#x540C;&#x65F6;&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x4E2D;&#x65AD;&#x6062;&#x590D;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x601D;&#x8003;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x4ECE;&#x4E2D;&#x65AD;&#x4E2D;&#x6062;&#x590D;&#xFF0C;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x628A; <code>sscratch</code> &#x6539;&#x6210;&#x4E86;&#x8FD4;&#x56DE;&#x7684; <code>TrapFrame</code> &#x7684;&#x9AD8;&#x5730;&#x5740;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x4F1A;&#x4E0D;&#x4F1A;&#x5728;&#x66F4;&#x9AD8;&#x7684;&#x5730;&#x5740;&#x4E0A;&#x7559;&#x4E0B;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x8FDD;&#x80CC;&#x6E05;&#x7A7A;&#x7684;&#x7A7A;&#x95F4;&#x9020;&#x6210;&#x5BF9;&#x5171;&#x7528;&#x6808;&#x7684;&#x6D6A;&#x8D39;&#xFF1F;</p>
+<div class="click_reveal"><span> Click to show </span><div><blockquote>
+<p>&#x4E0D;&#x4F1A;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x8FD4;&#x56DE;&#x7684; <code>TrapFrame</code> &#x548C;&#x8C03;&#x7528; <code>handle_interrupt</code> &#x65F6;&#x4F20;&#x8FDB;&#x53BB;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#xFF0C;&#x53EA;&#x662F;&#x5185;&#x5BB9;&#x88AB;&#x6539;&#x4E86;&#x3002;&#x800C;&#x4F20;&#x8FDB;&#x53BB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6808;&#x653E;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;&#x5C31;&#x662F; <code>TrapFrame</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x7684;&#x4E0B;&#x9762;&#xFF08;&#x6808;&#x5143;&#x7D20;&#x7684;&#x4E0B;&#x9762;&#x610F;&#x5473;&#x7740;&#x66F4;&#x9AD8;&#x7684;&#x5730;&#x5740;&#xFF09;&#x5C31;&#x6CA1;&#x6709;&#x5176;&#x4ED6;&#x4E1C;&#x897F;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x7BA1;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x8FD8;&#x662F;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x6062;&#x590D;&#xFF0C;&#x4E2D;&#x65AD;&#x903B;&#x8F91;&#x5728;&#x6808;&#x4E0A;&#x4EA7;&#x751F;&#x7684;&#x4E1C;&#x897F;&#x4F1A;&#x88AB;&#x5F7B;&#x5E95;&#x6E05;&#x6389;&#x3002;</p>
+</blockquote>
+</div></div>
+
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E86;&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;&#xFF0C;&#x800C;&#x5982;&#x4F55;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x8FD8;&#x662F;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x540E;&#x9762;&#x6211;&#x4EEC;&#x8FDB;&#x4E00;&#x6B65;&#x5C01;&#x88C5; <code>Thread</code> &#x8FD9;&#x4E2A;&#x7C7B;&#xFF0C;&#x901A;&#x8FC7;&#x7CBE;&#x5999;&#x5730;&#x6784;&#x9020; <code>TrapFrame</code> &#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x7B49;&#x7B49;&#x6765;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x65B0;&#x7EBF;&#x7A0B;&#x7684;&#x542F;&#x52A8;&#x7B49;&#x64CD;&#x4F5C;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="part-1.html" class="navigation navigation-prev " aria-label="Previous page: 线程和进程">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="part-3.html" class="navigation navigation-next " aria-label="Next page: 抽象的处理器">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"线程切换","level":"4.5.3","depth":2,"next":{"title":"抽象的处理器","level":"4.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"previous":{"title":"线程和进程","level":"4.5.2","depth":2,"path":"docs/lab-4/guide/part-1.md","ref":"docs/lab-4/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-2.md","mtime":"2020-05-05T03:03:57.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T03:21:31.400Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters-interactive/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+

@@ -711,6 +711,103 @@
             
         </li>
     
+        <li class="chapter " data-level="4.5" >
+            
+                <span>
+            
+                    
+                    实验指导四
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.5.1" data-path="../../lab-4/guide/intro.html">
+            
+                <a href="../../lab-4/guide/intro.html">
+            
+                    
+                    摘要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.2" data-path="../../lab-4/guide/part-1.html">
+            
+                <a href="../../lab-4/guide/part-1.html">
+            
+                    
+                    线程和进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.3" data-path="../../lab-4/guide/part-2.html">
+            
+                <a href="../../lab-4/guide/part-2.html">
+            
+                    
+                    线程切换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.4" data-path="../../lab-4/guide/part-3.html">
+            
+                <a href="../../lab-4/guide/part-3.html">
+            
+                    
+                    抽象的处理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.5" data-path="../../lab-4/guide/part-4.html">
+            
+                <a href="../../lab-4/guide/part-4.html">
+            
+                    
+                    简单的测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5.6" data-path="../../lab-4/guide/summary.html">
+            
+                <a href="../../lab-4/guide/summary.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
         
@@ -877,23 +974,23 @@
     <span class="hljs-comment">// &#x4ECE;&#x6839;&#x9875;&#x8868;&#x5F00;&#x59CB;&#x5411;&#x4E0B;&#x67E5;&#x8BE2;</span>
     <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x4E0D;&#x7528; self.page_tables[0] &#x907F;&#x514D;&#x540E;&#x9762;&#x4EA7;&#x751F; borrow-check &#x51B2;&#x7A81;&#xFF08;&#x6211;&#x592A;&#x83DC;&#x4E86;&#xFF09;</span>
     <span class="hljs-keyword">let</span> root_table: &amp;<span class="hljs-keyword">mut</span> PageTable = PhysicalAddress::from(<span class="hljs-keyword">self</span>.root_ppn).deref_kernel();
-    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> pte = &amp;<span class="hljs-keyword">mut</span> root_table.entries[vpn.levels()[<span class="hljs-number">0</span>]];
-    <span class="hljs-comment">// println!(&quot;[{}] = {:x?}&quot;, vpn.levels()[0], pte);</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> entry = &amp;<span class="hljs-keyword">mut</span> root_table.entries[vpn.levels()[<span class="hljs-number">0</span>]];
+    <span class="hljs-comment">// println!(&quot;[{}] = {:x?}&quot;, vpn.levels()[0], entry);</span>
     <span class="hljs-keyword">for</span> vpn_slice <span class="hljs-keyword">in</span> &amp;vpn.levels()[<span class="hljs-number">1</span>..] {
-        <span class="hljs-keyword">if</span> pte.is_empty() {
+        <span class="hljs-keyword">if</span> entry.is_empty() {
             <span class="hljs-comment">// &#x5982;&#x679C;&#x9875;&#x8868;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x9875;&#x8868;</span>
             <span class="hljs-keyword">let</span> new_table = PageTableTracker::new(FRAME_ALLOCATOR.lock().alloc()?);
             <span class="hljs-keyword">let</span> new_ppn = new_table.page_number();
             <span class="hljs-comment">// &#x5C06;&#x65B0;&#x9875;&#x8868;&#x7684;&#x9875;&#x53F7;&#x5199;&#x5165;&#x5F53;&#x524D;&#x7684;&#x9875;&#x8868;&#x9879;</span>
-            *pte = PageTableEntry::new(new_ppn, Flags::VALID);
+            *entry = PageTableEntry::new(new_ppn, Flags::VALID);
             <span class="hljs-comment">// &#x4FDD;&#x5B58;&#x9875;&#x8868;</span>
             <span class="hljs-keyword">self</span>.page_tables.push(new_table);
         }
         <span class="hljs-comment">// &#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x7EA7;&#x9875;&#x8868;&#xFF08;&#x4F7F;&#x7528;&#x504F;&#x79FB;&#x91CF;&#x6765;&#x8BBF;&#x95EE;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF09;</span>
-        pte = &amp;<span class="hljs-keyword">mut</span> pte.get_next_table().entries[*vpn_slice];
+        entry = &amp;<span class="hljs-keyword">mut</span> entry.get_next_table().entries[*vpn_slice];
     }
-    <span class="hljs-comment">// &#x6B64;&#x65F6; pte &#x4F4D;&#x4E8E;&#x7B2C;&#x4E09;&#x7EA7;&#x9875;&#x8868;</span>
-    <span class="hljs-literal">Ok</span>(pte)
+    <span class="hljs-comment">// &#x6B64;&#x65F6; entry &#x4F4D;&#x4E8E;&#x7B2C;&#x4E09;&#x7EA7;&#x9875;&#x8868;</span>
+    <span class="hljs-literal">Ok</span>(entry)
 }
 
 <span class="hljs-comment">/// &#x4E3A;&#x7ED9;&#x5B9A;&#x7684;&#x865A;&#x62DF; / &#x7269;&#x7406;&#x9875;&#x53F7;&#x5EFA;&#x7ACB;&#x6620;&#x5C04;&#x5173;&#x7CFB;</span>
@@ -1133,7 +1230,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-04-29T03:29:39.948Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-29T03:31:11.771Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-05-04T12:27:30.927Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-05T03:21:31.400Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

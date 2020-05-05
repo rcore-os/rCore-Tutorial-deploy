@@ -1,9 +1,10 @@
 use super::timer;
 use super::trap_frame::TrapFrame;
 use riscv::register::{
-    scause::{Exception, Interrupt, Trap},
+    scause::{Exception, Interrupt, Scause, Trap},
     stvec,
 };
+use crate::process::PROCESSOR;
 
 global_asm!(include_str!("../asm/interrupt.asm"));
 
@@ -26,30 +27,28 @@ pub fn init() {
 /// `interrupt.asm` 首先保存寄存器至 TrapFrame，其作为参数传入此函数
 /// 具体的中断类型需要根据 TrapFram::scause 来推断，然后分别处理
 #[no_mangle]
-pub fn handle_interrupt(trap_frame: &mut TrapFrame) {
-    // 可以通过 Debug 来查看发生了什么中断
-    // println!("{:x?}", trap_frame.scause.cause());
-    match trap_frame.scause.cause() {
+pub fn handle_interrupt(trap_frame: &mut TrapFrame, scause: Scause, stval: usize) -> *mut TrapFrame{
+    match scause.cause() {
         // 断点中断（ebreak）
         Trap::Exception(Exception::Breakpoint) => breakpoint(trap_frame),
         // 时钟中断
         Trap::Interrupt(Interrupt::SupervisorTimer) => supervisor_timer(trap_frame),
         // 其他情况未实现
-        _ => unimplemented!("{:x?}", trap_frame),
+        _ => unimplemented!("{:?}: {:x?}, stval: 0x{:x}", scause.cause(), trap_frame, stval),
     }
 }
 
 /// 处理 ebreak 断点
 ///
 /// 继续执行，其中 `sepc` 增加 2 字节，以跳过当前这条 `ebreak` 指令
-fn breakpoint(trap_frame: &mut TrapFrame) {
+fn breakpoint(trap_frame: &mut TrapFrame) -> *mut TrapFrame {
     println!("Breakpoint at 0x{:x}", trap_frame.sepc);
     trap_frame.sepc += 2;
+    trap_frame
 }
 
 /// 处理时钟中断
-///
-/// 目前只会在 [`timer`] 模块中进行计数
-fn supervisor_timer(_: &TrapFrame) {
+fn supervisor_timer(trap_frame: &mut TrapFrame) -> *mut TrapFrame {
     timer::tick();
+    PROCESSOR.get().tick(trap_frame)
 }

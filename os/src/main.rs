@@ -28,6 +28,11 @@
 //! - `#![feature(panic_info_message)]`  
 //!   panic! 时，获取其中的信息并打印
 #![feature(panic_info_message)]
+//!
+//! - `#![feature(naked_functions)]`
+//!   允许使用 naked 函数，即编译器不在函数前后添加出入栈操作。
+//!   这允许我们在函数中间内联汇编使用 `ret` 提前结束，而不会导致栈出现异常
+#![feature(naked_functions)]
 
 #[macro_use]
 mod console;
@@ -35,7 +40,10 @@ mod data_structure;
 mod interrupt;
 mod memory;
 mod panic;
+mod process;
 mod sbi;
+
+use process::*;
 
 extern crate alloc;
 
@@ -47,14 +55,22 @@ global_asm!(include_str!("asm/entry.asm"));
 /// 在 `_start` 为我们进行了一系列准备之后，这是第一个被调用的 Rust 函数
 #[no_mangle]
 pub extern "C" fn rust_main() -> ! {
-    // 初始化各种模块
-    interrupt::init();
     memory::init();
 
-    let remap = memory::mapping::MemorySet::new_kernel().unwrap();
-    remap.activate();
+    let process = Process::new_kernel().unwrap();
 
-    println!("kernel remapped");
+    let thread = Thread::new(process.clone(), sample_process as usize, Some(&[12345usize])).unwrap();
+    PROCESSOR.get().schedule_thread(thread);
+    let thread = Thread::new(process, sample_process as usize, Some(&[12345usize])).unwrap();
+    PROCESSOR.get().schedule_thread(thread);
 
+    interrupt::init();
+    PROCESSOR.get().run();
+}
+
+fn sample_process(arg: usize) {
+    println!("sample_process called with argument {}", arg);
+    for _ in 0..3000000 {}
+    println!("i'm back");
     loop {}
 }
