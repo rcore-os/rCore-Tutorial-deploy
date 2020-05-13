@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>块设备 · GitBook</title>
+        <title>驱动和块设备驱动 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -853,7 +853,7 @@
                 <a href="part-3.html">
             
                     
-                    块设备
+                    驱动和块设备驱动
             
                 </a>
             
@@ -909,7 +909,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >块设备</a>
+        <a href="../../.." >驱动和块设备驱动</a>
     </h1>
 </div>
 
@@ -927,7 +927,120 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x5757;&#x8BBE;&#x5907;">&#x5757;&#x8BBE;&#x5907;</h2>
+                                <h2 id="&#x9A71;&#x52A8;&#x548C;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;">&#x9A71;&#x52A8;&#x548C;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;</h2>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;&#x5757;&#x8BBE;&#x5907;">&#x4EC0;&#x4E48;&#x662F;&#x5757;&#x8BBE;&#x5907;</h3>
+<p>&#x6CE8;&#x610F;&#x5230;&#x6211;&#x4EEC;&#x5728;&#x4ECB;&#x7ECD; virtio &#x65F6;&#x63D0;&#x5230;&#x4E86; virtio-blk &#x8BBE;&#x5907;&#xFF0C;&#x8FD9;&#x79CD;&#x8BBE;&#x5907;&#x63D0;&#x4F9B;&#x4E86;&#x4EE5;&#x6574;&#x5757;&#x4E3A;&#x7C92;&#x5EA6;&#x7684;&#x8BFB;&#x548C;&#x5199;&#x64CD;&#x4F5C;&#xFF0C;&#x4E00;&#x822C;&#x5BF9;&#x5E94;&#x5230;&#x771F;&#x5B9E;&#x7684;&#x7269;&#x7406;&#x8BBE;&#x5907;&#x662F;&#x90A3;&#x79CD;&#x786C;&#x76D8;&#x3002;&#x800C;&#x4E4B;&#x6240;&#x4EE5;&#x662F;&#x4EE5;&#x5757;&#x4E3A;&#x5355;&#x4F4D;&#x662F;&#x4E3A;&#x4E86;&#x52A0;&#x5FEB;&#x8BFB;&#x5199;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x6BD5;&#x7ADF;&#x786C;&#x76D8;&#x7B49;&#x8BBE;&#x5907;&#x8FD8;&#x9700;&#x8981;&#x5BFB;&#x9053;&#x7B49;&#x7B49;&#x64CD;&#x4F5C;&#xFF0C;&#x4E00;&#x6B21;&#x6027;&#x8BFB;&#x53D6;&#x5F88;&#x5927;&#x7684;&#x4E00;&#x5757;&#x5C06;&#x4F1A;&#x8282;&#x7EA6;&#x5F88;&#x591A;&#x65F6;&#x95F4;&#x3002;</p>
+<h3 id="&#x62BD;&#x8C61;&#x9A71;&#x52A8;">&#x62BD;&#x8C61;&#x9A71;&#x52A8;</h3>
+<p>&#x5728;&#x5199;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x62BD;&#x8C61;&#x9A71;&#x52A8;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4E5F;&#x65B9;&#x4FBF;&#x540E;&#x9762;&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x7B49;&#x7684;&#x4ECB;&#x5165;&#x3002;</p>
+<p></p><p class="code-label">os/src/drivers/driver.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x9A71;&#x52A8;&#x7C7B;&#x578B;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x76EE;&#x524D;&#x53EA;&#x6709;&#x5757;&#x8BBE;&#x5907;&#xFF0C;&#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x7F51;&#x7EDC;&#x3001;GPU &#x8BBE;&#x5907;&#x7B49;</span>
+<span class="hljs-meta">#[derive(Debug, Eq, PartialEq)]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">DeviceType</span></span> {
+    Block,
+}
+
+<span class="hljs-comment">/// &#x9A71;&#x52A8;&#x7684;&#x63A5;&#x53E3;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Driver</span></span>: <span class="hljs-built_in">Send</span> + <span class="hljs-built_in">Sync</span> {
+    <span class="hljs-comment">/// &#x8BBE;&#x5907;&#x7C7B;&#x578B;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">device_type</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; DeviceType;
+
+    <span class="hljs-comment">/// &#x8BFB;&#x53D6;&#x67D0;&#x4E2A;&#x5757;&#x5230; buf &#x4E2D;&#xFF08;&#x5757;&#x8BBE;&#x5907;&#x63A5;&#x53E3;&#xFF09;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">read_block</span></span>(&amp;<span class="hljs-keyword">self</span>, _block_id: usize, _buf: &amp;<span class="hljs-keyword">mut</span> [<span class="hljs-keyword">u8</span>]) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-built_in">unimplemented!</span>(<span class="hljs-string">&quot;not a block driver&quot;</span>)
+    }
+
+    <span class="hljs-comment">/// &#x5C06; buf &#x4E2D;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5757;&#x4E2D;&#xFF08;&#x5757;&#x8BBE;&#x5907;&#x63A5;&#x53E3;&#xFF09;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_block</span></span>(&amp;<span class="hljs-keyword">self</span>, _block_id: usize, _buf: &amp;[<span class="hljs-keyword">u8</span>]) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-built_in">unimplemented!</span>(<span class="hljs-string">&quot;not a block driver&quot;</span>)
+    }
+}
+
+lazy_static! {
+    <span class="hljs-comment">/// &#x6240;&#x6709;&#x9A71;&#x52A8;</span>
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> DRIVERS: RwLock&lt;<span class="hljs-built_in">Vec</span>&lt;Arc&lt;dyn Driver&gt;&gt;&gt; = RwLock::new(<span class="hljs-built_in">Vec</span>::new());
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x6682;&#x65F6;&#x53EA;&#x6709;&#x5757;&#x8BBE;&#x5907;&#x8FD9;&#x4E2A;&#x79CD;&#x7C7B;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x6837;&#x5199;&#x8FD8;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x672A;&#x6765;&#x7684;&#x6269;&#x5C55;&#x3002;</p>
+<h3 id="&#x62BD;&#x8C61;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;">&#x62BD;&#x8C61;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;</h3>
+<p>&#x6709;&#x4E86;&#x9A71;&#x52A8;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6211;&#x4EEC;&#x8FDB;&#x4E00;&#x6B65;&#x62BD;&#x8C61;&#x5757;&#x8BBE;&#x5907;&#x7684;&#x9A71;&#x52A8;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x63A5;&#x53E3;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BlockDriver</span></span>(<span class="hljs-keyword">pub</span> Arc&lt;dyn Driver&gt;);
+
+<span class="hljs-comment">/// &#x4E3A; [`BlockDriver`] &#x5B9E;&#x73B0; [`rcore-fs`] &#x4E2D; [`BlockDevice`] trait</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x4F7F;&#x5F97;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x5757;&#x8BBE;&#x5907;&#x7684;&#x8BE5;&#x63A5;&#x53E3;&#x6765;&#x8BFB;&#x5199;</span>
+<span class="hljs-keyword">impl</span> BlockDevice <span class="hljs-keyword">for</span> BlockDriver {
+    <span class="hljs-comment">/// &#x6BCF;&#x4E2A;&#x5757;&#x7684;&#x5927;&#x5C0F;&#xFF08;&#x53D6; 2 &#x7684;&#x5BF9;&#x6570;&#xFF09;</span>
+    <span class="hljs-comment">///</span>
+    <span class="hljs-comment">/// &#x8FD9;&#x91CC;&#x53D6; 512B &#x662F;&#x56E0;&#x4E3A; virtio &#x9A71;&#x52A8;&#x5BF9;&#x8BBE;&#x5907;&#x7684;&#x64CD;&#x4F5C;&#x7C92;&#x5EA6;&#x4E3A; 512B</span>
+    <span class="hljs-keyword">const</span> BLOCK_SIZE_LOG2: <span class="hljs-keyword">u8</span> = <span class="hljs-number">9</span>;
+
+    <span class="hljs-comment">/// &#x8BFB;&#x53D6;&#x67D0;&#x4E2A;&#x5757;&#x5230; buf &#x4E2D;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">read_at</span></span>(&amp;<span class="hljs-keyword">self</span>, block_id: usize, buf: &amp;<span class="hljs-keyword">mut</span> [<span class="hljs-keyword">u8</span>]) -&gt; dev::<span class="hljs-built_in">Result</span>&lt;()&gt; {
+        <span class="hljs-keyword">match</span> <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.read_block(block_id, buf) {
+            <span class="hljs-literal">true</span> =&gt; <span class="hljs-literal">Ok</span>(()),
+            <span class="hljs-literal">false</span> =&gt; <span class="hljs-literal">Err</span>(dev::DevError),
+        }
+    }
+
+    <span class="hljs-comment">/// &#x5C06; buf &#x4E2D;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5757;&#x4E2D;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_at</span></span>(&amp;<span class="hljs-keyword">self</span>, block_id: usize, buf: &amp;[<span class="hljs-keyword">u8</span>]) -&gt; dev::<span class="hljs-built_in">Result</span>&lt;()&gt; {
+        <span class="hljs-keyword">match</span> <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.write_block(block_id, buf) {
+            <span class="hljs-literal">true</span> =&gt; <span class="hljs-literal">Ok</span>(()),
+            <span class="hljs-literal">false</span> =&gt; <span class="hljs-literal">Err</span>(dev::DevError),
+        }
+    }
+
+    <span class="hljs-comment">/// &#x6267;&#x884C;&#x548C;&#x8BBE;&#x5907;&#x7684;&#x540C;&#x6B65;</span>
+    <span class="hljs-comment">///</span>
+    <span class="hljs-comment">/// &#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x5168;&#x90E8;&#x4E3A;&#x963B;&#x585E; I/O &#x6240;&#x4EE5;&#x4E0D;&#x5B58;&#x5728;&#x540C;&#x6B65;&#x7684;&#x95EE;&#x9898;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sync</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; dev::<span class="hljs-built_in">Result</span>&lt;()&gt; {
+        <span class="hljs-literal">Ok</span>(())
+    }
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x6240;&#x8C13;&#x7684; <code>BlockDriver</code> &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A; <code>Driver</code> &#x7684;&#x5F15;&#x7528;&#x3002;&#x800C;&#x4E14;&#x5229;&#x7528; rcore-fs &#x4E2D;&#x63D0;&#x4F9B;&#x7684; <code>BlockDevice</code> trait &#x5B9E;&#x73B0;&#x4E86;&#x4E3A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x5BF9;&#x4E0A;&#x4F20;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684;&#x8FDE;&#x63A5;&#x3002;</p>
+<h3 id="virtio-blk-&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;">virtio-blk &#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;</h3>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x5B9E;&#x73B0; virtio-blk &#x7684;&#x9A71;&#x52A8;&#xFF08;&#x4E5F;&#x662F;&#x8C03;&#x5E93;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// virtio &#x534F;&#x8BAE;&#x7684;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">VirtIOBlkDriver</span></span>(Mutex&lt;VirtIOBlk&lt;<span class="hljs-symbol">&apos;static</span>&gt;&gt;);
+
+<span class="hljs-comment">/// &#x4E3A; [`VirtIOBlkDriver`] &#x5B9E;&#x73B0; [`Driver`] trait</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x8C03;&#x7528;&#x4E86; [`virtio_drivers`] &#x5E93;&#xFF0C;&#x5176;&#x4E2D;&#x89C4;&#x5B9A;&#x7684;&#x5757;&#x5927;&#x5C0F;&#x4E3A; 512B</span>
+<span class="hljs-keyword">impl</span> Driver <span class="hljs-keyword">for</span> VirtIOBlkDriver {
+    <span class="hljs-comment">/// &#x8BBE;&#x5907;&#x7C7B;&#x578B;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">device_type</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; DeviceType {
+        DeviceType::Block
+    }
+
+    <span class="hljs-comment">/// &#x8BFB;&#x53D6;&#x67D0;&#x4E2A;&#x5757;&#x5230; buf &#x4E2D;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">read_block</span></span>(&amp;<span class="hljs-keyword">self</span>, block_id: usize, buf: &amp;<span class="hljs-keyword">mut</span> [<span class="hljs-keyword">u8</span>]) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.lock().read_block(block_id, buf).is_ok()
+    }
+
+    <span class="hljs-comment">/// &#x5C06; buf &#x4E2D;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5757;&#x4E2D;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_block</span></span>(&amp;<span class="hljs-keyword">self</span>, block_id: usize, buf: &amp;[<span class="hljs-keyword">u8</span>]) -&gt; <span class="hljs-keyword">bool</span> {
+        <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.lock().write_block(block_id, buf).is_ok()
+    }
+}
+
+<span class="hljs-comment">/// &#x5C06;&#x4ECE;&#x8BBE;&#x5907;&#x6811;&#x4E2D;&#x8BFB;&#x53D6;&#x51FA;&#x7684;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#x653E;&#x5230; [`static@DRIVERS`] &#x4E2D;</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_driver</span></span>(header: &amp;<span class="hljs-symbol">&apos;static</span> <span class="hljs-keyword">mut</span> VirtIOHeader) {
+    <span class="hljs-keyword">let</span> virtio_blk = VirtIOBlk::new(header).expect(<span class="hljs-string">&quot;failed to init blk driver&quot;</span>);
+    <span class="hljs-keyword">let</span> driver = Arc::new(VirtIOBlkDriver(Mutex::new(virtio_blk)));
+    DRIVERS.write().push(driver.clone());
+}
+</code></pre>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x73B0;&#x5728;&#x7684;&#x903B;&#x8F91;&#x600E;&#x4E48;&#x770B;&#x90FD;&#x4E0D;&#x50CF;&#x662F;&#x4E4B;&#x524D;&#x63D0;&#x5230;&#x7684;&#x5F02;&#x6B65; DMA &#x518D; IRQ &#x4E2D;&#x65AD;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x800C;&#x66F4;&#x50CF;&#x662F;&#x963B;&#x585E;&#x7684;&#x8BFB;&#x53D6;&#x3002;&#x5B9E;&#x9645;&#x4E0A;&#x7684;&#x786E;&#x662F;&#x963B;&#x585E;&#x7684;&#x8BFB;&#x53D6;&#xFF0C;&#x76EE;&#x524D; virtio-drivers &#x5E93;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x867D;&#x7136;&#x8C03;&#x7528;&#x4E86; DMA&#xFF0C;&#x4F46;&#x662F;&#x8FD4;&#x56DE;&#x65F6;&#x8FD8;&#x662F;&#x963B;&#x585E;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4E3A;&#x4E86;&#x7B80;&#x5316;&#x4E5F;&#x6CA1;&#x6709;&#x8BBE;&#x8BA1; IRQ &#x7684;&#x54CD;&#x5E94;&#x673A;&#x5236;&#x3002;</p>
+<!-- TODO 写 IRQ 响应 -->
+<h3 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h3>
+<p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E86;&#x5168;&#x90E8;&#x7684;&#x9A71;&#x52A8;&#x903B;&#x8F91;&#xFF0C;&#x76EE;&#x524D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x53EF;&#x80FD;&#x6BD4;&#x8F83; Rust &#x98CE;&#x683C;&#xFF0C;&#x6211;&#x4EEC;&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<div align="center"> <img src="../pics/design.png" style="zoom:40%;"> </div>
+
+<p>&#x5176;&#x4E2D; <code>Driver</code> &#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6838;&#x5FC3; trait &#x4E3A;&#x4E0A;&#x63D0;&#x4F9B;&#x5B9E;&#x73B0;&#xFF0C;&#x4E0A;&#x5C42;&#x4E5F;&#x5C31;&#x662F; <code>Driver</code> &#x7684;&#x4F7F;&#x7528;&#x4FA7;&#xFF0C;&#x800C;&#x4E0B;&#x5C42;&#x5219;&#x662F; <code>Driver</code> &#x7684;&#x5B9E;&#x73B0;&#x4FA7;&#x3002;&#x800C;&#x4E0B;&#x4E00;&#x4E2A;&#x5C0F;&#x8282;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5229;&#x7528;&#x8FD9;&#x4E9B;&#x9A71;&#x52A8;&#x6765;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x3002;</p>
 
                                 
                                 </section>
@@ -987,7 +1100,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"块设备","level":"4.6.4","depth":2,"next":{"title":"文件系统","level":"4.6.5","depth":2,"path":"docs/lab-5/guide/part-4.md","ref":"docs/lab-5/guide/part-4.md","articles":[]},"previous":{"title":"virtio","level":"4.6.3","depth":2,"path":"docs/lab-5/guide/part-2.md","ref":"docs/lab-5/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-5/guide/part-3.md","mtime":"2020-05-13T04:00:39.153Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T05:53:43.152Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"驱动和块设备驱动","level":"4.6.4","depth":2,"next":{"title":"文件系统","level":"4.6.5","depth":2,"path":"docs/lab-5/guide/part-4.md","ref":"docs/lab-5/guide/part-4.md","articles":[]},"previous":{"title":"virtio","level":"4.6.3","depth":2,"path":"docs/lab-5/guide/part-2.md","ref":"docs/lab-5/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-5/guide/part-3.md","mtime":"2020-05-13T06:43:11.300Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T06:43:16.981Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
