@@ -199,33 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
-            
-                <a href="../../pre-lab/rust.html">
-            
-                    
-                    Rust 基础介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
-            
-                <a href="../../pre-lab/os.html">
-            
-                    
-                    操作系统背景知识
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/env.html">
             
                 <a href="../../pre-lab/env.html">
             
@@ -439,7 +413,7 @@
                 <a href="../../lab-1/guide/part-1.html">
             
                     
-                    背景知识
+                    什么是中断
             
                 </a>
             
@@ -823,26 +797,6 @@
     
 
     
-        
-        <li class="header">实验题目</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
-            
-                <a href="../../lab-1/exercise/intro.html">
-            
-                    
-                    实验题目一
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -907,11 +861,7 @@
 <p>&#x6B63;&#x5982;&#x4E0A;&#x9762;&#x8BF4;&#x7684;&#xFF0C;&#x5185;&#x5B58;&#x6BB5;&#x662F;&#x4E00;&#x7BC7;&#x8FDE;&#x7EED;&#x7684;&#x865A;&#x62DF;&#x9875;&#x8303;&#x56F4;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x9875;&#x901A;&#x8FC7;&#x7EBF;&#x6027;&#x6620;&#x5C04;&#xFF08;&#x76F4;&#x63A5;&#x504F;&#x79FB;&#x5230;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x9875;&#xFF09;&#x6216;&#x8005;&#x5206;&#x914D;&#xFF08;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x865A;&#x62DF;&#x9875;&#x8C03;&#x7528;&#x7269;&#x7406;&#x9875;&#x5206;&#x914D;&#x5668;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x9875;&#xFF09;&#x3002;&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x51FA;&#x73B0;&#x5728;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x4E2D;&#xFF1B;&#x800C;&#x4E3A;&#x4E86;&#x652F;&#x6301;&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x8FDB;&#x7A0B;&#x770B;&#x5230;&#x7684;&#x865A;&#x62DF;&#x7A7A;&#x95F4;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x5168;&#x90FD;&#x7528;&#x7EBF;&#x6027;&#x6620;&#x5C04;&#xFF0C;&#x6240;&#x4EE5;&#x57FA;&#x4E8E;&#x9875;&#x5206;&#x914D;&#x7684;&#x65B9;&#x5F0F;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x7528;&#x6237;&#x8FD9;&#x79CD;&#x60C5;&#x666F;&#x4E0B;&#x3002;&#x5982;&#x679C;&#x4F60;&#x8FD8;&#x662F;&#x4E0D;&#x660E;&#x767D;&#xFF0C;&#x53EF;&#x4EE5;&#x53BB;&#x7FFB;&#x770B;&#x4E00;&#x4E0B;&#x672C;&#x7AE0;&#x7684;&#x300C;&#x865A;&#x62DF;&#x5730;&#x5740;&#x5230;&#x7269;&#x7406;&#x5730;&#x5740;&#x300D;&#x4E00;&#x4E2A;&#x5C0F;&#x8282;&#x4E2D;&#x975E;&#x6559;&#x5B66;&#x7248; rCore &#x7684;&#x6620;&#x5C04;&#x56FE;&#x3002;</p>
 <p>&#x4E0B;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x7528; enum &#x548C; struct &#x6765;&#x5C01;&#x88C5;&#x5185;&#x5B58;&#x6BB5;&#x6620;&#x5C04;&#x7684;&#x7C7B;&#x578B;&#x548C;&#x5185;&#x5B58;&#x6BB5;&#x672C;&#x8EAB;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/memory/mapping/segment.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">//! &#x6620;&#x5C04;&#x7C7B;&#x578B; [`MapType`] &#x548C;&#x6620;&#x5C04;&#x7247;&#x6BB5; [`Segment`]</span>
-
-<span class="hljs-keyword">use</span> crate::memory::{address::*, mapping::Flags, range::Range};
-
-<span class="hljs-comment">/// &#x6620;&#x5C04;&#x7684;&#x7C7B;&#x578B;</span>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x6620;&#x5C04;&#x7684;&#x7C7B;&#x578B;</span>
 <span class="hljs-meta">#[derive(Debug)]</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">MapType</span></span> {
     <span class="hljs-comment">/// &#x7EBF;&#x6027;&#x6620;&#x5C04;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;</span>
@@ -1243,7 +1193,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-05-05T10:33:04.915Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:44:02.090Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-05-13T01:59:58.832Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T02:30:10.252Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

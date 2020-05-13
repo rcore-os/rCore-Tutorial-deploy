@@ -199,33 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
-            
-                <a href="../../pre-lab/rust.html">
-            
-                    
-                    Rust 基础介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
-            
-                <a href="../../pre-lab/os.html">
-            
-                    
-                    操作系统背景知识
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/env.html">
             
                 <a href="../../pre-lab/env.html">
             
@@ -439,7 +413,7 @@
                 <a href="../../lab-1/guide/part-1.html">
             
                     
-                    背景知识
+                    什么是中断
             
                 </a>
             
@@ -823,26 +797,6 @@
     
 
     
-        
-        <li class="header">实验题目</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
-            
-                <a href="../../lab-1/exercise/intro.html">
-            
-                    
-                    实验题目一
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -1020,37 +974,6 @@
     }
 }
 </code></pre>
-<p>&#x6700;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4E00;&#x4E9B;&#x89E3;&#x5F15;&#x7528;&#x7684; Rust &#x7279;&#x6027;&#x65B9;&#x4FBF;&#x540E;&#x9762;&#x7684;&#x5DE5;&#x4F5C;&#xFF1A;</p>
-<p></p><p class="code-label">os/src/memory/mapping/page_table.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">// PageTableEntry &#x548C; PageTableTracker &#x90FD;&#x53EF;&#x4EE5; deref &#x5230;&#x5BF9;&#x5E94;&#x7684; PageTable</span>
-<span class="hljs-comment">// &#xFF08;&#x4F7F;&#x7528;&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x6765;&#x8BBF;&#x95EE;&#x76F8;&#x5E94;&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF09;</span>
-
-<span class="hljs-keyword">impl</span> core::ops::Deref <span class="hljs-keyword">for</span> PageTableTracker {
-    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Target</span></span> = PageTable;
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deref</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; &amp;Self::Target {
-        <span class="hljs-keyword">unsafe</span> { <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.address().deref_kernel() }
-    }
-}
-
-<span class="hljs-keyword">impl</span> core::ops::DerefMut <span class="hljs-keyword">for</span> PageTableTracker {
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deref_mut</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-keyword">mut</span> Self::Target {
-        <span class="hljs-keyword">unsafe</span> { <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.address().deref_kernel() }
-    }
-}
-
-<span class="hljs-keyword">impl</span> core::ops::Deref <span class="hljs-keyword">for</span> PageTableEntry {
-    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Target</span></span> = PageTable;
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deref</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; &amp;Self::Target {
-        <span class="hljs-keyword">unsafe</span> { <span class="hljs-keyword">self</span>.address().deref_kernel() }
-    }
-}
-
-<span class="hljs-keyword">impl</span> core::ops::DerefMut <span class="hljs-keyword">for</span> PageTableEntry {
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deref_mut</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; &amp;<span class="hljs-keyword">mut</span> Self::Target {
-        <span class="hljs-keyword">unsafe</span> { <span class="hljs-keyword">self</span>.address().deref_kernel() }
-    }
-}
-</code></pre>
 <p>&#x81F3;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E86;&#x7269;&#x7406;&#x9875;&#x4E2D;&#x7684;&#x9875;&#x8868;&#x3002;&#x540E;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x628A;&#x5185;&#x6838;&#x4E2D;&#x5404;&#x4E2A;&#x6BB5;&#x505A;&#x4E00;&#x4E2A;&#x66F4;&#x7CBE;&#x7EC6;&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x628A;&#x4E4B;&#x524D;&#x7684;&#x90A3;&#x4E2A;&#x7C97;&#x7CD9;&#x7684;&#x521D;&#x59CB;&#x6620;&#x5C04;&#x9875;&#x8868;&#x66FF;&#x6362;&#x6389;&#x3002;</p>
 
                                 
@@ -1111,7 +1034,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现页表","level":"4.4.4","depth":2,"next":{"title":"实现内核重映射","level":"4.4.5","depth":2,"path":"docs/lab-3/guide/part-4.md","ref":"docs/lab-3/guide/part-4.md","articles":[]},"previous":{"title":"修改内核","level":"4.4.3","depth":2,"path":"docs/lab-3/guide/part-2.md","ref":"docs/lab-3/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-3.md","mtime":"2020-04-29T03:29:39.947Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:44:02.090Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现页表","level":"4.4.4","depth":2,"next":{"title":"实现内核重映射","level":"4.4.5","depth":2,"path":"docs/lab-3/guide/part-4.md","ref":"docs/lab-3/guide/part-4.md","articles":[]},"previous":{"title":"修改内核","level":"4.4.3","depth":2,"path":"docs/lab-3/guide/part-2.md","ref":"docs/lab-3/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-3.md","mtime":"2020-05-13T01:59:41.878Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T02:30:10.252Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

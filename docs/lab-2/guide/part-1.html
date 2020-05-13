@@ -199,33 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
-            
-                <a href="../../pre-lab/rust.html">
-            
-                    
-                    Rust 基础介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
-            
-                <a href="../../pre-lab/os.html">
-            
-                    
-                    操作系统背景知识
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/env.html">
             
                 <a href="../../pre-lab/env.html">
             
@@ -439,7 +413,7 @@
                 <a href="../../lab-1/guide/part-1.html">
             
                     
-                    背景知识
+                    什么是中断
             
                 </a>
             
@@ -823,26 +797,6 @@
     
 
     
-        
-        <li class="header">实验题目</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
-            
-                <a href="../../lab-1/exercise/intro.html">
-            
-                    
-                    实验题目一
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -912,20 +866,13 @@
 <p>&#x968F;&#x7740;&#x4E0D;&#x65AD;&#x56DE;&#x6536;&#x4F1A;&#x4EA7;&#x751F;&#x8D8A;&#x6765;&#x8D8A;&#x591A;&#x7684;&#x788E;&#x7247;&#xFF0C;&#x67D0;&#x4E2A;&#x65F6;&#x523B;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x5206;&#x914D;&#x4E00;&#x5757;&#x8F83;&#x5927;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x51E0;&#x4E2A;&#x788E;&#x7247;&#x52A0;&#x8D77;&#x6765;&#x5927;&#x5C0F;&#x662F;&#x8DB3;&#x591F;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5355;&#x4E2A;&#x788E;&#x7247;&#x662F;&#x4E0D;&#x591F;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x4F1A;&#x60F3;&#x5230;&#x901A;&#x8FC7;<strong>&#x788E;&#x7247;&#x6574;&#x7406;</strong>&#x5C06;&#x51E0;&#x4E2A;&#x788E;&#x7247;&#x5408;&#x5E76;&#x8D77;&#x6765;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x7684;&#x5F00;&#x9500;&#x6781;&#x5927;&#x3002;</p>
 <p>&#x8001;&#x5E08;&#x5728;&#x8BFE;&#x5802;&#x4E0A;&#x4ECB;&#x7ECD;&#x4E86;&#x82E5;&#x5E72;&#x7BA1;&#x7406;&#x5206;&#x914D;&#x548C;&#x788E;&#x7247;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x5305;&#x62EC;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#xFF08;Buddy System&#xFF09;&#x548C; SLAB &#x5206;&#x914D;&#x5668;&#x7B49;&#x7B97;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x91CC;&#x4F7F;&#x7528; Buddy System &#x6765;&#x5B9E;&#x73B0;&#x8FD9;&#x4EF6;&#x4E8B;&#x60C5;&#x3002;</p>
 <h3 id="&#x652F;&#x6301;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;">&#x652F;&#x6301;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;</h3>
-<p>&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x91CD;&#x590D;&#x9020;&#x8F6E;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F00;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x7684; 8M &#x6570;&#x7EC4;&#x4F5C;&#x4E3A;&#x5806;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528; @jiege &#x5F00;&#x53D1;&#x7684; Buddy System Allocator&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x91CD;&#x590D;&#x9020;&#x8F6E;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F00;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x7684; 8M &#x6570;&#x7EC4;&#x4F5C;&#x4E3A;&#x5806;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528; <a href="https://github.com/jiegec/" target="_blank">@jiege</a> &#x5F00;&#x53D1;&#x7684; Buddy System Allocator&#x3002;</p>
 <p></p><p class="code-label">os/src/memory/config.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5185;&#x5B58;&#x6240;&#x7528;&#x7684;&#x5806;&#x5927;&#x5C0F;&#xFF08;8M&#xFF09;</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-keyword">const</span> KERNEL_HEAP_SIZE: usize = <span class="hljs-number">0x80_0000</span>;
 </code></pre>
 <p></p><p class="code-label">os/src/memory/heap.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">//! &#x5B9E;&#x73B0;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6240;&#x7528;&#x7684;&#x5806;</span>
-<span class="hljs-comment">//! </span>
-<span class="hljs-comment">//! &#x57FA;&#x4E8E; `buddy_system_allocator` crate&#xFF0C;&#x81F4;&#x656C;&#x6770;&#x54E5;&#x3002;</span>
-
-<span class="hljs-keyword">use</span> super::config::KERNEL_HEAP_SIZE;
-<span class="hljs-keyword">use</span> buddy_system_allocator::LockedHeap;
-
-<span class="hljs-comment">/// &#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6240;&#x7528;&#x7684;&#x5806;&#x7A7A;&#x95F4;</span>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x6240;&#x7528;&#x7684;&#x5806;&#x7A7A;&#x95F4;</span>
 <span class="hljs-comment">/// </span>
 <span class="hljs-comment">/// &#x5927;&#x5C0F;&#x4E3A; [`KERNEL_HEAP_SIZE`]  </span>
 <span class="hljs-comment">/// &#x8FD9;&#x6BB5;&#x7A7A;&#x95F4;&#x7F16;&#x8BD1;&#x540E;&#x4F1A;&#x88AB;&#x653E;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x7684; bss &#x6BB5;</span>
@@ -1052,7 +999,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"动态内存分配","level":"4.3.2","depth":2,"next":{"title":"物理内存探测","level":"4.3.3","depth":2,"path":"docs/lab-2/guide/part-2.md","ref":"docs/lab-2/guide/part-2.md","articles":[]},"previous":{"title":"摘要","level":"4.3.1","depth":2,"path":"docs/lab-2/guide/intro.md","ref":"docs/lab-2/guide/intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-1.md","mtime":"2020-04-28T07:54:36.570Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:44:02.090Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"动态内存分配","level":"4.3.2","depth":2,"next":{"title":"物理内存探测","level":"4.3.3","depth":2,"path":"docs/lab-2/guide/part-2.md","ref":"docs/lab-2/guide/part-2.md","articles":[]},"previous":{"title":"摘要","level":"4.3.1","depth":2,"path":"docs/lab-2/guide/intro.md","ref":"docs/lab-2/guide/intro.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-1.md","mtime":"2020-05-13T01:45:42.488Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T02:30:10.252Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

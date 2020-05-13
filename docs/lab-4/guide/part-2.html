@@ -199,33 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
-            
-                <a href="../../pre-lab/rust.html">
-            
-                    
-                    Rust 基础介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
-            
-                <a href="../../pre-lab/os.html">
-            
-                    
-                    操作系统背景知识
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/env.html">
             
                 <a href="../../pre-lab/env.html">
             
@@ -439,7 +413,7 @@
                 <a href="../../lab-1/guide/part-1.html">
             
                     
-                    背景知识
+                    什么是中断
             
                 </a>
             
@@ -823,26 +797,6 @@
     
 
     
-        
-        <li class="header">实验题目</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
-            
-                <a href="../../lab-1/exercise/intro.html">
-            
-                    
-                    实验题目一
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -909,7 +863,6 @@
 </blockquote>
 </div></div>
 
-<p><br></p>
 <h2 id="&#x6267;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;">&#x6267;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</h2>
 <p>&#x56E0;&#x4E3A;&#x542F;&#x52A8;&#x7EBF;&#x7A0B;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5404;&#x79CD;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53C8;&#x8981;&#x4F7F;&#x7528;&#x6C47;&#x7F16;&#x4E86;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x8FD9;&#x4E00;&#x6B21;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5BF9; <code>interrupt.asm</code> &#x7A0D;&#x4F5C;&#x4FEE;&#x6539;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
 <p>&#x5728; <code>interrupt.asm</code> &#x4E2D;&#x7684; <code>__restore</code> &#x6807;&#x7B7E;&#x73B0;&#x5728;&#x5C31;&#x80FD;&#x6D3E;&#x4E0A;&#x7528;&#x9014;&#x4E86;&#x3002;&#x539F;&#x672C;&#x8FD9;&#x6BB5;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;&#x4E4B;&#x524D;&#x6240;&#x4FDD;&#x5B58;&#x7684; <code>Context</code> &#x6062;&#x590D;&#x5230;&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF0C;&#x800C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8BA9;&#x5B83;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x7CBE;&#x5FC3;&#x8BBE;&#x8BA1;&#x7684; <code>Context</code>&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA9;&#x7A0B;&#x5E8F;&#x5728;&#x6062;&#x590D;&#x540E;&#x76F4;&#x63A5;&#x8FDB;&#x5165;&#x6211;&#x4EEC;&#x7684;&#x65B0;&#x7EBF;&#x7A0B;&#x3002;</p>
@@ -919,7 +872,6 @@
     mv      sp, a0  # &#x52A0;&#x5165;&#x8FD9;&#x4E00;&#x884C;
     # ...
 </code></pre>
-<p><br></p>
 <h4 id="&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5982;&#x4F55;&#x8BBE;&#x8BA1;-context-&#x5462;&#xFF1F;">&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5982;&#x4F55;&#x8BBE;&#x8BA1; <code>Context</code> &#x5462;&#xFF1F;</h4>
 <ul>
 <li>&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;<ul>
@@ -956,7 +908,6 @@
 <li>&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#xFF1A;<br>&#x4E2D;&#x65AD;&#x521A;&#x53D1;&#x751F;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x5173;&#x95ED;&#x4E2D;&#x65AD;&#xFF0C;&#x4EE5;&#x4FDD;&#x8BC1;&#x73B0;&#x573A;&#x4FDD;&#x5B58;&#x7684;&#x8FC7;&#x7A0B;&#x4E0D;&#x4F1A;&#x88AB;&#x5E72;&#x6270;&#x3002;&#x540C;&#x7406;&#xFF0C;&#x73B0;&#x573A;&#x6062;&#x590D;&#x7684;&#x8FC7;&#x7A0B;&#x4E5F;&#x5FC5;&#x987B;&#x5173;&#x4E2D;&#x65AD;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x786C;&#x4EF6;&#x81EA;&#x52A8;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x3002;<br>&#x7531;&#x4E8E;&#x4E2D;&#x65AD;&#x53EF;&#x80FD;&#x5D4C;&#x5957;&#xFF0C;&#x5728;&#x4FDD;&#x5B58;&#x73B0;&#x573A;&#x540E;&#xFF0C;&#x6839;&#x636E;&#x4E2D;&#x65AD;&#x7684;&#x79CD;&#x7C7B;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x518D;&#x5F00;&#x542F;&#x90E8;&#x5206;&#x4E2D;&#x65AD;&#x7684;&#x4F7F;&#x80FD;&#x3002;</li>
 </ul>
 </blockquote>
-<p><br></p>
 <p>&#x8BBE;&#x8BA1;&#x597D; <code>Context</code> &#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x5B83;&#x5E94;&#x7528;&#x5230;&#x6240;&#x6709;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E0A;&#xFF08;&#x5373;&#x6267;&#x884C; <code>__restore</code>&#xFF09;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5207;&#x6362;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E86;&#x3002;</p>
 <p></p><p class="code-label">os/src/process/processor.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x7B2C;&#x4E00;&#x6B21;&#x5F00;&#x59CB;&#x8FD0;&#x884C;</span>
@@ -975,11 +926,9 @@
     <span class="hljs-built_in">unreachable!</span>()
 }
 </code></pre>
-<p><br></p>
 <h4 id="&#x7B49;&#x4E00;&#x4E0B;&#xFF0C;run-&#x4E3A;&#x4EC0;&#x4E48;&#x8FD4;&#x56DE;-&#xFF01;">&#x7B49;&#x4E00;&#x4E0B;&#xFF0C;<code>run()</code> &#x4E3A;&#x4EC0;&#x4E48;&#x8FD4;&#x56DE; <code>!</code>&#xFF01;</h4>
-<p>&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7684; <code>__restore</code> &#x5E76;&#x6CA1;&#x6709; <code>ret</code> &#x6307;&#x4EE4;&#xFF0C;&#x751A;&#x81F3; <code>ra</code> &#x90FD;&#x4F1A;&#x88AB; <code>Context</code> &#x4E2D;&#x7684;&#x6570;&#x503C;&#x76F4;&#x63A5;&#x8986;&#x76D6;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x4E00;&#x65E6;&#x6211;&#x4EEC;&#x6267;&#x884C;&#x4E86; <code>__restore(context)</code>&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x65E0;&#x6CD5;&#x8FD4;&#x56DE;&#x5230;&#x8C03;&#x7528;&#x5B83;&#x7684;&#x4F4D;&#x7F6E;&#x4E86;&#x3002;<strong>&#x76F4;&#x63A5; jump &#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5371;&#x9669;&#x7684;&#x64CD;&#x4F5C;</strong></p>
-<p>&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x3002;&#x56E0;&#x4E3A;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF0C;&#x518D;&#x56DE;&#x5230; <code>rust_main()</code> &#x4E5F;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x4E86;&#x3002;&#x751A;&#x81F3;&#x539F;&#x672C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x6808; <code>bootstack</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x88AB;&#x56DE;&#x6536;&#xFF08;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x4E22;&#x6389;&#x4E0D;&#x7BA1;&#x5427;&#xFF09;</p>
-<p><br></p>
+<p>&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7684; <code>__restore</code> &#x5E76;&#x6CA1;&#x6709; <code>ret</code> &#x6307;&#x4EE4;&#xFF0C;&#x751A;&#x81F3; <code>ra</code> &#x90FD;&#x4F1A;&#x88AB; <code>Context</code> &#x4E2D;&#x7684;&#x6570;&#x503C;&#x76F4;&#x63A5;&#x8986;&#x76D6;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x4E00;&#x65E6;&#x6211;&#x4EEC;&#x6267;&#x884C;&#x4E86; <code>__restore(context)</code>&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x65E0;&#x6CD5;&#x8FD4;&#x56DE;&#x5230;&#x8C03;&#x7528;&#x5B83;&#x7684;&#x4F4D;&#x7F6E;&#x4E86;&#x3002;<strong>&#x76F4;&#x63A5; jump &#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5371;&#x9669;&#x7684;&#x64CD;&#x4F5C;</strong>&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x3002;&#x56E0;&#x4E3A;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF0C;&#x518D;&#x56DE;&#x5230; <code>rust_main()</code> &#x4E5F;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x4E86;&#x3002;&#x751A;&#x81F3;&#x539F;&#x672C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x6808; <code>bootstack</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x88AB;&#x56DE;&#x6536;&#xFF08;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x4E22;&#x6389;&#x4E0D;&#x7BA1;&#x5427;&#xFF09;&#x3002;</p>
 <h4 id="&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4E0D;&#x6253;&#x5F00;&#x4E2D;&#x65AD;">&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4E0D;&#x6253;&#x5F00;&#x4E2D;&#x65AD;</h4>
 <p>&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x7EBF;&#x7A0B;&#x5F00;&#x59CB;&#x8FD0;&#x884C;&#x65F6;&#x5F00;&#x542F;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x662F;&#x4E0D;&#x5E94;&#x8BE5;&#x6709;&#x4E2D;&#x65AD;&#x7684;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x4EEC;&#x5220;&#x53BB;&#x4E4B;&#x524D;&#x8BBE;&#x7F6E;&#x300E;&#x5F00;&#x542F;&#x4E2D;&#x65AD;&#x300F;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
 <p></p><p class="code-label">os/interrupt/timer.rs</p><p></p>
@@ -997,7 +946,6 @@
     set_next_timeout();
 }
 </code></pre>
-<p><br></p>
 <h2 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h2>
 <p>&#x4E3A;&#x4E86;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x3002;&#x4E3A;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x9009;&#x62E9;&#x6784;&#x5EFA;&#x4E00;&#x4E2A; <code>Context</code> &#x7136;&#x540E;&#x8DF3;&#x8F6C;&#x81F3; <code>interrupt.asm</code> &#x4E2D;&#x7684; <code>__restore</code> &#x6765;&#x6267;&#x884C;&#xFF0C;&#x7528;&#x8FD9;&#x4E2A; <code>Context</code> &#x6765;&#x5199;&#x5165;&#x6240;&#x6709;&#x5BC4;&#x5B58;&#x5668;&#x3002;</p>
 <h4 id="&#x601D;&#x8003;">&#x601D;&#x8003;</h4>
@@ -1062,7 +1010,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程的创建","level":"4.5.3","depth":2,"next":{"title":"线程的切换","level":"4.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"previous":{"title":"线程和进程","level":"4.5.2","depth":2,"path":"docs/lab-4/guide/part-1.md","ref":"docs/lab-4/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-2.md","mtime":"2020-05-11T01:38:17.872Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:44:02.090Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程的创建","level":"4.5.3","depth":2,"next":{"title":"线程的切换","level":"4.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"previous":{"title":"线程和进程","level":"4.5.2","depth":2,"path":"docs/lab-4/guide/part-1.md","ref":"docs/lab-4/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-2.md","mtime":"2020-05-13T02:08:12.832Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T02:30:10.252Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

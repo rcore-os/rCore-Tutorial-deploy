@@ -199,33 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../../pre-lab/rust.html">
-            
-                <a href="../../pre-lab/rust.html">
-            
-                    
-                    Rust 基础介绍
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../../pre-lab/os.html">
-            
-                <a href="../../pre-lab/os.html">
-            
-                    
-                    操作系统背景知识
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.3" data-path="../../pre-lab/env.html">
+        <li class="chapter " data-level="3.1" data-path="../../pre-lab/env.html">
             
                 <a href="../../pre-lab/env.html">
             
@@ -439,7 +413,7 @@
                 <a href="../../lab-1/guide/part-1.html">
             
                     
-                    背景知识
+                    什么是中断
             
                 </a>
             
@@ -823,26 +797,6 @@
     
 
     
-        
-        <li class="header">实验题目</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../lab-1/exercise/intro.html">
-            
-                <a href="../../lab-1/exercise/intro.html">
-            
-                    
-                    实验题目一
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -905,7 +859,6 @@
 <li>&#x5982;&#x679C;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x9047;&#x5230;&#x4E2D;&#x65AD;&#xFF0C;&#x5219;&#x5C06; <code>Context</code> &#x538B;&#x5165; <code>sscratch</code> &#x6307;&#x5411;&#x7684;&#x6808;&#x4E2D;&#xFF08;<code>Context</code> &#x7684;&#x5730;&#x5740;&#x4E3A; <code>sscratch - size_of::&lt;Context&gt;()</code>&#xFF09;&#xFF0C;&#x540C;&#x65F6;&#x4FEE;&#x6539; <code>sp</code> &#x4E3A;&#x65B0;&#x7684;&#x5185;&#x6838;&#x6808;&#x6307;&#x9488;&#xFF08;&#x6B64;&#x65F6; <code>sp</code> &#x4E5F;&#x4F1A;&#x88AB;&#x590D;&#x5236;&#x5230; <code>a0</code> &#x4F5C;&#x4E3A; <code>handle_interrupt</code> &#x7684;&#x53C2;&#x6570;&#xFF09;<br>&#x5982;&#x679C;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x9047;&#x5230;&#x4E2D;&#x65AD;&#xFF0C;&#x5219;&#x5C06; <code>Context</code> &#x538B;&#x5165;&#x5F53;&#x524D;&#x7684;&#x6808;&#x4E0A;</li>
 <li>&#x4ECE;&#x4E2D;&#x65AD;&#x4E2D;&#x8FD4;&#x56DE;&#x65F6;&#xFF08;<code>__restore</code> &#x65F6;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#xFF0C;<code>a0</code> &#x5E94;&#x6307;&#x5411;&#x88AB;&#x538B;&#x5728;&#x5185;&#x6838;&#x6808;&#x4E2D;&#x7684; <code>Context</code>&#x3002;&#x6B64;&#x65F6;&#x5E94;&#x8BE5;&#x51FA;&#x6808; <code>Context</code> &#x5E76;&#x4E14;&#x5C06;&#x6808;&#x9876;&#x4FDD;&#x5B58;&#x5230; <code>sscratch</code> &#x4E2D;<br>&#x5982;&#x679C;&#x662F;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#xFF0C;<code>a0</code> &#x5E94;&#x6307;&#x5411;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x4E2D;&#x7684; <code>Context</code>&#x3002;&#x6B64;&#x65F6;&#x76F4;&#x63A5;&#x5C06; <code>Context</code> &#x51FA;&#x6808;&#x5373;&#x53EF;</li>
 </ul>
-<p><br></p>
 <h2 id="&#x5B9E;&#x73B0;">&#x5B9E;&#x73B0;</h2>
 <h4 id="&#x4E3A;&#x5185;&#x6838;&#x6808;&#x9884;&#x7559;&#x7A7A;&#x95F4;">&#x4E3A;&#x5185;&#x6838;&#x6808;&#x9884;&#x7559;&#x7A7A;&#x95F4;</h4>
 <p>&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A; <code>static</code> &#x6765;&#x6307;&#x5B9A;&#x4E00;&#x6BB5;&#x7A7A;&#x95F4;&#x4F5C;&#x4E3A;&#x6808;&#x3002;</p>
@@ -934,7 +887,6 @@
     }
 }
 </code></pre>
-<p><br></p>
 <h4 id="&#x4FEE;&#x6539;-interruptasm">&#x4FEE;&#x6539; <code>interrupt.asm</code></h4>
 <p>&#x5728;&#x8FD9;&#x4E2A;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x52A0;&#x5165;&#x5BF9; <code>sscratch</code> &#x7684;&#x5224;&#x65AD;&#x548C;&#x4F7F;&#x7528;&#x3002;</p>
 <p></p><p class="code-label">os/src/asm/interrupt.asm</p><p></p>
@@ -965,7 +917,7 @@ _from_user:
 
     # ...
 </code></pre>
-<p>&#x4EE5;&#x53CA;&#x4E8B;&#x540E;&#x7684;&#x6062;&#x590D;</p>
+<p>&#x4EE5;&#x53CA;&#x4E8B;&#x540E;&#x7684;&#x6062;&#x590D;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/asm/interrupt.asm</p><p></p>
 <pre><code class="lang-asm">__restore:
     # &#x4ECE; a0 &#x4E2D;&#x8BFB;&#x53D6; sp
@@ -989,7 +941,6 @@ _to_kernel:
     # &#x6062;&#x590D;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;
     # ...
 </code></pre>
-<p><br></p>
 <h2 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h2>
 <p>&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x9C81;&#x68D2;&#x5730;&#x5904;&#x7406;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x4EA7;&#x751F;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x4E3A;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x51C6;&#x5907;&#x597D;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x6808;&#xFF0C;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#x4F1A;&#x5207;&#x6362;&#x5230;&#x8FD9;&#x91CC;&#x7EE7;&#x7EED;&#x5904;&#x7406;&#x3002;</p>
 <h4 id="&#x601D;&#x8003;">&#x601D;&#x8003;</h4>
@@ -1054,7 +1005,7 @@ _to_kernel:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"内核栈","level":"4.5.5","depth":2,"next":{"title":"线程调度","level":"4.5.6","depth":2,"path":"docs/lab-4/guide/part-5.md","ref":"docs/lab-4/guide/part-5.md","articles":[]},"previous":{"title":"线程的切换","level":"4.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-4.md","mtime":"2020-05-11T01:38:17.873Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:44:02.090Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"内核栈","level":"4.5.5","depth":2,"next":{"title":"线程调度","level":"4.5.6","depth":2,"path":"docs/lab-4/guide/part-5.md","ref":"docs/lab-4/guide/part-5.md","articles":[]},"previous":{"title":"线程的切换","level":"4.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-4.md","mtime":"2020-05-13T02:12:52.346Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T02:30:10.252Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
