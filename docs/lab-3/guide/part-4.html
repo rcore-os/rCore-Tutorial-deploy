@@ -979,7 +979,7 @@
 }
 </code></pre>
 <p>&#x540E;&#x9762;&#xFF0C;&#x4E0A;&#x5C42;&#x9700;&#x8981;&#x505A;&#x7684;&#x662F;&#x628A;&#x4E00;&#x4E2A; Segment &#x4E2D;&#x6CA1;&#x6709;&#x786E;&#x5B9A;&#x865A;&#x62DF;&#x9875;&#x5230;&#x54EA;&#x4E2A;&#x7269;&#x7406;&#x9875;&#x7684;&#x5168;&#x90E8;&#x865A;&#x62DF;&#x9875;&#x90FD;&#x7533;&#x8BF7;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x9875;&#xFF08;&#x6216;&#x8005;&#x8BF4;&#x7EBF;&#x6027;&#x6620;&#x5C04;&#x6CA1;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x865A;&#x62DF;&#x9875;&#xFF0C;&#x800C;&#x5206;&#x914D;&#x6620;&#x5C04;&#x9700;&#x8981;&#x628A;&#x6BCF;&#x4E2A;&#x865A;&#x62DF;&#x9875;&#x90FD;&#x7533;&#x8BF7;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x7406;&#x9875;&#xFF09;&#x3002;</p>
-<p>&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x5177;&#x4F53;&#x5206;&#x914D;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF08;&#x540E;&#x9762;&#x4E00;&#x5E76;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x65B9;&#x4FBF;&#x7684;&#x89E3;&#x5F15;&#x7528;&#xFF09;&#xFF1A;</p>
+<p>&#x4E8E;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x5177;&#x4F53;&#x5206;&#x914D;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/memory/mapping/segment.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-keyword">impl</span> Segment {
     <span class="hljs-comment">/// &#x904D;&#x5386;&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF08;&#x5982;&#x679C;&#x53EF;&#x80FD;&#xFF09;</span>
@@ -990,14 +990,6 @@
             <span class="hljs-comment">// &#x6309;&#x5E27;&#x6620;&#x5C04;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x83B7;&#x5F97;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF0C;&#x9700;&#x8981;&#x5206;&#x914D;</span>
             MapType::Framed =&gt; <span class="hljs-literal">None</span>,
         }
-    }
-}
-
-<span class="hljs-comment">/// &#x65B9;&#x4FBF;&#x8BBF;&#x95EE; `page_range` &#x57DF;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;</span>
-<span class="hljs-keyword">impl</span> core::ops::Deref <span class="hljs-keyword">for</span> Segment {
-    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Target</span></span> = Range&lt;VirtualPageNumber&gt;;
-    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">deref</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; &amp;Self::Target {
-        &amp;<span class="hljs-keyword">self</span>.page_range
     }
 }
 </code></pre>
@@ -1068,7 +1060,7 @@
     <span class="hljs-literal">Ok</span>(())
 }
 </code></pre>
-<p>&#x6709;&#x4E86; <code>map_one</code> &#x6765;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x9875;&#x5BF9;&#x7269;&#x7406;&#x9875;&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x4E00;&#x4E2A;&#x8FDE;&#x7EED;&#x7684; Segment &#x7684;&#x6620;&#x5C04;&#xFF1A;</p>
+<p>&#x6709;&#x4E86; <code>map_one</code> &#x6765;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x9875;&#x5BF9;&#x7269;&#x7406;&#x9875;&#x7684;&#x6620;&#x5C04;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5BF9;&#x4E00;&#x4E2A;&#x8FDE;&#x7EED;&#x7684; Segment &#x7684;&#x6620;&#x5C04;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/memory/mapping/mapping.rs: impl Mapping</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x52A0;&#x5165;&#x4E00;&#x6BB5;&#x6620;&#x5C04;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x76F8;&#x5E94;&#x5730;&#x5206;&#x914D;&#x7269;&#x7406;&#x9875;&#x9762;</span>
 <span class="hljs-comment">///</span>
@@ -1290,7 +1282,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-05-13T08:29:17.011Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-13T08:30:05.686Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"4.4.5","depth":2,"next":{"title":"小结","level":"4.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"4.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-05-14T01:57:39.713Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-14T03:01:01.365Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
