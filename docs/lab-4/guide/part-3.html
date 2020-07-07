@@ -1161,6 +1161,28 @@
 <p>&#x73B0;&#x5728;&#xFF0C;&#x7EBF;&#x7A0B;&#x4FDD;&#x5B58; <code>Context</code> &#x90FD;&#x662F;&#x6839;&#x636E; <code>sp</code> &#x6307;&#x9488;&#xFF0C;&#x5728;&#x6808;&#x4E0A;&#x538B;&#x5165;&#x4E00;&#x4E2A; <code>Context</code> &#x6765;&#x5B58;&#x50A8;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#xFF0C;&#x53EF;&#x80FD;&#x53EA;&#x6709;&#x4E0A;&#x5E1D;&#x624D;&#x77E5;&#x9053;&#x89E6;&#x53D1;&#x4E2D;&#x65AD;&#x65F6; <code>sp</code> &#x6307;&#x5230;&#x4E86;&#x54EA;&#x91CC;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x8BA9;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5D29;&#x6E83;&#x5BFC;&#x81F4;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5D29;&#x6E83;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x63D0;&#x524D;&#x51C6;&#x5907;&#x597D;&#x5185;&#x6838;&#x6808;&#xFF0C;&#x5F53;&#x7EBF;&#x7A0B;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#x3002;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5C06;&#x5177;&#x4F53;&#x8BB2;&#x89E3;&#x8BE5;&#x5982;&#x4F55;&#x505A;&#x3002;</p>
 <h3 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h3>
 <p>&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;&#xFF0C;&#x6211;&#x4EEC;&#x8BA9; <code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>*mut Context</code>&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5207;&#x6362;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C31;&#x5C06;&#x524D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x4FDD;&#x5B58;&#x8D77;&#x6765;&#x6362;&#x4E0A;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#x3002;&#x800C;&#x5982;&#x679C;&#x4E0D;&#x9700;&#x8981;&#x5207;&#x6362;&#xFF0C;&#x90A3;&#x4E48;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x539F;&#x672C;&#x7684; <code>Context</code> &#x5373;&#x53EF;&#x3002;</p>
+<p><div id="page-footer" class="localized-footer"><hr><p><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"></p>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: "5084c46751a4b2f7cd4d",
+        clientSecret: "3904f62d33aef24f19480fedc836a48b31d532e9",
+        repo: "rCore-Tutorial-deploy",
+        owner: "rcore-os",
+        admin: [
+            "chyyuu",
+            "wangrunji0408",
+            "xy-plus",
+            "wyfcyx",
+            "LyricZhao",
+            "Tuyixiang"
+        ],
+        id: location.pathname,
+        distractionFreeMode: false
+    });
+    gitalk.render("gitalk-container");
+</script></div></p>
 
                                 
                                 </section>
@@ -1220,7 +1242,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程的切换","level":"4.5.4","depth":2,"next":{"title":"内核栈","level":"4.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"previous":{"title":"线程的创建","level":"4.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-07-06T08:26:27.152Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-06T08:40:45.265Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程的切换","level":"4.5.4","depth":2,"next":{"title":"内核栈","level":"4.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"previous":{"title":"线程的创建","level":"4.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-07-06T08:26:27.152Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-07T02:42:32.949Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

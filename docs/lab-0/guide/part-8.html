@@ -1206,7 +1206,29 @@ run: build qemu
 </code></pre>
 <p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x53C2;&#x6570; <code>-device</code> &#x6765;&#x5C06;&#x5185;&#x6838;&#x955C;&#x50CF;&#x52A0;&#x8F7D;&#x5230; QEMU &#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x6307;&#x5B9A;&#x4E86;&#x5185;&#x6838;&#x955C;&#x50CF;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x544A;&#x8BC9; OpenSBI &#x6700;&#x540E;&#x8DF3;&#x8F6C;&#x5230; 0x80200000 &#x8FD9;&#x4E2A;&#x5165;&#x53E3;&#x5730;&#x5740;&#x3002;</p>
 <p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>make run</code> &#x6765;&#x7528; Qemu &#x52A0;&#x8F7D;&#x5185;&#x6838;&#x955C;&#x50CF;&#x5E76;&#x8FD0;&#x884C;&#x3002;&#x5306;&#x5306;&#x7FFB;&#x8FC7;&#x4E00;&#x4E32;&#x957F;&#x957F;&#x7684; OpenSBI &#x8F93;&#x51FA;&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x4E86; OK&#xFF01;&#x4E8E;&#x662F;&#x5386;&#x7ECF;&#x4E86;&#x5343;&#x8F9B;&#x4E07;&#x82E6;&#x6211;&#x4EEC;&#x7EC8;&#x4E8E;&#x5C06;&#x6211;&#x4EEC;&#x7684;&#x5185;&#x6838;&#x8DD1;&#x8D77;&#x6765;&#x4E86;&#xFF01;</p>
-<p>&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#x6765;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x540E;&#x7EED;&#x80FD;&#x591F;&#x66F4;&#x52A0;&#x65B9;&#x4FBF;&#x7684;&#x901A;&#x8FC7;&#x8F93;&#x51FA;&#x6765;&#x8FDB;&#x884C;&#x5185;&#x6838;&#x8C03;&#x8BD5;&#x3002;</p>
+<p>&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#x6765;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x540E;&#x7EED;&#x80FD;&#x591F;&#x66F4;&#x52A0;&#x65B9;&#x4FBF;&#x7684;&#x901A;&#x8FC7;&#x8F93;&#x51FA;&#x6765;&#x8FDB;&#x884C;&#x5185;&#x6838;&#x8C03;&#x8BD5;&#x3002;
+<div id="page-footer" class="localized-footer"><hr><p><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"></p>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: "5084c46751a4b2f7cd4d",
+        clientSecret: "3904f62d33aef24f19480fedc836a48b31d532e9",
+        repo: "rCore-Tutorial-deploy",
+        owner: "rcore-os",
+        admin: [
+            "chyyuu",
+            "wangrunji0408",
+            "xy-plus",
+            "wyfcyx",
+            "LyricZhao",
+            "Tuyixiang"
+        ],
+        id: location.pathname,
+        distractionFreeMode: false
+    });
+    gitalk.render("gitalk-container");
+</script></div></p>
 
                                 
                                 </section>
@@ -1266,7 +1288,7 @@ run: build qemu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"使用 QEMU 运行","level":"4.1.9","depth":2,"next":{"title":"接口封装和代码整理","level":"4.1.10","depth":2,"path":"docs/lab-0/guide/part-9.md","ref":"docs/lab-0/guide/part-9.md","articles":[]},"previous":{"title":"重写程序入口点","level":"4.1.8","depth":2,"path":"docs/lab-0/guide/part-7.md","ref":"docs/lab-0/guide/part-7.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-8.md","mtime":"2020-07-06T08:29:26.930Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-06T08:40:45.265Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"使用 QEMU 运行","level":"4.1.9","depth":2,"next":{"title":"接口封装和代码整理","level":"4.1.10","depth":2,"path":"docs/lab-0/guide/part-9.md","ref":"docs/lab-0/guide/part-9.md","articles":[]},"previous":{"title":"重写程序入口点","level":"4.1.8","depth":2,"path":"docs/lab-0/guide/part-7.md","ref":"docs/lab-0/guide/part-7.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-0/guide/part-8.md","mtime":"2020-07-06T08:29:26.930Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-07T02:42:32.949Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
