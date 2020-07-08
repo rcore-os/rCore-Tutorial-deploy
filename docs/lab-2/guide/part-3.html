@@ -989,6 +989,19 @@
             
         </li>
     
+        <li class="chapter " data-level="4.2" data-path="../practice.html">
+            
+                <a href="../practice.html">
+            
+                    
+                    实验二：内存分配
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -1039,7 +1052,7 @@
                                 
                                 <h2 id="&#x7269;&#x7406;&#x5185;&#x5B58;&#x7BA1;&#x7406;">&#x7269;&#x7406;&#x5185;&#x5B58;&#x7BA1;&#x7406;</h2>
 <h3 id="&#x7269;&#x7406;&#x9875;">&#x7269;&#x7406;&#x9875;</h3>
-<p>&#x901A;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x5206;&#x914D;&#x7269;&#x7406;&#x5185;&#x5B58;&#x65F6;&#x5E76;&#x4E0D;&#x662F;&#x4EE5;&#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#xFF0C;&#x800C;&#x662F;&#x4EE5;&#x4E00;<strong>&#x7269;&#x7406;&#x9875;(Frame)</strong>&#xFF0C;&#x5373;&#x8FDE;&#x7EED;&#x7684; 4 KB &#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#x5206;&#x914D;&#x3002;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x7528;&#x7269;&#x7406;&#x9875;&#x53F7;&#xFF08;Physical Page Number&#xFF0C;PPN&#xFF09;&#x6765;&#x4EE3;&#x8868;&#x4E00;&#x7269;&#x7406;&#x9875;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x4EE3;&#x8868;&#x7269;&#x7406;&#x5730;&#x5740;&#x8303;&#x56F4;&#x5728; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mtext><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mtext><mo>&#xD7;</mo><mn>4</mn><mtext><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mtext><mo separator="true">,</mo><mo>(</mo><mtext><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mtext><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#xD7;</mo><mn>4</mn><mtext><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mtext><mo>)</mo></mrow><annotation encoding="application/x-tex">[\text{PPN}\times 4\text{KB},(\text{PPN}+1)\times 4\text{KB})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">[</span><span class="mord text textstyle uncramped"><span class="mord mathrm">PPN</span></span><span class="mbin">&#xD7;</span><span class="mord mathrm">4</span><span class="mord text textstyle uncramped"><span class="mord mathrm">KB</span></span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord text textstyle uncramped"><span class="mord mathrm">PPN</span></span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#xD7;</span><span class="mord mathrm">4</span><span class="mord text textstyle uncramped"><span class="mord mathrm">KB</span></span><span class="mclose">)</span></span></span></span> &#x7684;&#x4E00;&#x7269;&#x7406;&#x9875;&#x3002;</p>
+<p>&#x901A;&#x5E38;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x5206;&#x914D;&#x7269;&#x7406;&#x5185;&#x5B58;&#x65F6;&#x5E76;&#x4E0D;&#x662F;&#x4EE5;&#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#xFF0C;&#x800C;&#x662F;&#x4EE5;&#x4E00;<strong>&#x7269;&#x7406;&#x9875;&#xFF08;Frame&#xFF09;</strong>&#xFF0C;&#x5373;&#x8FDE;&#x7EED;&#x7684; 4 KB &#x5B57;&#x8282;&#x4E3A;&#x5355;&#x4F4D;&#x5206;&#x914D;&#x3002;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x7528;&#x7269;&#x7406;&#x9875;&#x53F7;&#xFF08;Physical Page Number&#xFF0C;PPN&#xFF09;&#x6765;&#x4EE3;&#x8868;&#x4E00;&#x7269;&#x7406;&#x9875;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x4EE3;&#x8868;&#x7269;&#x7406;&#x5730;&#x5740;&#x8303;&#x56F4;&#x5728; <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mtext><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mtext><mo>&#xD7;</mo><mn>4</mn><mtext><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mtext><mo separator="true">,</mo><mo>(</mo><mtext><mi mathvariant="normal">P</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">N</mi></mtext><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#xD7;</mo><mn>4</mn><mtext><mi mathvariant="normal">K</mi><mi mathvariant="normal">B</mi></mtext><mo>)</mo></mrow><annotation encoding="application/x-tex">[\text{PPN}\times 4\text{KB},(\text{PPN}+1)\times 4\text{KB})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">[</span><span class="mord text textstyle uncramped"><span class="mord mathrm">PPN</span></span><span class="mbin">&#xD7;</span><span class="mord mathrm">4</span><span class="mord text textstyle uncramped"><span class="mord mathrm">KB</span></span><span class="mpunct">,</span><span class="mopen">(</span><span class="mord text textstyle uncramped"><span class="mord mathrm">PPN</span></span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">&#xD7;</span><span class="mord mathrm">4</span><span class="mord text textstyle uncramped"><span class="mord mathrm">KB</span></span><span class="mclose">)</span></span></span></span> &#x7684;&#x4E00;&#x7269;&#x7406;&#x9875;&#x3002;</p>
 <p>&#x4E0D;&#x96BE;&#x770B;&#x51FA;&#xFF0C;&#x7269;&#x7406;&#x9875;&#x53F7;&#x4E0E;&#x7269;&#x7406;&#x9875;&#x5F62;&#x6210;&#x4E00;&#x4E00;&#x6620;&#x5C04;&#x3002;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x7269;&#x7406;&#x9875;&#x53F7;&#x8FD9;&#x79CD;&#x8868;&#x8FBE;&#x65B9;&#x5F0F;&#xFF0C;&#x6BCF;&#x4E2A;&#x7269;&#x7406;&#x9875;&#x7684;&#x5F00;&#x5934;&#x5730;&#x5740;&#x5FC5;&#x987B;&#x662F; 4 KB &#x7684;&#x500D;&#x6570;&#x3002;&#x4F46;&#x8FD9;&#x4E5F;&#x7ED9;&#x4E86;&#x6211;&#x4EEC;&#x4E00;&#x4E2A;&#x65B9;&#x4FBF;&#xFF1A;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF0C;&#x5176;&#x9664;&#x4EE5; 4096&#xFF08;&#x6216;&#x8005;&#x8BF4;&#x53F3;&#x79FB; 12 &#x4F4D;&#xFF09;&#x7684;&#x5546;&#x5373;&#x4E3A;&#x8FD9;&#x4E2A;&#x7269;&#x7406;&#x5730;&#x5740;&#x6240;&#x5728;&#x7684;&#x7269;&#x7406;&#x9875;&#x53F7;&#x3002;</p>
 <p>&#x540C;&#x6837;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x7528;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7ED3;&#x6784;&#x6765;&#x5C01;&#x88C5;&#x4E00;&#x4E0B;&#x7269;&#x7406;&#x9875;&#xFF0C;&#x4E00;&#x662F;&#x4E3A;&#x4E86;&#x548C;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#x5730;&#x5740;&#x4F5C;&#x533A;&#x5206;&#xFF1B;&#x4E8C;&#x662F;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5B9E;&#x73B0;&#x4E00;&#x4E9B;&#x9875;&#x5E27;&#x548C;&#x5730;&#x5740;&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#x7684;&#x529F;&#x80FD;&#x3002;&#x4E3A;&#x4E86;&#x540E;&#x9762;&#x7684;&#x65B9;&#x4FBF;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x628A;&#x865A;&#x62DF;&#x5730;&#x5740;&#x548C;&#x865A;&#x62DF;&#x9875;&#xFF08;&#x6982;&#x5FF5;&#x8FD8;&#x6CA1;&#x6709;&#x6D89;&#x53CA;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x6307;&#x5BFC;&#x4F1A;&#x8FDB;&#x4E00;&#x6B65;&#x8BB2;&#x89E3;&#xFF09;&#x4E00;&#x5E76;&#x5B9E;&#x73B0;&#x51FA;&#x6765;&#xFF0C;&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x8BF7;&#x53C2;&#x8003; <code>os/src/memory/address.rs</code>&#x3002;</p>
 <p>&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x9700;&#x8981;&#x5728; <code>os/src/memory/config.rs</code> &#x4E2D;&#x52A0;&#x5165;&#x76F8;&#x5173;&#x7684;&#x8BBE;&#x7F6E;&#xFF1A;</p>
@@ -1053,8 +1066,8 @@
 <span class="hljs-keyword">pub</span> <span class="hljs-keyword">const</span> MEMORY_END_ADDRESS: PhysicalAddress = PhysicalAddress(<span class="hljs-number">0x8800_0000</span>);
 </code></pre>
 <h3 id="&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;">&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;</h3>
-<p>&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7BA1;&#x7406;&#x6240;&#x6709;&#x7684;&#x7269;&#x7406;&#x9875;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x5668;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5728;&#x8FD9;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5148;&#x628A;&#x7269;&#x7406;&#x9875;&#x7684;&#x6982;&#x5FF5;&#x8FDB;&#x884C;&#x5C01;&#x88C5;&#x3002;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x7269;&#x7406;&#x9875;&#x5728;&#x5B9E;&#x9645;&#x4E0A;&#x5176;&#x5B9E;&#x662F;&#x8FDE;&#x7EED;&#x7684;&#x4E00;&#x7247;&#x5185;&#x5B58;&#x533A;&#x57DF;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x628A;&#x533A;&#x57DF;&#x7684;&#x5176;&#x5B9E;&#x7269;&#x7406;&#x5730;&#x5740;&#x5C01;&#x88C5;&#x5230;&#x4E86;&#x4E00;&#x4E2A; <code>FrameTracker</code> &#x91CC;&#x9762;&#x3002;</p>
-<p></p><p class="code-label">os/src/memory/frame_tracker.rs</p><p></p>
+<p>&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7BA1;&#x7406;&#x6240;&#x6709;&#x7684;&#x7269;&#x7406;&#x9875;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x5668;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5728;&#x8FD9;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5148;&#x628A;&#x7269;&#x7406;&#x9875;&#x7684;&#x6982;&#x5FF5;&#x8FDB;&#x884C;&#x5C01;&#x88C5;&#x3002;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x7269;&#x7406;&#x9875;&#x5728;&#x5B9E;&#x9645;&#x4E0A;&#x5176;&#x5B9E;&#x662F;&#x8FDE;&#x7EED;&#x7684;&#x4E00;&#x7247;&#x5185;&#x5B58;&#x533A;&#x57DF;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x628A;&#x533A;&#x57DF;&#x7684;&#x8D77;&#x59CB;&#x7269;&#x7406;&#x5730;&#x5740;&#x5C01;&#x88C5;&#x5230;&#x4E86;&#x4E00;&#x4E2A; <code>FrameTracker</code> &#x91CC;&#x9762;&#x3002;</p>
+<p></p><p class="code-label">os/src/memory/frame/frame_tracker.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x5206;&#x914D;&#x51FA;&#x7684;&#x7269;&#x7406;&#x9875;</span>
 <span class="hljs-comment">///</span>
 <span class="hljs-comment">/// # `Tracker` &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</span>
@@ -1072,16 +1085,16 @@
 <span class="hljs-comment">///</span>
 <span class="hljs-comment">/// &#x4F7F;&#x7528; `Tracker` &#x5176;&#x5B9E;&#x5C31;&#x5F88;&#x50CF;&#x4F7F;&#x7528;&#x4E00;&#x4E2A; smart pointer&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#xFF0C;</span>
 <span class="hljs-comment">/// &#x5C31;&#x5728;&#x5916;&#x9762;&#x518D;&#x5957;&#x4E00;&#x5C42; [`Arc`](alloc::sync::Arc) &#x5C31;&#x597D;</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">FrameTracker</span></span>(PhysicalAddress);
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">FrameTracker</span></span>(<span class="hljs-keyword">pub</span>(<span class="hljs-keyword">super</span>) PhysicalPageNumber);
 
 <span class="hljs-keyword">impl</span> FrameTracker {
     <span class="hljs-comment">/// &#x5E27;&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;</span>
     <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">address</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; PhysicalAddress {
-        <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>
+        <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>.into()
     }
     <span class="hljs-comment">/// &#x5E27;&#x7684;&#x7269;&#x7406;&#x9875;&#x53F7;</span>
     <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">page_number</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; PhysicalPageNumber {
-        PhysicalPageNumber::from(<span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>)
+        <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>
     }
 }
 
@@ -1100,7 +1113,6 @@
     <span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> FRAME_ALLOCATOR: Mutex&lt;FrameAllocator&lt;AllocatorImpl&gt;&gt; = Mutex::new(FrameAllocator::new(Range::from(
             PhysicalPageNumber::ceil(PhysicalAddress::from(*KERNEL_END_ADDRESS))..PhysicalPageNumber::floor(MEMORY_END_ADDRESS),
         )
-
     ));
 }
 
@@ -1126,7 +1138,7 @@
         <span class="hljs-keyword">self</span>.allocator
             .alloc()
             .ok_or(<span class="hljs-string">&quot;no available frame to allocate&quot;</span>)
-            .map(|offset| FrameTracker::from(<span class="hljs-keyword">self</span>.start_ppn + offset))
+            .map(|offset| FrameTracker(<span class="hljs-keyword">self</span>.start_ppn + offset))
     }
 
     <span class="hljs-comment">/// &#x5C06;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x5E27;&#x6DFB;&#x52A0;&#x5230;&#x7A7A;&#x95F2;&#x5217;&#x8868;&#x7684;&#x5C3E;&#x90E8;</span>
@@ -1139,7 +1151,7 @@
 </code></pre>
 <p>&#x8FD9;&#x4E2A;&#x5206;&#x914D;&#x5668;&#x4F1A;&#x4EE5;&#x4E00;&#x4E2A; <code>PhysicalPageNumber</code> &#x7684; <code>Range</code> &#x521D;&#x59CB;&#x5316;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x8D77;&#x59CB;&#x5730;&#x5740;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#xFF0C;&#x628A;&#x6574;&#x4E2A;&#x533A;&#x95F4;&#x7684;&#x957F;&#x5EA6;&#x544A;&#x8BC9;&#x5177;&#x4F53;&#x7684;&#x5206;&#x914D;&#x5668;&#x7B97;&#x6CD5;&#xFF0C;&#x5F53;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4ECE;&#x7B97;&#x6CD5;&#x4E2D;&#x53D6;&#x5F97;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7684;&#x4F4D;&#x7F6E;&#x4F5C;&#x4E3A; <code>offset</code>&#xFF0C;&#x518D;&#x52A0;&#x4E0A;&#x8D77;&#x59CB;&#x5730;&#x5740;&#x8FD4;&#x56DE;&#x56DE;&#x53BB;&#x3002;</p>
 <p>&#x6709;&#x5173;&#x5177;&#x4F53;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x5C01;&#x88C5;&#x4E86;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x5668;&#x9700;&#x8981;&#x7684; Rust trait&#xFF1A;</p>
-<p></p><p class="code-label">os/src/data_structure/mod.rs</p><p></p>
+<p></p><p class="code-label">os/src/algorithm/src/allocator/mod.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x5206;&#x914D;&#x5668;&#xFF1A;&#x56FA;&#x5B9A;&#x5BB9;&#x91CF;&#xFF0C;&#x6BCF;&#x6B21;&#x5206;&#x914D; / &#x56DE;&#x6536;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Allocator</span></span> {
     <span class="hljs-comment">/// &#x7ED9;&#x5B9A;&#x5BB9;&#x91CF;&#xFF0C;&#x521B;&#x5EFA;&#x5206;&#x914D;&#x5668;</span>
@@ -1150,11 +1162,11 @@
     <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">dealloc</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, index: usize);
 }
 </code></pre>
-<p>&#x5E76;&#x5728; <code>os/src/data_structure/</code> &#x4E2D;&#x5206;&#x522B;&#x5B9E;&#x73B0;&#x4E86;&#x94FE;&#x8868;&#x548C;&#x7EBF;&#x6BB5;&#x6811;&#x7B97;&#x6CD5;&#xFF0C;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x5E76;&#x5728; <code>os/src/algorithm/src/allocator/</code> &#x4E2D;&#x5206;&#x522B;&#x5B9E;&#x73B0;&#x4E86;&#x94FE;&#x8868;&#x548C;&#x7EBF;&#x6BB5;&#x6811;&#x7B97;&#x6CD5;&#xFF0C;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4EE3;&#x7801;&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <code>lazy_static!</code> &#x548C; <code>Mutex</code> &#x6765;&#x5305;&#x88C5;&#x5206;&#x914D;&#x5668;&#x3002;&#x9700;&#x8981;&#x77E5;&#x9053;&#xFF0C;&#x5BF9;&#x4E8E; <code>static mut</code> &#x7C7B;&#x578B;&#x7684;&#x4FEE;&#x6539;&#x64CD;&#x4F5C;&#x662F; unsafe &#x7684;&#x3002;&#x6211;&#x4EEC;&#x4E4B;&#x540E;&#x4F1A;&#x63D0;&#x5230;&#x7EBF;&#x7A0B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5BF9;&#x4E8E;&#x9759;&#x6001;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x80FD;&#x8BBF;&#x95EE;&#x3002;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x8BBF;&#x95EE;&#x8FD9;&#x6BB5;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E5F;&#x6765;&#x8BBF;&#x95EE;&#xFF0C;&#x5C31;&#x53EF;&#x80FD;&#x4F1A;&#x4EA7;&#x751F;&#x51B2;&#x7A81;&#xFF0C;&#x5E76;&#x5E26;&#x6765;&#x96BE;&#x4EE5;&#x9884;&#x6D4B;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
 <p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528; <code>spin::Mutex&lt;T&gt;</code> &#x7ED9;&#x8FD9;&#x6BB5;&#x6570;&#x636E;&#x52A0;&#x4E00;&#x628A;&#x9501;&#xFF0C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8BD5;&#x56FE;&#x901A;&#x8FC7; <code>lock()</code> &#x6253;&#x5F00;&#x9501;&#x6765;&#x83B7;&#x53D6;&#x5185;&#x90E8;&#x6570;&#x636E;&#x7684;&#x53EF;&#x53D8;&#x5F15;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x94A5;&#x5319;&#x88AB;&#x522B;&#x7684;&#x7EBF;&#x7A0B;&#x6240;&#x5360;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x5C31;&#x4F1A;&#x4E00;&#x76F4;&#x5361;&#x5728;&#x8FD9;&#x91CC;&#xFF1B;&#x76F4;&#x5230;&#x90A3;&#x4E2A;&#x5360;&#x7528;&#x4E86;&#x94A5;&#x5319;&#x7684;&#x7EBF;&#x7A0B;&#x5BF9;&#x5185;&#x90E8;&#x6570;&#x636E;&#x7684;&#x8BBF;&#x95EE;&#x7ED3;&#x675F;&#xFF0C;&#x9501;&#x88AB;&#x91CA;&#x653E;&#xFF0C;&#x5C06;&#x94A5;&#x5319;&#x4EA4;&#x8FD8;&#x51FA;&#x6765;&#xFF0C;&#x88AB;&#x5361;&#x4F4F;&#x7684;&#x90A3;&#x4E2A;&#x7EBF;&#x7A0B;&#x62FF;&#x5230;&#x4E86;&#x94A5;&#x5319;&#xFF0C;&#x5C31;&#x53EF;&#x6253;&#x5F00;&#x9501;&#x83B7;&#x53D6;&#x5185;&#x90E8;&#x5F15;&#x7528;&#xFF0C;&#x8BBF;&#x95EE;&#x5185;&#x90E8;&#x6570;&#x636E;&#x3002;</p>
 <p>&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F; <code>spin::Mutex&lt;T&gt;</code>&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728; <code>os/Cargo.toml</code> &#x4E2D;&#x6DFB;&#x52A0;&#x4F9D;&#x8D56;&#x3002;&#x5E78;&#x8FD0;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x4E5F;&#x65E0;&#x9700;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x652F;&#x6301;&#xFF08;&#x5373;&#x652F;&#x6301; <code>no_std</code>&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x653E;&#x5FC3;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x6700;&#x540E;&#xFF0C;&#x5728;&#x628A;&#x65B0;&#x5199;&#x7684;&#x6A21;&#x5757;&#x52A0;&#x8F7D;&#x8FDB;&#x6765;&#xFF0C;&#x5E76;&#x5728; main &#x51FD;&#x6570;&#x4E2D;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x6D4B;&#x8BD5;&#xFF1A;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x65B0;&#x5199;&#x7684;&#x6A21;&#x5757;&#x52A0;&#x8F7D;&#x8FDB;&#x6765;&#xFF0C;&#x5E76;&#x5728; main &#x51FD;&#x6570;&#x4E2D;&#x8FDB;&#x884C;&#x7B80;&#x5355;&#x7684;&#x6D4B;&#x8BD5;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/main.rs</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// Rust &#x7684;&#x5165;&#x53E3;&#x51FD;&#x6570;</span>
 <span class="hljs-comment">///</span>
@@ -1178,7 +1190,7 @@
         <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{} and {}&quot;</span>, frame_0.address(), frame_1.address());
     }
 
-    <span class="hljs-keyword">loop</span>{}
+    <span class="hljs-built_in">panic!</span>()
 }
 </code></pre>
 <p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x7C7B;&#x4F3C;&#x8FD9;&#x6837;&#x7684;&#x8F93;&#x51FA;&#xFF1A;</p>
@@ -1204,8 +1216,7 @@ PhysicalAddress(0x80a14000) and PhysicalAddress(0x80a15000)
             <span class="hljs-built_in">Result</span>::<span class="hljs-literal">Err</span>(err) =&gt; <span class="hljs-built_in">panic!</span>(<span class="hljs-string">&quot;{}&quot;</span>, err)
     };
 
-    <span class="hljs-keyword">loop</span>{}
-}
+    <span class="hljs-built_in">panic!</span>()
 </code></pre>
 <p>&#x601D;&#x8003;&#xFF0C;&#x548C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6709;&#x4F55;&#x4E0D;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x8BA1;&#x662F;&#x5426;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x8BED;&#x6CD5;&#x4E0A;&#x7684;&#x8BBE;&#x8BA1;&#x7F3A;&#x9677;&#xFF1F;</p>
 <div class="click_reveal"><span> Click to show </span><div><blockquote>
@@ -1295,7 +1306,7 @@ PhysicalAddress(0x80a14000) and PhysicalAddress(0x80a15000)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"物理内存管理","level":"3.3.4","depth":2,"next":{"title":"小结","level":"3.3.5","depth":2,"path":"docs/lab-2/guide/summary.md","ref":"docs/lab-2/guide/summary.md","articles":[]},"previous":{"title":"物理内存探测","level":"3.3.3","depth":2,"path":"docs/lab-2/guide/part-2.md","ref":"docs/lab-2/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-3.md","mtime":"2020-07-08T05:00:54.155Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-08T05:03:48.740Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"物理内存管理","level":"3.3.4","depth":2,"next":{"title":"小结","level":"3.3.5","depth":2,"path":"docs/lab-2/guide/summary.md","ref":"docs/lab-2/guide/summary.md","articles":[]},"previous":{"title":"物理内存探测","level":"3.3.3","depth":2,"path":"docs/lab-2/guide/part-2.md","ref":"docs/lab-2/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-3.md","mtime":"2020-07-08T14:50:28.072Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-08T14:50:31.104Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
