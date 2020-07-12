@@ -5,6 +5,7 @@ DEPLOY_DIR=../rCore-Tutorial-deploy/
 
 # Build and copy
 gitbook build
+cd $DEPLOY_DIR && git rm -r * && cd - || exit
 cp -r _book/* $DEPLOY_DIR
 cd $DEPLOY_DIR || exit
 
