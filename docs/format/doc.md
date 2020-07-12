@@ -74,7 +74,6 @@
     - 先打开 QEMU；
     - 再关闭 QEMU。
 - 在 / 记号两侧添加空格，如：
-  
   - Linux / Windows WSL
 - 中文名词的英文解释多用大写，如：
   - 裸机（Bare Metal）
