@@ -1017,52 +1017,6 @@
     
 
     
-        
-        <li class="header">开发笔记</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../format/partition.html">
-            
-                <a href="../../format/partition.html">
-            
-                    
-                    文档代码划分
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../../format/doc.html">
-            
-                <a href="../../format/doc.html">
-            
-                    
-                    文档格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../../format/code.html">
-            
-                <a href="../../format/code.html">
-            
-                    
-                    代码格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -1115,7 +1069,7 @@
 <p>&#x800C;&#x5982;&#x679C;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x5916;&#x8BBE;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x6307;&#x4EE4;&#xFF08;&#x5982; x86 &#x5355;&#x72EC;&#x63D0;&#x4F9B;&#x4E86; <code>in</code> &#x548C; <code>out</code> &#x7B49;&#x6307;&#x4EE4;&#x6765;&#x8BBF;&#x95EE;&#x4E0D;&#x540C;&#x4E8E;&#x5185;&#x5B58;&#x7684; IO &#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF09;&#xFF0C;&#x4F1A;&#x6BD4;&#x8F83;&#x9EBB;&#x70E6;&#xFF1B;&#x4E8E;&#x662F;&#xFF0C;&#x5F88;&#x591A;&#x6307;&#x4EE4;&#x96C6;&#x67B6;&#x6784;&#xFF08;&#x5982; RISC-V&#x3001;ARM &#x548C; MIPS &#x7B49;&#xFF09;&#x901A;&#x8FC7; MMIO&#xFF08;Memory Mapped I/O&#xFF09;&#x6280;&#x672F;&#x5C06;&#x5916;&#x8BBE;&#x6620;&#x5C04;&#x5230;&#x4E00;&#x6BB5;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x5916;&#x8BBE;&#x5C31;&#x548C;&#x8BBF;&#x95EE;&#x7269;&#x7406;&#x5185;&#x5B58;&#x4E00;&#x6837;&#x4E86;&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x5148;&#x4E0D;&#x7BA1;&#x90A3;&#x4E9B;&#x5916;&#x8BBE;&#xFF0C;&#x6765;&#x770B;&#x7269;&#x7406;&#x5185;&#x5B58;&#x3002;</p>
 <h3 id="&#x7269;&#x7406;&#x5185;&#x5B58;&#x63A2;&#x6D4B;">&#x7269;&#x7406;&#x5185;&#x5B58;&#x63A2;&#x6D4B;</h3>
-<p>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x600E;&#x6837;&#x77E5;&#x9053;&#x7269;&#x7406;&#x5185;&#x5B58;&#x6240;&#x5728;&#x7684;&#x90A3;&#x6BB5;&#x7269;&#x7406;&#x5730;&#x5740;&#x5462;&#xFF1F;&#x5728; RISC-V &#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E00;&#x822C;&#x662F;&#x7531; Bootloader &#xFF0C;&#x5373; OpenSBI &#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x5B83;&#x6765;&#x5B8C;&#x6210;&#x5BF9;&#x4E8E;&#x5305;&#x62EC;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5728;&#x5185;&#x7684;&#x5404;&#x5916;&#x8BBE;&#x7684;&#x626B;&#x63CF;&#xFF0C;&#x5C06;&#x626B;&#x63CF;&#x7ED3;&#x679C;&#x4EE5; DTB&#xFF08;Device Tree Blob&#xFF09;&#x7684;&#x683C;&#x5F0F;&#x4FDD;&#x5B58;&#x5728;&#x7269;&#x7406;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x5730;&#x65B9;&#x3002;&#x968F;&#x540E; OpenSBI &#x4F1A;&#x5C06;&#x5176;&#x5730;&#x5740;&#x4FDD;&#x5B58;&#x5728; <code>a1</code> &#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF0C;&#x7ED9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x600E;&#x6837;&#x77E5;&#x9053;&#x7269;&#x7406;&#x5185;&#x5B58;&#x6240;&#x5728;&#x7684;&#x90A3;&#x6BB5;&#x7269;&#x7406;&#x5730;&#x5740;&#x5462;&#xFF1F;&#x5728; RISC-V &#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E00;&#x822C;&#x662F;&#x7531; bootloader&#xFF0C;&#x5373; OpenSBI &#x56FA;&#x4EF6;&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x5B83;&#x6765;&#x5B8C;&#x6210;&#x5BF9;&#x4E8E;&#x5305;&#x62EC;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5728;&#x5185;&#x7684;&#x5404;&#x5916;&#x8BBE;&#x7684;&#x626B;&#x63CF;&#xFF0C;&#x5C06;&#x626B;&#x63CF;&#x7ED3;&#x679C;&#x4EE5; DTB&#xFF08;Device Tree Blob&#xFF09;&#x7684;&#x683C;&#x5F0F;&#x4FDD;&#x5B58;&#x5728;&#x7269;&#x7406;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x5730;&#x65B9;&#x3002;&#x968F;&#x540E; OpenSBI &#x56FA;&#x4EF6;&#x4F1A;&#x5C06;&#x5176;&#x5730;&#x5740;&#x4FDD;&#x5B58;&#x5728; <code>a1</code> &#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#xFF0C;&#x7ED9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x3002;</p>
 <p>&#x8FD9;&#x4E2A;&#x626B;&#x63CF;&#x7ED3;&#x679C;&#x63CF;&#x8FF0;&#x4E86;&#x6240;&#x6709;&#x5916;&#x8BBE;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5F53;&#x4E2D;&#x4E5F;&#x5305;&#x62EC; QEMU &#x6A21;&#x62DF;&#x7684; RISC-V Virt &#x8BA1;&#x7B97;&#x673A;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x3002;</p>
 <blockquote>
 <p><strong>[info] QEMU &#x6A21;&#x62DF;&#x7684; RISC-V Virt &#x8BA1;&#x7B97;&#x673A;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;</strong></p>
@@ -1350,7 +1304,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"物理内存探测","level":"3.3.3","depth":2,"next":{"title":"物理内存管理","level":"3.3.4","depth":2,"path":"docs/lab-2/guide/part-3.md","ref":"docs/lab-2/guide/part-3.md","articles":[]},"previous":{"title":"动态内存分配","level":"3.3.2","depth":2,"path":"docs/lab-2/guide/part-1.md","ref":"docs/lab-2/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-2.md","mtime":"2020-07-09T09:14:46.453Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T03:30:49.343Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"物理内存探测","level":"3.3.3","depth":2,"next":{"title":"物理内存管理","level":"3.3.4","depth":2,"path":"docs/lab-2/guide/part-3.md","ref":"docs/lab-2/guide/part-3.md","articles":[]},"previous":{"title":"动态内存分配","level":"3.3.2","depth":2,"path":"docs/lab-2/guide/part-1.md","ref":"docs/lab-2/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/guide/part-2.md","mtime":"2020-07-12T05:06:17.240Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T06:09:45.928Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

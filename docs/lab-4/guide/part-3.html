@@ -1017,52 +1017,6 @@
     
 
     
-        
-        <li class="header">开发笔记</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../format/partition.html">
-            
-                <a href="../../format/partition.html">
-            
-                    
-                    文档代码划分
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../../format/doc.html">
-            
-                <a href="../../format/doc.html">
-            
-                    
-                    文档格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../../format/code.html">
-            
-                <a href="../../format/code.html">
-            
-                    
-                    代码格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -1110,11 +1064,11 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;">&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;</h2>
-<p>&#x56DE;&#x7B54;&#x4E00;&#x4E0B;&#x524D;&#x4E00;&#x8282;&#x7684;&#x601D;&#x8003;&#x9898;&#xFF1A;&#x5F53;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x5728; <code>__restore</code> &#x65F6;&#xFF0C;<code>a0</code> &#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x662F; <code>handle_interrupt</code> &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4EE4; <code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>*mut Context</code>&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x540E;&#x8DF3;&#x8F6C;&#x5230;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6765;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x56DE;&#x7B54;&#x4E00;&#x4E0B;&#x524D;&#x4E00;&#x8282;&#x7684;&#x601D;&#x8003;&#x9898;&#xFF1A;&#x5F53;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x5728; <code>__restore</code> &#x65F6;&#xFF0C;<code>a0</code> &#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#x662F; <code>handle_interrupt</code> &#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4EE4; <code>handle_interrupt</code> &#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>*mut Context</code>&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x540E;&#x8DF3;&#x8F6C;&#x5230;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6765;&#x6267;&#x884C;&#x3002;</p>
 <h3 id="&#x4FEE;&#x6539;&#x4E2D;&#x65AD;&#x5904;&#x7406;">&#x4FEE;&#x6539;&#x4E2D;&#x65AD;&#x5904;&#x7406;</h3>
-<p>&#x5728;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x65F6;&#xFF08;&#x5373;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x65F6;&#xFF09;&#xFF0C;<code>handle_interrupt</code> &#x9700;&#x8981;&#x5C06;&#x4E0A;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x4E0B;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x5E76;&#x8FD4;&#x56DE;&#x3002;</p>
+<p>&#x5728;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x65F6;&#xFF08;&#x5373;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x65F6;&#xFF09;&#xFF0C;<code>handle_interrupt</code> &#x51FD;&#x6570;&#x9700;&#x8981;&#x5C06;&#x4E0A;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x4E0B;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x6062;&#x590D;&#x5E76;&#x8FD4;&#x56DE;&#x3002;</p>
 <blockquote>
-<p>&#x6CE8; 1&#xFF1A;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x76F4;&#x63A5; in-place &#x4FEE;&#x6539; <code>Context</code> &#x5462;&#xFF1F;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; <code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x7684; <code>Context</code> &#x6307;&#x9488;&#x9664;&#x4E86;&#x5B58;&#x50A8;&#x4E0A;&#x4E0B;&#x6587;&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x6838;&#x6808;&#x7684;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x4E2A;&#x4F1A;&#x5728;&#x540E;&#x9762;&#x8BE6;&#x7EC6;&#x9610;&#x8FF0;&#x3002;</p>
+<p>&#x6CE8; 1&#xFF1A;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x76F4;&#x63A5; in-place &#x4FEE;&#x6539; <code>Context</code> &#x5462;&#xFF1F;&#x8FD9;&#x662F;&#x56E0;&#x4E3A; <code>handle_interrupt</code> &#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684; <code>Context</code> &#x6307;&#x9488;&#x9664;&#x4E86;&#x5B58;&#x50A8;&#x4E0A;&#x4E0B;&#x6587;&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x6838;&#x6808;&#x7684;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x4E2A;&#x4F1A;&#x5728;&#x540E;&#x9762;&#x8BE6;&#x7EC6;&#x9610;&#x8FF0;&#x3002;</p>
 <p>&#x6CE8; 2&#xFF1A;&#x5728; Rust &#x4E2D;&#xFF0C;&#x5F15;&#x7528; <code>&amp;mut</code> &#x548C;&#x6307;&#x9488; <code>*mut</code> &#x53EA;&#x662F;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x7406;&#x89E3;&#x4E0D;&#x540C;&#xFF0C;&#x5176;&#x672C;&#x8D28;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5730;&#x5740;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x503C;&#x4F7F;&#x7528;&#x6307;&#x9488;&#x800C;&#x4E0D;&#x662F;&#x5F15;&#x7528;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x5176;&#x6307;&#x5411;&#x7684;&#x4F4D;&#x7F6E;&#x5341;&#x5206;&#x7279;&#x6B8A;&#xFF0C;&#x5176;&#x751F;&#x547D;&#x5468;&#x671F;&#x5728;&#x8FD9;&#x91CC;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x3002;</p>
 </blockquote>
 <p></p><p class="code-label">os/src/interrupt/handler.rs</p><p></p>
@@ -1137,9 +1091,9 @@
     PROCESSOR.get().tick(context)
 }
 </code></pre>
-<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5F53;&#x53D1;&#x751F;&#x65AD;&#x70B9;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x539F;&#x6765;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF08;&#x4FEE;&#x6539;&#x4E00;&#x4E0B; <code>sepc</code>&#xFF09;&#xFF1B;&#x800C;&#x5982;&#x679C;&#x662F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x8FD4;&#x56DE;&#x4E86; <code>PROCESSOR.get().tick(context)</code> &#x4F5C;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x90A3;&#x5B83;&#x53C8;&#x662F;&#x600E;&#x4E48;&#x5DE5;&#x4F5C;&#x7684;&#x5462;&#xFF1F;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5F53;&#x53D1;&#x751F;&#x65AD;&#x70B9;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x539F;&#x6765;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF08;&#x4FEE;&#x6539;&#x4E00;&#x4E0B; <code>sepc</code>&#xFF09;&#xFF1B;&#x800C;&#x5982;&#x679C;&#x662F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x6267;&#x884C; <code>PROCESSOR.get().tick(context)</code> &#x51FD;&#x6570;&#x5F97;&#x5230;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4F5C;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x90A3;&#x5B83;&#x53C8;&#x662F;&#x600E;&#x4E48;&#x5DE5;&#x4F5C;&#x7684;&#x5462;&#xFF1F;</p>
 <h3 id="&#x7EBF;&#x7A0B;&#x5207;&#x6362;">&#x7EBF;&#x7A0B;&#x5207;&#x6362;</h3>
-<p>&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x4E00;&#x4E0B; <code>Processor::tick</code> &#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<p>&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x4E00;&#x4E0B; <code>Processor::tick</code> &#x51FD;&#x6570;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
 <p>&#xFF08;&#x8C03;&#x5EA6;&#x5668; <code>scheduler</code> &#x4F1A;&#x5728;&#x540E;&#x9762;&#x7684;&#x5C0F;&#x8282;&#x4E2D;&#x8BB2;&#x89E3;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5B83;&#x80FD;&#x591F;&#x8FD4;&#x56DE;&#x4E0B;&#x4E00;&#x4E2A;&#x7B49;&#x5F85;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#xFF09;</p>
 <p></p><p class="code-label">os/src/process/processor.rs: impl Processor</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x5728;&#x4E00;&#x4E2A;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x65F6;&#xFF0C;&#x66FF;&#x6362;&#x6389; context</span>
@@ -1164,7 +1118,7 @@
 }
 </code></pre>
 <h4 id="&#x4E0A;&#x4E0B;&#x6587;-context-&#x7684;&#x4FDD;&#x5B58;&#x548C;&#x53D6;&#x51FA;">&#x4E0A;&#x4E0B;&#x6587; <code>Context</code> &#x7684;&#x4FDD;&#x5B58;&#x548C;&#x53D6;&#x51FA;</h4>
-<p>&#x5728;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5B58;&#x4E0B;&#x524D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#xFF0C;&#x4E3A;&#x6B64;&#x6211;&#x4EEC;&#x5B9E;&#x73B0; <code>Thread::park</code>&#x3002;</p>
+<p>&#x5728;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FDD;&#x5B58;&#x524D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#xFF0C;&#x4E3A;&#x6B64;&#x6211;&#x4EEC;&#x5B9E;&#x73B0; <code>Thread::park</code> &#x51FD;&#x6570;&#x3002;</p>
 <p></p><p class="code-label">os/src/process/thread.rs: impl Thread</p><p></p>
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x53D1;&#x751F;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x540E;&#x6682;&#x505C;&#x7EBF;&#x7A0B;&#xFF0C;&#x4FDD;&#x5B58;&#x72B6;&#x6001;</span>
 <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">park</span></span>(&amp;<span class="hljs-keyword">self</span>, context: Context) {
@@ -1204,7 +1158,7 @@
 </div></div>
 
 <h4 id="&#x5185;&#x6838;&#x6808;&#xFF1F;">&#x5185;&#x6838;&#x6808;&#xFF1F;</h4>
-<p>&#x73B0;&#x5728;&#xFF0C;&#x7EBF;&#x7A0B;&#x4FDD;&#x5B58; <code>Context</code> &#x90FD;&#x662F;&#x6839;&#x636E; <code>sp</code> &#x6307;&#x9488;&#xFF0C;&#x5728;&#x6808;&#x4E0A;&#x538B;&#x5165;&#x4E00;&#x4E2A; <code>Context</code> &#x6765;&#x5B58;&#x50A8;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#xFF0C;&#x53EF;&#x80FD;&#x53EA;&#x6709;&#x4E0A;&#x5E1D;&#x624D;&#x77E5;&#x9053;&#x89E6;&#x53D1;&#x4E2D;&#x65AD;&#x65F6; <code>sp</code> &#x6307;&#x5230;&#x4E86;&#x54EA;&#x91CC;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x8BA9;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5D29;&#x6E83;&#x5BFC;&#x81F4;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5D29;&#x6E83;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x63D0;&#x524D;&#x51C6;&#x5907;&#x597D;&#x5185;&#x6838;&#x6808;&#xFF0C;&#x5F53;&#x7EBF;&#x7A0B;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#x3002;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5C06;&#x5177;&#x4F53;&#x8BB2;&#x89E3;&#x8BE5;&#x5982;&#x4F55;&#x505A;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x7EBF;&#x7A0B;&#x4FDD;&#x5B58; <code>Context</code> &#x90FD;&#x662F;&#x6839;&#x636E; <code>sp</code> &#x6307;&#x9488;&#xFF0C;&#x5728;&#x6808;&#x4E0A;&#x538B;&#x5165;&#x4E00;&#x4E2A; <code>Context</code> &#x6765;&#x5B58;&#x50A8;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7EBF;&#x7A0B;&#x800C;&#x8A00;&#xFF0C;&#x5B83;&#x5728;&#x7528;&#x6237;&#x6001;&#x8FD0;&#x884C;&#x65F6;&#x7528;&#x7684;&#x662F;&#x4F4D;&#x4E8E;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x7528;&#x6237;&#x6808;&#x3002;&#x800C;&#x5B83;&#x5728;&#x7528;&#x6237;&#x6001;&#x8FD0;&#x884C;&#x4E2D;&#x5982;&#x679C;&#x89E6;&#x53D1;&#x4E2D;&#x65AD;&#xFF0C;<code>sp</code> &#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x662F;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x67D0;&#x5730;&#x5740;&#xFF0C;&#x4F46;&#x6B64;&#x65F6; RISC-V CPU &#x4F1A;&#x5207;&#x6362;&#x5230;&#x5185;&#x6838;&#x6001;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5C31;&#x4E0D;&#x80FD;&#x518D;&#x7528;&#x8FD9;&#x4E2A; <code>sp</code> &#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x5730;&#x5740;&#x4E86;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E3A;sp&#x6307;&#x9488;&#x51C6;&#x5907;&#x597D;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x5728;&#x5185;&#x6838;&#x6001;&#x6267;&#x884C;&#x51FD;&#x6570;&#x7684;&#x5185;&#x6838;&#x6808;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4E3A;&#x4E86;&#x4E0D;&#x8BA9;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5D29;&#x6E83;&#x5BFC;&#x81F4;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5D29;&#x6E83;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x63D0;&#x524D;&#x51C6;&#x5907;&#x597D;&#x5185;&#x6838;&#x6808;&#xFF0C;&#x5F53;&#x7EBF;&#x7A0B;&#x53D1;&#x751F;&#x4E2D;&#x65AD;&#x65F6;&#x53EF;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#x3002;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x6211;&#x4EEC;&#x5C06;&#x5177;&#x4F53;&#x8BB2;&#x89E3;&#x8BE5;&#x5982;&#x4F55;&#x505A;&#x3002;</p>
 <h3 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h3>
 <p>&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x7EBF;&#x7A0B;&#x7684;&#x5207;&#x6362;&#xFF0C;&#x6211;&#x4EEC;&#x8BA9; <code>handle_interrupt</code> &#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>*mut Context</code>&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5207;&#x6362;&#x7EBF;&#x7A0B;&#xFF0C;&#x5C31;&#x5C06;&#x524D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code> &#x4FDD;&#x5B58;&#x8D77;&#x6765;&#x6362;&#x4E0A;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x7684; <code>Context</code>&#x3002;&#x800C;&#x5982;&#x679C;&#x4E0D;&#x9700;&#x8981;&#x5207;&#x6362;&#xFF0C;&#x90A3;&#x4E48;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x539F;&#x672C;&#x7684; <code>Context</code> &#x5373;&#x53EF;&#x3002;</p>
 <p><div id="page-footer" class="localized-footer"><hr><p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
@@ -1288,7 +1242,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程的切换","level":"3.5.4","depth":2,"next":{"title":"内核栈","level":"3.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"previous":{"title":"线程的创建","level":"3.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-07-09T09:14:46.479Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T03:30:49.343Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程的切换","level":"3.5.4","depth":2,"next":{"title":"内核栈","level":"3.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"previous":{"title":"线程的创建","level":"3.5.3","depth":2,"path":"docs/lab-4/guide/part-2.md","ref":"docs/lab-4/guide/part-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-3.md","mtime":"2020-07-12T05:30:14.030Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T06:09:45.928Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1017,52 +1017,6 @@
     
 
     
-        
-        <li class="header">开发笔记</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../../format/partition.html">
-            
-                <a href="../../format/partition.html">
-            
-                    
-                    文档代码划分
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../../format/doc.html">
-            
-                <a href="../../format/doc.html">
-            
-                    
-                    文档格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../../format/code.html">
-            
-                <a href="../../format/code.html">
-            
-                    
-                    代码格式规范
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
 
     <li class="divider"></li>
 
@@ -1111,7 +1065,7 @@
                                 
                                 <h2 id="&#x8C03;&#x5EA6;&#x5668;">&#x8C03;&#x5EA6;&#x5668;</h2>
 <h3 id="&#x5904;&#x7406;&#x5668;&#x62BD;&#x8C61;">&#x5904;&#x7406;&#x5668;&#x62BD;&#x8C61;</h3>
-<p>&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x548C;&#x4FDD;&#x5B58;&#x7EBF;&#x7A0B;&#x4E86;&#xFF0C;&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x62BD;&#x8C61;&#x51FA;&#x300C;&#x5904;&#x7406;&#x5668;&#x300D;&#x6765;&#x5B58;&#x653E;&#x7EBF;&#x7A0B;&#x6C60;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x5355;&#x72EC;&#x5B58;&#x653E;&#x76EE;&#x524D;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#xFF08;&#x5373;&#x4E2D;&#x65AD;&#x524D;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x56E0;&#x4E3A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5728;&#x5DE5;&#x4F5C;&#x65F6;&#x4E00;&#x5B9A;&#x5C5E;&#x4E8E;&#x4E2D;&#x65AD;&#x4E4B;&#x4E2D;&#xFF09;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x548C;&#x4FDD;&#x5B58;&#x7EBF;&#x7A0B;&#x4E86;&#xFF0C;&#x73B0;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x62BD;&#x8C61;&#x51FA;&#x300C;&#x5904;&#x7406;&#x5668;&#x300D;&#x6765;&#x5B58;&#x653E;&#x548C;&#x7BA1;&#x7406;&#x7EBF;&#x7A0B;&#x6C60;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x5B58;&#x653E;&#x548C;&#x7BA1;&#x7406;&#x76EE;&#x524D;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#xFF08;&#x5373;&#x4E2D;&#x65AD;&#x524D;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x56E0;&#x4E3A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5728;&#x5DE5;&#x4F5C;&#x65F6;&#x662F;&#x5904;&#x4E8E;&#x4E2D;&#x65AD;&#x3001;&#x5F02;&#x5E38;&#x6216;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x670D;&#x52A1;&#x4E4B;&#x4E2D;&#xFF09;&#x3002;</p>
 <p></p><p class="code-label">os/src/process/processor.rs</p><p></p>
 <pre><code class="lang-rust">lazy_static! {
     <span class="hljs-comment">/// &#x5168;&#x5C40;&#x7684; [`Processor`]</span>
@@ -1127,7 +1081,7 @@
     scheduler: SchedulerImpl&lt;Arc&lt;Thread&gt;&gt;,
 }
 </code></pre>
-<p>&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7528;&#x4E86;&#x4E00;&#x4E2A; <code>UnsafeWrapper</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x4E1C;&#x897F;&#x76F8;&#x5F53;&#x4E8E; Rust &#x63D0;&#x4F9B;&#x7684; <code>UnsafeCell</code>&#xFF0C;&#x6216;&#x8005; C &#x8BED;&#x8A00;&#x7684;&#x6307;&#x9488;&#xFF1A;&#x4EFB;&#x4F55;&#x7EBF;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x968F;&#x65F6;&#x4ECE;&#x4E2D;&#x83B7;&#x53D6;&#x4E00;&#x4E2A; <code>&amp;&apos;static mut</code> &#x5F15;&#x7528;&#x3002;&#x7531;&#x4E8E;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;<strong>&#x53EA;&#x6709;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#xFF08;&#x4EE5;&#x53CA;&#x672A;&#x6765;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF09;&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>PROCESSOR</code></strong>&#xFF0C;&#x800C;&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x662F;&#x5173;&#x95ED;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528; <code>UnsafeCell</code> &#x662F;&#x5B89;&#x5168;&#x7684;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7528;&#x4E86;&#x4E00;&#x4E2A; <code>UnsafeWrapper</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x4E1C;&#x897F;&#x76F8;&#x5F53;&#x4E8E; Rust &#x63D0;&#x4F9B;&#x7684; <code>UnsafeCell</code>&#xFF0C;&#x6216;&#x8005; C &#x8BED;&#x8A00;&#x7684;&#x6307;&#x9488;&#xFF1A;&#x4EFB;&#x4F55;&#x7EBF;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x968F;&#x65F6;&#x4ECE;&#x4E2D;&#x83B7;&#x53D6;&#x4E00;&#x4E2A; <code>&amp;&apos;static mut</code> &#x5F15;&#x7528;&#x3002;&#x7531;&#x4E8E;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;<strong>&#x53EA;&#x6709;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#xFF08;&#x4EE5;&#x53CA;&#x5F02;&#x5E38;&#x6216;&#x672A;&#x6765;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF09;&#x65F6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>PROCESSOR</code></strong>&#xFF0C;&#x800C;&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x662F;&#x5173;&#x95ED;&#x65F6;&#x949F;&#x4E2D;&#x65AD;&#x7684;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528; <code>UnsafeCell</code> &#x662F;&#x5B89;&#x5168;&#x7684;&#x3002;</p>
 <h3 id="&#x8C03;&#x5EA6;&#x5668;">&#x8C03;&#x5EA6;&#x5668;</h3>
 <p>&#x8C03;&#x5EA6;&#x5668;&#x7684;&#x7B97;&#x6CD5;&#x6709;&#x8BB8;&#x591A;&#x79CD;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5B83;&#x63D0;&#x53D6;&#x51FA;&#x4E00;&#x4E2A; trait &#x4F5C;&#x4E3A;&#x63A5;&#x53E3;</p>
 <p></p><p class="code-label">os/src/algorithm/src/scheduler/mod.rs</p><p></p>
@@ -1205,25 +1159,9 @@
 <pre><code>thread 7
 thread 6
 thread 5
-thread 4
-thread 3
-thread 2
-thread 1
-thread 0
-thread 6
-thread 5
-thread 4
-thread 2
-thread 1
+...
 thread 7
-thread 3
-thread 0
-100 tick
-thread 7
-thread 6
-thread 5
-thread 4
-thread 3
+...
 thread 2
 thread 1
 thread 0
@@ -1309,7 +1247,7 @@ thread 0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程调度","level":"3.5.6","depth":2,"next":{"title":"小结","level":"3.5.7","depth":2,"path":"docs/lab-4/guide/summary.md","ref":"docs/lab-4/guide/summary.md","articles":[]},"previous":{"title":"内核栈","level":"3.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-5.md","mtime":"2020-07-09T09:14:46.480Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T03:30:49.343Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程调度","level":"3.5.6","depth":2,"next":{"title":"小结","level":"3.5.7","depth":2,"path":"docs/lab-4/guide/summary.md","ref":"docs/lab-4/guide/summary.md","articles":[]},"previous":{"title":"内核栈","level":"3.5.5","depth":2,"path":"docs/lab-4/guide/part-4.md","ref":"docs/lab-4/guide/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-5.md","mtime":"2020-07-12T04:01:19.101Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T06:09:45.928Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
