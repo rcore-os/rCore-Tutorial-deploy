@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-<script src="/rCore-Tutorial-deploy/md5.min.js"></script>
 <div id="gitalk-container"></div>
 <script>
     var gitalk = new Gitalk({
@@ -16,7 +15,7 @@
             "LyricZhao",
             "Tuyixiang"
         ],
-        id: md5(location.pathname),
+        id: location.pathname.replace('/rCore-Tutorial', ''),
         distractionFreeMode: false
     });
     gitalk.render("gitalk-container");
