@@ -101,7 +101,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../format/partition.html" />
+    <link rel="next" href="../lab-3/practice.html" />
     
     
     <link rel="prev" href="../lab-1/practice.html" />
@@ -634,7 +634,20 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4.6" data-path="../lab-3/guide/summary.html">
+        <li class="chapter " data-level="3.4.6" data-path="../lab-3/guide/part-5.html">
+            
+                <a href="../lab-3/guide/part-5.html">
+            
+                    
+                    页面置换*
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.7" data-path="../lab-3/guide/summary.html">
             
                 <a href="../lab-3/guide/summary.html">
             
@@ -744,7 +757,20 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5.7" data-path="../lab-4/guide/summary.html">
+        <li class="chapter " data-level="3.5.7" data-path="../lab-4/guide/part-6.html">
+            
+                <a href="../lab-4/guide/part-6.html">
+            
+                    
+                    线程的结束
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.8" data-path="../lab-4/guide/summary.html">
             
                 <a href="../lab-4/guide/summary.html">
             
@@ -1015,6 +1041,58 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="../lab-3/practice.html">
+            
+                <a href="../lab-3/practice.html">
+            
+                    
+                    实验三：虚实地址转换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../lab-4/practice-1.html">
+            
+                <a href="../lab-4/practice-1.html">
+            
+                    
+                    实验四（上）：线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../lab-4/practice-2.html">
+            
+                <a href="../lab-4/practice-2.html">
+            
+                    
+                    实验四（下）：线程调度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../lab-6/practice.html">
+            
+                <a href="../lab-6/practice.html">
+            
+                    
+                    实验六：系统调用
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
         
@@ -1117,7 +1195,18 @@
 </ul>
 <h3 id="&#x5B9E;&#x9A8C;&#x9898;">&#x5B9E;&#x9A8C;&#x9898;</h3>
 <ol>
-<li><p>&#x56DE;&#x7B54;&#xFF1A;&#x6211;&#x4EEC;&#x5728;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x5806;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x5728;&#x5185;&#x6838;&#x4EE3;&#x7801;&#x4E2D;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x4F8B;&#x5982; <code>Vec</code> <code>Box</code> &#x7B49;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x5806;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F7F;&#x7528; <code>Vec</code> &#x800C;&#x4E0D;&#x662F; <code>[u8]</code>&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x4EC0;&#x4E48;&#x7ED3;&#x679C;&#xFF1F;</p>
+<li><p>&#x539F;&#x7406;&#xFF1A;.bss &#x5B57;&#x6BB5;&#x662F;&#x4EC0;&#x4E48;&#x542B;&#x4E49;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x4EEC;&#x8981;&#x5C06;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#xFF08;&#x5806;&#xFF09;&#x7A7A;&#x95F4;&#x653E;&#x5728; .bss &#x5B57;&#x6BB5;&#xFF1F;</p>
+<div class="click_reveal"><span> Click to show </span><div><blockquote>
+<p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A; ELF &#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x800C;&#x8A00;&#xFF0C;.bss &#x5B57;&#x6BB5;&#x4E00;&#x822C;&#x5305;&#x542B;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x540D;&#x79F0;&#x548C;&#x957F;&#x5EA6;&#xFF0C;&#x5728;&#x6267;&#x884C;&#x65F6;&#x7531;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x5E76;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x96F6;&#x3002;</p>
+<p><em>&#x4E0D;&#x8FC7;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x6267;&#x884C; <code>rust-objcopy</code> &#x65F6;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x5B57;&#x6BB5;&#x4F1A;&#x76F8;&#x5E94;&#x5730;&#x88AB;&#x5904;&#x7406;&#x800C;&#x5F62;&#x6210;&#x4E00;&#x6BB5;&#x8FDE;&#x7EED;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x6BB5;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x4F1A;&#x76F4;&#x63A5;&#x5199;&#x5165;&#x5230; QEMU &#x6240;&#x6A21;&#x62DF;&#x7684;&#x673A;&#x5668;&#x7684; <code>0x80200000</code> &#x4F4D;&#x7F6E;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5199;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x662F;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#x5728;&#x673A;&#x5668;&#x4E0A;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x52A0;&#x8F7D;&#x7684;&#x7A0B;&#x5E8F;&#x3002;</em></p>
+<p>&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x9047;&#x5230;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#xFF08;&#x5806;&#xFF09;&#x662F;&#x7531;&#x5176;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x63D0;&#x4F9B;&#x7684;&#x3002;&#x4F8B;&#x5982;&#x5728; C &#x8BED;&#x8A00;&#x4E2D;&#x7684; <code>malloc()</code>&#xFF0C;glibc &#x8FD0;&#x884C;&#x5E93;&#x4F1A;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x5806;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x662F;&#x901A;&#x8FC7; <code>brk()</code> &#x7B49;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x5411;&#x5185;&#x6838;&#x7D22;&#x8981;&#x7684;&#x3002;&#x7531;&#x4E8E;&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x81EA;&#x7136;&#x5C31;&#x65E0;&#x6CD5;&#x50CF;&#x8FD9;&#x6837;&#x83B7;&#x53D6;&#x7A7A;&#x95F4;&#x3002;&#x4F46;&#x662F;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x5177;&#x6709;&#x968F;&#x610F;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x7684;&#x6743;&#x529B;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x968F;&#x610F;&#x5212;&#x4E00;&#x6BB5;&#x7A7A;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x76F8;&#x5E94;&#x7684;&#x7B97;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5806;&#x3002;</p>
+<p>&#x81F3;&#x4E8E;&#x4E3A;&#x4F55;&#x5806;&#x5728; .bss &#x5B57;&#x6BB5;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8FD9;&#x4E5F;&#x4E0D;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x2014;&#x2014;&#x6211;&#x4EEC;&#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x968F;&#x610F;&#x6307;&#x5B9A;&#x4E00;&#x6BB5;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x7528;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6765;&#x8868;&#x793A;&#x5806;&#x5E76;&#x5C06;&#x5176;&#x653E;&#x5728; .bss &#x5B57;&#x6BB5;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x5B9E;&#x73B0;&#xFF1A;&#x8FD9;&#x6837;&#x5806;&#x7A7A;&#x95F4;&#x5C31;&#x5305;&#x542B;&#x5728;&#x5185;&#x6838;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x4E4B;&#x4E2D;&#x4E86;&#xFF0C;&#x800C;&#x81EA; <code>KERNEL_END_ADDRESS</code> &#x4EE5;&#x540E;&#x7684;&#x7A7A;&#x95F4;&#x5C31;&#x90FD;&#x53EF;&#x4EE5;&#x7ED9;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x3002;</p>
+</blockquote>
+</div></div>
+
+<p><br></p>
+</li>
+<li><p>&#x5206;&#x6790;&#xFF1A;&#x6211;&#x4EEC;&#x5728;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x4E2D;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x5806;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x5728;&#x5185;&#x6838;&#x4EE3;&#x7801;&#x4E2D;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x4F8B;&#x5982; <code>Vec</code> <code>Box</code> &#x7B49;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x5806;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F7F;&#x7528; <code>Vec</code> &#x800C;&#x4E0D;&#x662F; <code>[u8]</code>&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x4EC0;&#x4E48;&#x7ED3;&#x679C;&#xFF1F;</p>
 <ul>
 <li><p>&#x65E0;&#x6CD5;&#x7F16;&#x8BD1;&#xFF1F;</p>
 </li>
@@ -1144,7 +1233,7 @@
 
 <p><br></p>
 </li>
-<li>&#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x7EBF;&#x6BB5;&#x6811;&#x7684;&#x7269;&#x7406;&#x9875;&#x9762;&#x5206;&#x914D;&#x7B97;&#x6CD5;</li>
+<li>&#x4E8C;&#x9009;&#x4E00;&#xFF1A;&#x5B9E;&#x73B0;&#x57FA;&#x4E8E;&#x7EBF;&#x6BB5;&#x6811;&#x7684;&#x7269;&#x7406;&#x9875;&#x9762;&#x5206;&#x914D;&#x7B97;&#x6CD5;&#xFF08;&#x4E0D;&#x9700;&#x8981;&#x8003;&#x8651;&#x5408;&#x5E76;&#x5206;&#x914D;&#xFF09;&#xFF1B;&#x6216;&#x5C1D;&#x8BD5;&#x4FEE;&#x6539; <code>FrameAllocator</code>&#xFF0C;&#x4EE4;&#x5176;&#x4F7F;&#x7528;&#x672A;&#x88AB;&#x5206;&#x914D;&#x7684;&#x9875;&#x9762;&#x7A7A;&#x95F4;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF09;&#x6765;&#x5B58;&#x653E;&#x9875;&#x9762;&#x4F7F;&#x7528;&#x72B6;&#x6001;&#x3002;</li>
 </ol>
 <p><br></p>
 </li>
@@ -1153,9 +1242,11 @@
 <li><p>&#x5728; <code>memory/heap2.rs</code> &#x4E2D;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x624B;&#x52A8;&#x5B9E;&#x73B0;&#x5806;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x5B83;&#x4F7F;&#x7528; <code>algorithm::VectorAllocator</code> &#x4F5C;&#x4E3A;&#x5176;&#x6839;&#x672C;&#x5206;&#x914D;&#x7B97;&#x6CD5;&#xFF0C;&#x800C;&#x6211;&#x4EEC;&#x76EE;&#x524D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x7684; bitmap &#x7B97;&#x6CD5;&#xFF08;&#x800C;&#x4E14;&#x53EA;&#x5F00;&#x4E86;&#x5F88;&#x5C0F;&#x7684;&#x7A7A;&#x95F4;&#xFF09;&#x3002;&#x8BF7;&#x5728; <code>algorithm</code> crate &#x4E2D;&#x5229;&#x7528;&#x4F19;&#x4F34;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0; <code>VectorAllocator</code> trait&#x3002;</p>
 <p><br></p>
 </li>
-<li><p>&#x524D;&#x9762;&#x8BF4;&#x5230;&#xFF0C;&#x5806;&#x7684;&#x5B9E;&#x73B0;&#x672C;&#x8EAB;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x3002;&#x6709;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x80FD;&#x591F;&#x8BA9;&#x5806;&#x672C;&#x8EAB;&#x4E5F;&#x80FD;&#x591F;&#x5229;&#x7528; <code>Vec</code> &#x6765;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#xFF1F;</p>
+<li><p>&#x524D;&#x9762;&#x8BF4;&#x5230;&#xFF0C;&#x5806;&#x7684;&#x5B9E;&#x73B0;&#x672C;&#x8EAB;&#x4E0D;&#x80FD;&#x5B8C;&#x5168;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5185;&#x5B58;&#x5206;&#x914D;&#x3002;&#x4F46;&#x6709;&#x6CA1;&#x6709;&#x53EF;&#x80FD;&#x8BA9;&#x5806;&#x80FD;&#x591F;&#x5229;&#x7528;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x4F1A;&#x5E26;&#x6765;&#x4EC0;&#x4E48;&#x597D;&#x5904;&#xFF1F;</p>
 <div class="click_reveal"><span> Click to show </span><div><blockquote>
-<p>&#x5806;&#x6240;&#x7528;&#x5230;&#x7684;&#x6700;&#x521D;&#x4E00;&#x90E8;&#x5206;&#x7A7A;&#x95F4;&#x5FC5;&#x987B;&#x9759;&#x6001;&#x5206;&#x914D;&#xFF0C;&#x800C;&#x968F;&#x7740;&#x4F7F;&#x7528;&#x7A7A;&#x95F4;&#x589E;&#x52A0;&#xFF0C;&#x589E;&#x91CF;&#x7684;&#x90E8;&#x5206;&#x5B9E;&#x9645;&#x4E0A;&#x53EF;&#x4EE5;&#x7528; <code>Vec</code> &#x7B49;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x4EE5;&#x4E00;&#x4E2A;&#x6734;&#x7D20;&#x7684;&#x5206;&#x914D;&#x5668;&#x7B97;&#x6CD5;&#x4E3A;&#x4F8B;&#xFF1A;&#x5C06;&#x6BCF;&#x4E00;&#x6B21;&#x5185;&#x5B58;&#x5206;&#x914D;&#x8BB0;&#x5F55;&#x7528;&#x94FE;&#x8868;&#x5B58;&#x8D77;&#x6765;&#x3002;</p>
+<p>&#x5206;&#x914D;&#x5668;&#x6700;&#x521D;&#x5FC5;&#x987B;&#x5177;&#x6709;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x9759;&#x6001;&#x7A7A;&#x95F4;&#x3002;&#x800C;&#x6BCF;&#x5F53;&#x5B83;&#x4EC5;&#x5269;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x7A7A;&#x95F4;&#x65F6;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x6765;&#x4E3A;&#x81EA;&#x5DF1;&#x5206;&#x914D;&#x4E00;&#x5757;&#x66F4;&#x5927;&#x7684;&#x7A7A;&#x95F4;&#x3002;&#x5982;&#x6B64;&#xFF0C;&#x5C31;&#x5B9E;&#x73B0;&#x4E86;&#x5206;&#x914D;&#x5668;&#x52A8;&#x6001;&#x5206;&#x914D;&#x81EA;&#x5DF1;&#x3002;</p>
+<p>&#x518D;&#x8003;&#x8651;&#x5230;&#xFF0C;&#x6BCF;&#x6B21;&#x5206;&#x914D; 1KB &#x6216; 1MB &#x90FD;&#x9700;&#x8981;&#x989D;&#x5916;&#x4FDD;&#x5B58;&#x4E00;&#x4EFD;&#x5143;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x53EA;&#x7528;&#x9759;&#x6001;&#x5206;&#x914D;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x6309;&#x6700;&#x574F;&#x60C5;&#x51B5;&#xFF08;&#x6BCF;&#x6B21;&#x90FD;&#x53EA;&#x5206;&#x914D;&#x6700;&#x5C0F;&#x5355;&#x5143;&#xFF09;&#x6765;&#x9884;&#x5148;&#x7559;&#x597D;&#x7A7A;&#x95F4;&#x3002;&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x5206;&#x914D;&#x5C31;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x7A7A;&#x95F4;&#x6D6A;&#x8D39;&#x3002;</p>
 </blockquote>
 </div></div>
 
@@ -1233,7 +1324,7 @@
                 </a>
                 
                 
-                <a href="../format/partition.html" class="navigation navigation-next " aria-label="Next page: 文档代码划分">
+                <a href="../lab-3/practice.html" class="navigation navigation-next " aria-label="Next page: 实验三：虚实地址转换">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1244,7 +1335,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实验二：内存分配","level":"4.2","depth":1,"next":{"title":"文档代码划分","level":"5.1","depth":1,"path":"docs/format/partition.md","ref":"docs/format/partition.md","articles":[]},"previous":{"title":"实验一：中断","level":"4.1","depth":1,"path":"docs/lab-1/practice.md","ref":"docs/lab-1/practice.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/practice.md","mtime":"2020-07-09T09:14:46.457Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-17T08:57:07.168Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实验二：内存分配","level":"4.2","depth":1,"next":{"title":"实验三：虚实地址转换","level":"4.3","depth":1,"path":"docs/lab-3/practice.md","ref":"docs/lab-3/practice.md","articles":[]},"previous":{"title":"实验一：中断","level":"4.1","depth":1,"path":"docs/lab-1/practice.md","ref":"docs/lab-1/practice.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-2/practice.md","mtime":"2020-07-19T05:48:32.922Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-19T05:59:04.989Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

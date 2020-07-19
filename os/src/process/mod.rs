@@ -2,6 +2,7 @@
 
 mod config;
 mod kernel_stack;
+mod lock;
 #[allow(clippy::module_inception)]
 mod process;
 mod processor;
@@ -14,6 +15,7 @@ use spin::{Mutex, RwLock};
 
 pub use config::*;
 pub use kernel_stack::KERNEL_STACK;
+pub use lock::Lock;
 pub use process::Process;
 pub use processor::PROCESSOR;
 pub use thread::Thread;
