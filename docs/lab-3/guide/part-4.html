@@ -101,7 +101,7 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="summary.html" />
+    <link rel="next" href="part-5.html" />
     
     
     <link rel="prev" href="part-3.html" />
@@ -634,7 +634,20 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4.6" data-path="summary.html">
+        <li class="chapter " data-level="3.4.6" data-path="part-5.html">
+            
+                <a href="part-5.html">
+            
+                    
+                    页面置换*
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.7" data-path="summary.html">
             
                 <a href="summary.html">
             
@@ -744,7 +757,20 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5.7" data-path="../../lab-4/guide/summary.html">
+        <li class="chapter " data-level="3.5.7" data-path="../../lab-4/guide/part-6.html">
+            
+                <a href="../../lab-4/guide/part-6.html">
+            
+                    
+                    线程的结束
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5.8" data-path="../../lab-4/guide/summary.html">
             
                 <a href="../../lab-4/guide/summary.html">
             
@@ -1015,6 +1041,58 @@
             
         </li>
     
+        <li class="chapter " data-level="4.3" data-path="../practice.html">
+            
+                <a href="../practice.html">
+            
+                    
+                    实验三：虚实地址转换
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../../lab-4/practice-1.html">
+            
+                <a href="../../lab-4/practice-1.html">
+            
+                    
+                    实验四（上）：线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../../lab-4/practice-2.html">
+            
+                <a href="../../lab-4/practice-2.html">
+            
+                    
+                    实验四（下）：线程调度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../../lab-6/practice.html">
+            
+                <a href="../../lab-6/practice.html">
+            
+                    
+                    实验六：系统调用
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
         
@@ -1172,6 +1250,8 @@
     page_tables: <span class="hljs-built_in">Vec</span>&lt;PageTableTracker&gt;,
     <span class="hljs-comment">/// &#x6839;&#x9875;&#x8868;&#x7684;&#x7269;&#x7406;&#x9875;&#x53F7;</span>
     root_ppn: PhysicalPageNumber,
+    <span class="hljs-comment">/// &#x6240;&#x6709;&#x5206;&#x914D;&#x7684;&#x7269;&#x7406;&#x9875;&#x9762;&#x6620;&#x5C04;&#x4FE1;&#x606F;</span>
+    mapped_pairs: VecDeque&lt;(VirtualPageNumber, FrameTracker)&gt;,
 }
 
 <span class="hljs-keyword">impl</span> Mapping {
@@ -1182,6 +1262,7 @@
         <span class="hljs-literal">Ok</span>(Mapping {
             page_tables: <span class="hljs-built_in">vec!</span>[root_table],
             root_ppn,
+            mapped_pairs: VecDeque::new(),
         })
     }
 }
@@ -1202,7 +1283,7 @@
             <span class="hljs-keyword">let</span> new_table = PageTableTracker::new(FRAME_ALLOCATOR.lock().alloc()?);
             <span class="hljs-keyword">let</span> new_ppn = new_table.page_number();
             <span class="hljs-comment">// &#x5C06;&#x65B0;&#x9875;&#x8868;&#x7684;&#x9875;&#x53F7;&#x5199;&#x5165;&#x5F53;&#x524D;&#x7684;&#x9875;&#x8868;&#x9879;</span>
-            *entry = PageTableEntry::new(new_ppn, Flags::VALID);
+            *entry = PageTableEntry::new(<span class="hljs-literal">Some</span>(new_ppn), Flags::VALID);
             <span class="hljs-comment">// &#x4FDD;&#x5B58;&#x9875;&#x8868;</span>
             <span class="hljs-keyword">self</span>.page_tables.push(new_table);
         }
@@ -1217,7 +1298,7 @@
 <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">map_one</span></span>(
     &amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>,
     vpn: VirtualPageNumber,
-    ppn: PhysicalPageNumber,
+    ppn: <span class="hljs-built_in">Option</span>&lt;PhysicalPageNumber&gt;,
     flags: Flags,
 ) -&gt; MemoryResult&lt;()&gt; {
     <span class="hljs-comment">// &#x5B9A;&#x4F4D;&#x5230;&#x9875;&#x8868;&#x9879;</span>
@@ -1233,16 +1314,12 @@
 <pre><code class="lang-rust"><span class="hljs-comment">/// &#x52A0;&#x5165;&#x4E00;&#x6BB5;&#x6620;&#x5C04;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x76F8;&#x5E94;&#x5730;&#x5206;&#x914D;&#x7269;&#x7406;&#x9875;&#x9762;</span>
 <span class="hljs-comment">///</span>
 <span class="hljs-comment">/// &#x672A;&#x88AB;&#x5206;&#x914D;&#x7269;&#x7406;&#x9875;&#x9762;&#x7684;&#x865A;&#x62DF;&#x9875;&#x53F7;&#x6682;&#x65F6;&#x4E0D;&#x4F1A;&#x5199;&#x5165;&#x9875;&#x8868;&#x5F53;&#x4E2D;&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x5728;&#x53D1;&#x751F; PageFault &#x540E;&#x518D;&#x5EFA;&#x7ACB;&#x9875;&#x8868;&#x9879;&#x3002;</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">map</span></span>(
-    &amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>,
-    segment: &amp;Segment,
-    init_data: <span class="hljs-built_in">Option</span>&lt;&amp;[<span class="hljs-keyword">u8</span>]&gt;,
-) -&gt; MemoryResult&lt;<span class="hljs-built_in">Vec</span>&lt;(VirtualPageNumber, FrameTracker)&gt;&gt; {
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">map</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, segment: &amp;Segment, init_data: <span class="hljs-built_in">Option</span>&lt;&amp;[<span class="hljs-keyword">u8</span>]&gt;) -&gt; MemoryResult&lt;()&gt; {
     <span class="hljs-keyword">match</span> segment.map_type {
         <span class="hljs-comment">// &#x7EBF;&#x6027;&#x6620;&#x5C04;&#xFF0C;&#x76F4;&#x63A5;&#x5BF9;&#x865A;&#x62DF;&#x5730;&#x5740;&#x8FDB;&#x884C;&#x8F6C;&#x6362;</span>
         MapType::Linear =&gt; {
             <span class="hljs-keyword">for</span> vpn <span class="hljs-keyword">in</span> segment.page_range().iter() {
-                <span class="hljs-keyword">self</span>.map_one(vpn, vpn.into(), segment.flags | Flags::VALID)?;
+                <span class="hljs-keyword">self</span>.map_one(vpn, <span class="hljs-literal">Some</span>(vpn.into()), segment.flags)?;
             }
             <span class="hljs-comment">// &#x62F7;&#x8D1D;&#x6570;&#x636E;</span>
             <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(data) = init_data {
@@ -1251,49 +1328,54 @@
                         .copy_from_slice(data);
                 }
             }
-            <span class="hljs-literal">Ok</span>(<span class="hljs-built_in">Vec</span>::new())
         }
         <span class="hljs-comment">// &#x9700;&#x8981;&#x5206;&#x914D;&#x5E27;&#x8FDB;&#x884C;&#x6620;&#x5C04;</span>
         MapType::Framed =&gt; {
-            <span class="hljs-comment">// &#x8BB0;&#x5F55;&#x6240;&#x6709;&#x6210;&#x529F;&#x5206;&#x914D;&#x7684;&#x9875;&#x9762;&#x6620;&#x5C04;</span>
-            <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> allocated_pairs = <span class="hljs-built_in">Vec</span>::new();
             <span class="hljs-keyword">for</span> vpn <span class="hljs-keyword">in</span> segment.page_range().iter() {
-                <span class="hljs-comment">// &#x5206;&#x914D;&#x7269;&#x7406;&#x9875;&#x9762;</span>
-                <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> frame = FRAME_ALLOCATOR.lock().alloc()?;
-                <span class="hljs-comment">// &#x6620;&#x5C04;&#xFF0C;&#x586B;&#x5145; 0&#xFF0C;&#x8BB0;&#x5F55;</span>
-                <span class="hljs-keyword">self</span>.map_one(vpn, frame.page_number(), segment.flags | Flags::VALID)?;
-                frame.fill(<span class="hljs-number">0</span>);
-                allocated_pairs.push((vpn, frame));
-            }
+                <span class="hljs-comment">// &#x5982;&#x679C;&#x6709;&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;&#xFF0C;&#x627E;&#x5230;&#x76F8;&#x5E94;&#x7684;&#x6570;&#x636E;</span>
+                <span class="hljs-keyword">let</span> page_data = <span class="hljs-keyword">if</span> init_data.is_none() || init_data.unwrap().is_empty() {
+                    [<span class="hljs-number">0u8</span>; PAGE_SIZE]
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x5FC5;&#x987B;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x8C03;&#x6574;&#xFF0C;&#x56E0;&#x4E3A;&#x4F20;&#x5165;&#x7684;&#x6570;&#x636E;&#x53EF;&#x80FD;&#x5E76;&#x975E;&#x6309;&#x7167;&#x6574;&#x9875;&#x5BF9;&#x9F50;</span>
 
-            <span class="hljs-comment">// &#x62F7;&#x8D1D;&#x6570;&#x636E;&#xFF0C;&#x6CE8;&#x610F;&#x9875;&#x8868;&#x5C1A;&#x672A;&#x5E94;&#x7528;&#xFF0C;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x4ECE;&#x521A;&#x521A;&#x6620;&#x5C04;&#x7684;&#x865A;&#x62DF;&#x5730;&#x5740;&#x8BBF;&#x95EE;&#xFF0C;&#x56E0;&#x6B64;&#x5FC5;&#x987B;&#x7528;&#x7269;&#x7406;&#x5730;&#x5740; + &#x504F;&#x79FB;&#x6765;&#x8BBF;&#x95EE;&#x3002;</span>
-            <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(data) = init_data {
-                <span class="hljs-comment">// &#x5BF9;&#x4E8E; bss&#xFF0C;&#x53C2;&#x6570;&#x4F1A;&#x4F20;&#x5165; data&#xFF0C;&#x4F46;&#x5176;&#x957F;&#x5EA6;&#x4E3A; 0&#x3002;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x5728;&#x524D;&#x9762;&#x7528; 0 &#x586B;&#x5145;&#x8FC7;&#x9875;&#x9762;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;&#x8DF3;&#x8FC7;</span>
-                <span class="hljs-keyword">if</span> !data.is_empty() {
-                    <span class="hljs-keyword">for</span> (vpn, frame) <span class="hljs-keyword">in</span> allocated_pairs.iter_mut() {
-                        <span class="hljs-comment">// &#x62F7;&#x8D1D;&#x65F6;&#x5FC5;&#x987B;&#x8003;&#x8651;&#x533A;&#x95F4;&#x4E0E;&#x6574;&#x9875;&#x4E0D;&#x5BF9;&#x9F50;&#x7684;&#x60C5;&#x51B5;</span>
-                        <span class="hljs-comment">//    start&#xFF08;&#x4EC5;&#x7B2C;&#x4E00;&#x9875;&#x65F6;&#x975E;&#x96F6;&#xFF09;</span>
-                        <span class="hljs-comment">//      |        stop&#xFF08;&#x4EC5;&#x6700;&#x540E;&#x4E00;&#x9875;&#x65F6;&#x975E;&#x96F6;&#xFF09;</span>
-                        <span class="hljs-comment">// 0    |---data---|          4096</span>
-                        <span class="hljs-comment">// |------------page------------|</span>
-                        <span class="hljs-keyword">let</span> page_address = VirtualAddress::from(*vpn);
-                        <span class="hljs-keyword">let</span> start = <span class="hljs-keyword">if</span> segment.range.start &gt; page_address {
-                            segment.range.start - page_address
-                        } <span class="hljs-keyword">else</span> {
-                            <span class="hljs-number">0</span>
-                        };
-                        <span class="hljs-keyword">let</span> stop = min(PAGE_SIZE, segment.range.end - page_address);
-                        <span class="hljs-comment">// &#x8BA1;&#x7B97;&#x6765;&#x6E90;&#x548C;&#x76EE;&#x6807;&#x533A;&#x95F4;&#x5E76;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;</span>
-                        <span class="hljs-keyword">let</span> dst_slice = &amp;<span class="hljs-keyword">mut</span> frame[start..stop];
-                        <span class="hljs-keyword">let</span> src_slice = &amp;data[(page_address + start - segment.range.start)
-                            ..(page_address + stop - segment.range.start)];
-                        dst_slice.copy_from_slice(src_slice);
-                    }
-                }
+                    <span class="hljs-comment">// &#x4F20;&#x5165;&#x7684;&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;</span>
+                    <span class="hljs-keyword">let</span> init_data = init_data.unwrap();
+                    <span class="hljs-comment">// &#x6574;&#x7406;&#x540E;&#x5C06;&#x8981;&#x8FD4;&#x56DE;&#x7684;&#x4E00;&#x6574;&#x4E2A;&#x9875;&#x9762;&#x7684;&#x6570;&#x636E;</span>
+                    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> page_data = [<span class="hljs-number">0u8</span>; PAGE_SIZE];
+
+                    <span class="hljs-comment">// &#x62F7;&#x8D1D;&#x65F6;&#x5FC5;&#x987B;&#x8003;&#x8651;&#x533A;&#x95F4;&#x4E0E;&#x6574;&#x9875;&#x4E0D;&#x5BF9;&#x9F50;&#x7684;&#x60C5;&#x51B5;</span>
+                    <span class="hljs-comment">//    start&#xFF08;&#x4EC5;&#x7B2C;&#x4E00;&#x9875;&#x65F6;&#x975E;&#x96F6;&#xFF09;</span>
+                    <span class="hljs-comment">//      |        stop&#xFF08;&#x4EC5;&#x6700;&#x540E;&#x4E00;&#x9875;&#x65F6;&#x975E;&#x96F6;&#xFF09;</span>
+                    <span class="hljs-comment">// 0    |---data---|          4096</span>
+                    <span class="hljs-comment">// |------------page------------|</span>
+                    <span class="hljs-keyword">let</span> page_address = VirtualAddress::from(vpn);
+                    <span class="hljs-keyword">let</span> start = <span class="hljs-keyword">if</span> segment.range.start &gt; page_address {
+                        segment.range.start - page_address
+                    } <span class="hljs-keyword">else</span> {
+                        <span class="hljs-number">0</span>
+                    };
+                    <span class="hljs-keyword">let</span> stop = min(PAGE_SIZE, segment.range.end - page_address);
+                    <span class="hljs-comment">// &#x8BA1;&#x7B97;&#x6765;&#x6E90;&#x548C;&#x76EE;&#x6807;&#x533A;&#x95F4;&#x5E76;&#x8FDB;&#x884C;&#x62F7;&#x8D1D;</span>
+                    <span class="hljs-keyword">let</span> dst_slice = &amp;<span class="hljs-keyword">mut</span> page_data[start..stop];
+                    <span class="hljs-keyword">let</span> src_slice = &amp;init_data[(page_address + start - segment.range.start)
+                        ..(page_address + stop - segment.range.start)];
+                    dst_slice.copy_from_slice(src_slice);
+
+                    page_data
+                };
+
+                <span class="hljs-comment">// &#x5EFA;&#x7ACB;&#x6620;&#x5C04;</span>
+                <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> frame = FRAME_ALLOCATOR.lock().alloc()?;
+                <span class="hljs-comment">// &#x66F4;&#x65B0;&#x9875;&#x8868;</span>
+                <span class="hljs-keyword">self</span>.map_one(vpn, <span class="hljs-literal">Some</span>(frame.page_number()), segment.flags)?;
+                <span class="hljs-comment">// &#x5199;&#x5165;&#x6570;&#x636E;</span>
+                (*frame).copy_from_slice(&amp;page_data);
+                <span class="hljs-comment">// &#x4FDD;&#x5B58;</span>
+                <span class="hljs-keyword">self</span>.mapped_pairs.push_back((vpn, frame));
             }
-            <span class="hljs-literal">Ok</span>(allocated_pairs)
         }
     }
+    <span class="hljs-literal">Ok</span>(())
 }
 </code></pre>
 <p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x9875;&#x8868;&#x7684;&#x6FC0;&#x6D3B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x628A; <code>satp</code> &#x5BC4;&#x5B58;&#x5668;&#x66F4;&#x65B0;&#x5E76;&#x5237;&#x65B0; TLB&#xFF1A;</p>
@@ -1319,8 +1401,6 @@
     <span class="hljs-keyword">pub</span> mapping: Mapping,
     <span class="hljs-comment">/// &#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;</span>
     <span class="hljs-keyword">pub</span> segments: <span class="hljs-built_in">Vec</span>&lt;Segment&gt;,
-    <span class="hljs-comment">/// &#x6240;&#x6709;&#x5206;&#x914D;&#x7684;&#x7269;&#x7406;&#x9875;&#x9762;&#x6620;&#x5C04;&#x4FE1;&#x606F;</span>
-    <span class="hljs-keyword">pub</span> allocated_pairs: <span class="hljs-built_in">Vec</span>&lt;(VirtualPageNumber, FrameTracker)&gt;,
 }
 </code></pre>
 <p>&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EA;&#x6709;&#x5185;&#x6838;&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x7684;&#x7CBE;&#x7EC6;&#x6620;&#x5C04;&#x6765;&#x4EE3;&#x66FF;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x7C97;&#x7CD9;&#x7684;&#x6743;&#x9650;&#x7BA1;&#x7406;&#xFF08;&#x4E00;&#x5E76;&#x628A;&#x9875;&#x8868;&#x6FC0;&#x6D3B;&#x5B9E;&#x73B0;&#xFF09;&#xFF1A;</p>
@@ -1376,13 +1456,9 @@
         <span class="hljs-comment">// &#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x5728;&#x9875;&#x8868;&#x4E2D;&#x8FDB;&#x884C;&#x6620;&#x5C04;</span>
         <span class="hljs-keyword">for</span> segment <span class="hljs-keyword">in</span> segments.iter() {
             <span class="hljs-comment">// &#x540C;&#x65F6;&#x5C06;&#x65B0;&#x5206;&#x914D;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x4FDD;&#x5B58;&#x5230; allocated_pairs &#x4E2D;</span>
-            allocated_pairs.extend(mapping.map(segment, <span class="hljs-literal">None</span>)?);
+            mapping.map(segment, <span class="hljs-literal">None</span>)?;
         }
-        <span class="hljs-literal">Ok</span>(MemorySet {
-            mapping,
-            segments,
-            allocated_pairs,
-        })
+        <span class="hljs-literal">Ok</span>(MemorySet { mapping, segments })
     }
 
     <span class="hljs-comment">/// &#x66FF;&#x6362; `satp` &#x4EE5;&#x6FC0;&#x6D3B;&#x9875;&#x8868;</span>
@@ -1485,7 +1561,7 @@
                 </a>
                 
                 
-                <a href="summary.html" class="navigation navigation-next " aria-label="Next page: 小结">
+                <a href="part-5.html" class="navigation navigation-next " aria-label="Next page: 页面置换*">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1496,7 +1572,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"3.4.5","depth":2,"next":{"title":"小结","level":"3.4.6","depth":2,"path":"docs/lab-3/guide/summary.md","ref":"docs/lab-3/guide/summary.md","articles":[]},"previous":{"title":"实现页表","level":"3.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-07-17T08:57:00.682Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-17T08:57:07.168Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"实现内核重映射","level":"3.4.5","depth":2,"next":{"title":"页面置换*","level":"3.4.6","depth":2,"path":"docs/lab-3/guide/part-5.md","ref":"docs/lab-3/guide/part-5.md","articles":[]},"previous":{"title":"实现页表","level":"3.4.4","depth":2,"path":"docs/lab-3/guide/part-3.md","ref":"docs/lab-3/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-3/guide/part-4.md","mtime":"2020-07-20T08:29:45.060Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-21T01:57:36.691Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
