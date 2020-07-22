@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>线程的结束 · GitBook</title>
+        <title>线程调度 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -736,7 +736,7 @@
                 <a href="part-4.html">
             
                     
-                    内核栈
+                    线程的结束
             
                 </a>
             
@@ -749,7 +749,7 @@
                 <a href="part-5.html">
             
                     
-                    线程调度
+                    内核栈
             
                 </a>
             
@@ -762,7 +762,7 @@
                 <a href="part-6.html">
             
                     
-                    线程的结束
+                    线程调度
             
                 </a>
             
@@ -1169,7 +1169,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >线程的结束</a>
+        <a href="../../.." >线程调度</a>
     </h1>
 </div>
 
@@ -1187,28 +1187,81 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x7EBF;&#x7A0B;&#x7684;&#x7ED3;&#x675F;">&#x7EBF;&#x7A0B;&#x7684;&#x7ED3;&#x675F;</h2>
-<h3 id="&#x73B0;&#x6709;&#x95EE;&#x9898;">&#x73B0;&#x6709;&#x95EE;&#x9898;</h3>
-<p>&#x5F53;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x7EC8;&#x6B62;&#x65F6;&#xFF0C;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF1F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6309;&#x7167;&#x5B9E;&#x9A8C;&#x6307;&#x5BFC;&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5E94;&#x8BE5;&#x4F1A;&#x89C2;&#x5BDF;&#x5230;&#xFF1A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x5728;&#x8FD0;&#x884C;&#x5B8C;&#x6210;&#x540E;&#x89E6;&#x53D1;&#x4E86; <code>Exception::InstructionPageFault</code> &#x800C;&#x7EC8;&#x6B62;&#xFF0C;&#x5176;&#x4E2D;&#x8BBF;&#x95EE;&#x7684;&#x7684;&#x5730;&#x5740; <code>stval = 0</code>&#x3002;</p>
-<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x5728;&#x6267;&#x884C;&#x5B8C; <code>entry_point</code> &#x6240;&#x6307;&#x5411;&#x7684;&#x51FD;&#x6570;&#x540E;&#x4F1A;&#x8FD4;&#x56DE;&#x5230; <code>ra</code> &#x6307;&#x5411;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x800C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x4E3A;&#x5176;&#x8D4B;&#x521D;&#x503C;&#xFF08;&#x521D;&#x503C;&#x4E3A; 0&#xFF09;&#x3002;&#x6B64;&#x65F6;&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x4F1A;&#x5C1D;&#x8BD5;&#x8DF3;&#x8F6C;&#x5230; <code>0x0</code> &#x5730;&#x5740;&#xFF0C;&#x800C;&#x663E;&#x7136;&#x5B83;&#x662F;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x3002;</p>
-<h3 id="&#x89E3;&#x51B3;&#x529E;&#x6CD5;">&#x89E3;&#x51B3;&#x529E;&#x6CD5;</h3>
-<p>&#x5F88;&#x81EA;&#x7136;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x80FD;&#x591F;&#x8BA9;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x5728;&#x7ED3;&#x675F;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x53CB;&#x5584;&#x7684;&#x4E2D;&#x65AD;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x770B;&#x4E0A;&#x53BB;&#x50CF;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x7F3A;&#x9875;&#x5F02;&#x5E38;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x91CA;&#x653E;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x60F3;&#x5230;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#xFF0C;&#x4F46;&#x5F88;&#x53EF;&#x60DC;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x5B83;&#xFF0C;&#x56E0;&#x4E3A;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x7684;&#x672C;&#x8D28;&#x662F;&#x4E00;&#x4E2A;&#x73AF;&#x5883;&#x8C03;&#x7528; <code>ecall</code>&#xFF0C;&#x800C;&#x5728;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#xFF08;&#x5185;&#x6838;&#x6001;&#xFF09;&#x4E2D;&#x8FDB;&#x884C;&#x7684;&#x73AF;&#x5883;&#x8C03;&#x7528;&#x662F;&#x7528;&#x6765;&#x4E0E; M &#x6001;&#x901A;&#x4FE1;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x5B9E;&#x73B0;&#x7684; SBI &#x8C03;&#x7528;&#x5C31;&#x662F;&#x4F7F;&#x7528;&#x7684; S &#x6001; <code>ecall</code>&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;&#x6298;&#x8877;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#xFF1A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x5C06;&#x81EA;&#x5DF1;&#x6807;&#x8BB0;&#x4E3A;&#x201C;&#x5DF2;&#x7ED3;&#x675F;&#x201D;&#xFF0C;&#x540C;&#x65F6;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;&#x5F02;&#x5E38; <code>ebreak</code>&#x3002;&#x6B64;&#x65F6;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x89C2;&#x5BDF;&#x5230;&#x7EBF;&#x7A0B;&#x7684;&#x6807;&#x8BB0;&#xFF0C;&#x4FBF;&#x5C06;&#x5176;&#x7EC8;&#x6B62;&#x3002;</p>
-<p></p><p class="code-label">os/src/main.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">/// &#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x9700;&#x8981;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x9000;&#x51FA;</span>
-<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">kernel_thread_exit</span></span>() {
-    <span class="hljs-comment">// &#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6807;&#x8BB0;&#x4E3A;&#x7ED3;&#x675F;</span>
-    PROCESSOR.get().current_thread().as_ref().inner().dead = <span class="hljs-literal">true</span>;
-    <span class="hljs-comment">// &#x5236;&#x9020;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x6765;&#x4EA4;&#x7ED9;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5904;&#x7406;</span>
-    <span class="hljs-keyword">unsafe</span> { llvm_asm!(<span class="hljs-string">&quot;ebreak&quot;</span> :::: <span class="hljs-string">&quot;volatile&quot;</span>) };
+                                <h2 id="&#x8C03;&#x5EA6;&#x5668;">&#x8C03;&#x5EA6;&#x5668;</h2>
+<p>&#x8C03;&#x5EA6;&#x5668;&#x7684;&#x7B97;&#x6CD5;&#x6709;&#x8BB8;&#x591A;&#x79CD;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5B83;&#x63D0;&#x53D6;&#x51FA;&#x4E00;&#x4E2A; trait &#x4F5C;&#x4E3A;&#x63A5;&#x53E3;</p>
+<p></p><p class="code-label">os/src/algorithm/src/scheduler/mod.rs</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-comment">/// &#x7EBF;&#x7A0B;&#x8C03;&#x5EA6;&#x5668;</span>
+<span class="hljs-comment">///</span>
+<span class="hljs-comment">/// &#x8FD9;&#x91CC; `ThreadType` &#x5C31;&#x662F; `Arc&lt;Thread&gt;`</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">trait</span> <span class="hljs-title">Scheduler</span></span>&lt;ThreadType: <span class="hljs-built_in">Clone</span> + <span class="hljs-built_in">Eq</span>&gt;: <span class="hljs-built_in">Default</span> {
+    <span class="hljs-comment">/// &#x4F18;&#x5148;&#x7EA7;&#x7684;&#x7C7B;&#x578B;</span>
+    <span class="hljs-class"><span class="hljs-keyword">type</span> <span class="hljs-title">Priority</span></span>;
+    <span class="hljs-comment">/// &#x5411;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">add_thread</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, thread: ThreadType);
+    <span class="hljs-comment">/// &#x83B7;&#x53D6;&#x4E0B;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x6BB5;&#x5E94;&#x5F53;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">get_next</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">Option</span>&lt;ThreadType&gt;;
+    <span class="hljs-comment">/// &#x79FB;&#x9664;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">remove_thread</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, thread: &amp;ThreadType);
+    <span class="hljs-comment">/// &#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x7684;&#x4F18;&#x5148;&#x7EA7;</span>
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">set_priority</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, thread: ThreadType, priority: Self::Priority);
 }
 </code></pre>
-<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x7684; <code>ra</code>&#xFF0C;&#x4F7F;&#x5F97;&#x5B83;&#x6267;&#x884C;&#x7684;&#x51FD;&#x6570;&#x5B8C;&#x6210;&#x540E;&#x4FBF;&#x6267;&#x884C; <code>kernel_thread_exit()</code></p>
+<p>&#x5177;&#x4F53;&#x7684;&#x7B97;&#x6CD5;&#x5C31;&#x4E0D;&#x5728;&#x6B64;&#x5C55;&#x5F00;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x53C2;&#x7167;&#x76EE;&#x5F55; <code>os/src/algorithm/src/scheduler</code> &#x4E0B;&#x7684;&#x4E00;&#x4E9B;&#x6837;&#x4F8B;&#x3002;</p>
+<h3 id="&#x8FD0;&#x884C;&#xFF01;">&#x8FD0;&#x884C;&#xFF01;</h3>
+<p>&#x4FEE;&#x6539; <code>main.rs</code>&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x8DD1;&#x8D77;&#x6765;&#x591A;&#x7EBF;&#x7A0B;&#x4E86;&#x3002;</p>
 <p></p><p class="code-label">os/src/main.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x7684;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#x4E3A; kernel_thread_exit</span>
-thread.as_ref().inner().context.as_mut().unwrap().set_ra(kernel_thread_exit <span class="hljs-keyword">as</span> usize);
+<pre><code class="lang-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rust_main</span></span>() -&gt; ! {
+    memory::init();
+    interrupt::init();
+
+    {
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> processor = PROCESSOR.lock();
+        <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5185;&#x6838;&#x8FDB;&#x7A0B;</span>
+        <span class="hljs-keyword">let</span> kernel_process = Process::new_kernel().unwrap();
+        <span class="hljs-comment">// &#x4E3A;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x5165;&#x53E3;&#x5747;&#x4E3A; sample_process&#xFF0C;&#x800C;&#x53C2;&#x6570;&#x4E0D;&#x540C;</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>..<span class="hljs-number">9usize</span> {
+            processor.add_thread(create_kernel_thread(
+                kernel_process.clone(),
+                sample_process <span class="hljs-keyword">as</span> usize,
+                <span class="hljs-literal">Some</span>(&amp;[i]),
+            ));
+        }
+    }
+
+    <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> {
+        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">__restore</span></span>(context: usize);
+    }
+    <span class="hljs-comment">// &#x83B7;&#x53D6;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; Context</span>
+    <span class="hljs-keyword">let</span> context = PROCESSOR.lock().prepare_next_thread();
+    <span class="hljs-comment">// &#x542F;&#x52A8;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-keyword">unsafe</span> { __restore(context <span class="hljs-keyword">as</span> usize) };
+    <span class="hljs-built_in">unreachable!</span>()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sample_process</span></span>(message: usize) {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;hello from kernel thread {}&quot;</span>, id);
+}
 </code></pre>
-<p><div id="page-footer" class="localized-footer"><hr><p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
+<p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5F97;&#x5230;&#x7C7B;&#x4F3C;&#x7684;&#x8F93;&#x51FA;&#xFF1A;</p>
+<p></p><p class="code-label">&#x8FD0;&#x884C;&#x8F93;&#x51FA;</p><p></p>
+<pre><code>hello from kernel thread 7
+thread 7 exit
+hello from kernel thread 6
+thread 6 exit
+hello from kernel thread 5
+thread 5 exit
+hello from kernel thread 4
+thread 4 exit
+hello from kernel thread 3
+thread 3 exit
+hello from kernel thread 2
+thread 2 exit
+hello from kernel thread 1
+thread 1 exit
+hello from kernel thread 8
+thread 8 exit
+src/process/processor.rs:87: &apos;all threads terminated, shutting down&apos;
+</code></pre><p><div id="page-footer" class="localized-footer"><hr><p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 <div id="gitalk-container"></div>
 <script>
@@ -1273,7 +1326,7 @@ thread.as_ref().inner().context.as_mut().unwrap().set_ra(kernel_thread_exit <spa
 
             
                 
-                <a href="part-5.html" class="navigation navigation-prev " aria-label="Previous page: 线程调度">
+                <a href="part-5.html" class="navigation navigation-prev " aria-label="Previous page: 内核栈">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1289,7 +1342,7 @@ thread.as_ref().inner().context.as_mut().unwrap().set_ra(kernel_thread_exit <spa
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程的结束","level":"3.5.7","depth":2,"next":{"title":"小结","level":"3.5.8","depth":2,"path":"docs/lab-4/guide/summary.md","ref":"docs/lab-4/guide/summary.md","articles":[]},"previous":{"title":"线程调度","level":"3.5.6","depth":2,"path":"docs/lab-4/guide/part-5.md","ref":"docs/lab-4/guide/part-5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-6.md","mtime":"2020-07-20T08:29:45.062Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-21T01:58:42.625Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程调度","level":"3.5.7","depth":2,"next":{"title":"小结","level":"3.5.8","depth":2,"path":"docs/lab-4/guide/summary.md","ref":"docs/lab-4/guide/summary.md","articles":[]},"previous":{"title":"内核栈","level":"3.5.6","depth":2,"path":"docs/lab-4/guide/part-5.md","ref":"docs/lab-4/guide/part-5.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-6.md","mtime":"2020-07-22T01:25:16.450Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T01:25:32.400Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

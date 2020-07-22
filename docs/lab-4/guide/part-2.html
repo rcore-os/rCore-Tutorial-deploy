@@ -736,7 +736,7 @@
                 <a href="part-4.html">
             
                     
-                    内核栈
+                    线程的结束
             
                 </a>
             
@@ -749,7 +749,7 @@
                 <a href="part-5.html">
             
                     
-                    线程调度
+                    内核栈
             
                 </a>
             
@@ -762,7 +762,7 @@
                 <a href="part-6.html">
             
                     
-                    线程的结束
+                    线程调度
             
                 </a>
             
@@ -1253,24 +1253,17 @@
 </ul>
 </blockquote>
 <p>&#x8BBE;&#x8BA1;&#x597D; <code>Context</code> &#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x5B83;&#x5E94;&#x7528;&#x5230;&#x6240;&#x6709;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x4E0A;&#xFF08;&#x5373;&#x6267;&#x884C; <code>__restore</code>&#xFF09;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5207;&#x6362;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E86;&#x3002;</p>
-<p></p><p class="code-label">os/src/process/processor.rs</p><p></p>
-<pre><code class="lang-rust"><span class="hljs-comment">/// &#x7B2C;&#x4E00;&#x6B21;&#x5F00;&#x59CB;&#x8FD0;&#x884C;</span>
-<span class="hljs-comment">///</span>
-<span class="hljs-comment">/// &#x4ECE; `current_thread` &#x4E2D;&#x53D6;&#x51FA; [`Context`]&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x8C03;&#x7528; `interrupt.asm` &#x4E2D;&#x7684; `__restore`</span>
-<span class="hljs-comment">/// &#x6765;&#x4ECE; `Context` &#x4E2D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x8BE5;&#x7EBF;&#x7A0B;&#x3002;</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">run</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; ! {
-    <span class="hljs-comment">// interrupt.asm &#x4E2D;&#x7684;&#x6807;&#x7B7E;</span>
-    <span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> {
-        <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">__restore</span></span>(context: usize);
-    }
-    <span class="hljs-comment">/* &#x6FC0;&#x6D3B;&#x7EBF;&#x7A0B;&#x7684;&#x9875;&#x8868;&#xFF0C;&#x53D6;&#x5F97; Context&#x3002;&#x5177;&#x4F53;&#x8FC7;&#x7A0B;&#x4F1A;&#x5728;&#x540E;&#x9762;&#x8BB2;&#x89E3; */</span>
-    <span class="hljs-keyword">unsafe</span> {
-        __restore(context);
-    }
-    <span class="hljs-built_in">unreachable!</span>()
+<p></p><p class="code-label">os/src/main.rs: rust_main()</p><p></p>
+<pre><code class="lang-rust"><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">__restore</span></span>(context: usize);
 }
+<span class="hljs-comment">// &#x83B7;&#x53D6;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684; Context&#xFF0C;&#x5177;&#x4F53;&#x539F;&#x7406;&#x540E;&#x9762;&#x8BB2;&#x89E3;</span>
+<span class="hljs-keyword">let</span> context = PROCESSOR.lock().prepare_next_thread();
+<span class="hljs-comment">// &#x542F;&#x52A8;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span>
+<span class="hljs-keyword">unsafe</span> { __restore(context <span class="hljs-keyword">as</span> usize) };
+<span class="hljs-built_in">unreachable!</span>()
 </code></pre>
-<h4 id="&#x7B49;&#x4E00;&#x4E0B;&#xFF0C;run-&#x4E3A;&#x4EC0;&#x4E48;&#x8FD4;&#x56DE;-&#xFF01;">&#x7B49;&#x4E00;&#x4E0B;&#xFF0C;<code>run()</code> &#x4E3A;&#x4EC0;&#x4E48;&#x8FD4;&#x56DE; <code>!</code>&#xFF01;</h4>
+<h4 id="&#x4E3A;&#x4EC0;&#x4E48;-unreachable">&#x4E3A;&#x4EC0;&#x4E48; <code>unreachable</code></h4>
 <p>&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7684; <code>__restore</code> &#x5E76;&#x6CA1;&#x6709; <code>ret</code> &#x6307;&#x4EE4;&#xFF0C;&#x751A;&#x81F3; <code>ra</code> &#x90FD;&#x4F1A;&#x88AB; <code>Context</code> &#x4E2D;&#x7684;&#x6570;&#x503C;&#x76F4;&#x63A5;&#x8986;&#x76D6;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x4E00;&#x65E6;&#x6211;&#x4EEC;&#x6267;&#x884C;&#x4E86; <code>__restore(context)</code>&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x65E0;&#x6CD5;&#x8FD4;&#x56DE;&#x5230;&#x8C03;&#x7528;&#x5B83;&#x7684;&#x4F4D;&#x7F6E;&#x4E86;&#x3002;<strong>&#x6CE8;&#xFF1A;&#x76F4;&#x63A5; jump &#x662F;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x5371;&#x9669;&#x7684;&#x64CD;&#x4F5C;</strong>&#x3002;</p>
 <p>&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x3002;&#x56E0;&#x4E3A;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#xFF0C;&#x518D;&#x56DE;&#x5230; <code>rust_main()</code> &#x4E5F;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x4E86;&#x3002;&#x751A;&#x81F3;&#x539F;&#x672C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x6808; <code>bootstack</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x88AB;&#x56DE;&#x6536;&#xFF08;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x4E22;&#x6389;&#x4E0D;&#x7BA1;&#x5427;&#xFF09;&#x3002;</p>
 <h4 id="&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4E0D;&#x6253;&#x5F00;&#x4E2D;&#x65AD;">&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4E0D;&#x6253;&#x5F00;&#x4E2D;&#x65AD;</h4>
@@ -1376,7 +1369,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"线程的创建","level":"3.5.3","depth":2,"next":{"title":"线程的切换","level":"3.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"previous":{"title":"线程和进程","level":"3.5.2","depth":2,"path":"docs/lab-4/guide/part-1.md","ref":"docs/lab-4/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-2.md","mtime":"2020-07-20T08:29:45.061Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-21T01:58:42.625Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"线程的创建","level":"3.5.3","depth":2,"next":{"title":"线程的切换","level":"3.5.4","depth":2,"path":"docs/lab-4/guide/part-3.md","ref":"docs/lab-4/guide/part-3.md","articles":[]},"previous":{"title":"线程和进程","level":"3.5.2","depth":2,"path":"docs/lab-4/guide/part-1.md","ref":"docs/lab-4/guide/part-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-4/guide/part-2.md","mtime":"2020-07-22T01:25:16.447Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T01:25:32.400Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

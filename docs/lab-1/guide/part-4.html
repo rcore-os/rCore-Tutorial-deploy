@@ -736,7 +736,7 @@
                 <a href="../../lab-4/guide/part-4.html">
             
                     
-                    内核栈
+                    线程的结束
             
                 </a>
             
@@ -749,7 +749,7 @@
                 <a href="../../lab-4/guide/part-5.html">
             
                     
-                    线程调度
+                    内核栈
             
                 </a>
             
@@ -762,7 +762,7 @@
                 <a href="../../lab-4/guide/part-6.html">
             
                     
-                    线程的结束
+                    线程调度
             
                 </a>
             
@@ -1194,7 +1194,14 @@
 <h3 id="&#x7F16;&#x5199;&#x6C47;&#x7F16;">&#x7F16;&#x5199;&#x6C47;&#x7F16;</h3>
 <p>&#x56E0;&#x4E3A;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x8F83;&#x957F;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; <code>os/src/interrupt/interrupt.asm</code> &#x6587;&#x4EF6;&#x6765;&#x7F16;&#x5199;&#x8FD9;&#x6BB5;&#x64CD;&#x4F5C;&#xFF1A;</p>
 <p></p><p class="code-label">os/src/interrupt/interrupt.asm</p><p></p>
-<pre><code class="lang-asm"># &#x5B8F;&#xFF1A;&#x5C06;&#x5BC4;&#x5B58;&#x5668;&#x5B58;&#x5230;&#x6808;&#x4E0A;
+<pre><code class="lang-asm"># &#x6211;&#x4EEC;&#x5C06;&#x4F1A;&#x7528;&#x4E00;&#x4E2A;&#x5B8F;&#x6765;&#x7528;&#x5FAA;&#x73AF;&#x4FDD;&#x5B58;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x8FD9;&#x662F;&#x5FC5;&#x8981;&#x7684;&#x8BBE;&#x7F6E;
+.altmacro
+# &#x5BC4;&#x5B58;&#x5668;&#x5BBD;&#x5EA6;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x8282;&#x6570;
+.set    REG_SIZE, 8
+# Context &#x7684;&#x5927;&#x5C0F;
+.set    CONTEXT_SIZE, 34
+
+# &#x5B8F;&#xFF1A;&#x5C06;&#x5BC4;&#x5B58;&#x5668;&#x5B58;&#x5230;&#x6808;&#x4E0A;
 .macro SAVE reg, offset
     sd  \reg, \offset*8(sp)
 .endm
@@ -1217,36 +1224,12 @@ __interrupt:
     # &#x5C06;&#x539F;&#x6765;&#x7684; sp&#xFF08;sp &#x53C8;&#x540D; x2&#xFF09;&#x5199;&#x5165; 2 &#x4F4D;&#x7F6E;
     addi    x1, sp, 34*8
     SAVE    x1, 2
-    # &#x5176;&#x4ED6;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;
-    SAVE    x3, 3
-    SAVE    x4, 4
-    SAVE    x5, 5
-    SAVE    x6, 6
-    SAVE    x7, 7
-    SAVE    x8, 8
-    SAVE    x9, 9
-    SAVE    x10, 10
-    SAVE    x11, 11
-    SAVE    x12, 12
-    SAVE    x13, 13
-    SAVE    x14, 14
-    SAVE    x15, 15
-    SAVE    x16, 16
-    SAVE    x17, 17
-    SAVE    x18, 18
-    SAVE    x19, 19
-    SAVE    x20, 20
-    SAVE    x21, 21
-    SAVE    x22, 22
-    SAVE    x23, 23
-    SAVE    x24, 24
-    SAVE    x25, 25
-    SAVE    x26, 26
-    SAVE    x27, 27
-    SAVE    x28, 28
-    SAVE    x29, 29
-    SAVE    x30, 30
-    SAVE    x31, 31
+    # &#x4FDD;&#x5B58; x3 &#x81F3; x31
+    .set    n, 3
+    .rept   29
+        SAVE_N  %n
+        .set    n, n + 1
+    .endr
 
     # &#x53D6;&#x51FA; CSR &#x5E76;&#x4FDD;&#x5B58;
     csrr    s1, sstatus
@@ -1275,35 +1258,12 @@ __restore:
 
     # &#x6062;&#x590D;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;
     LOAD    x1, 1
-    LOAD    x3, 3
-    LOAD    x4, 4
-    LOAD    x5, 5
-    LOAD    x6, 6
-    LOAD    x7, 7
-    LOAD    x8, 8
-    LOAD    x9, 9
-    LOAD    x10, 10
-    LOAD    x11, 11
-    LOAD    x12, 12
-    LOAD    x13, 13
-    LOAD    x14, 14
-    LOAD    x15, 15
-    LOAD    x16, 16
-    LOAD    x17, 17
-    LOAD    x18, 18
-    LOAD    x19, 19
-    LOAD    x20, 20
-    LOAD    x21, 21
-    LOAD    x22, 22
-    LOAD    x23, 23
-    LOAD    x24, 24
-    LOAD    x25, 25
-    LOAD    x26, 26
-    LOAD    x27, 27
-    LOAD    x28, 28
-    LOAD    x29, 29
-    LOAD    x30, 30
-    LOAD    x31, 31
+    # &#x6062;&#x590D; x3 &#x81F3; x31
+    .set    n, 3
+    .rept   29
+        LOAD_N  %n
+        .set    n, n + 1
+    .endr
 
     # &#x6062;&#x590D; sp&#xFF08;&#x53C8;&#x540D; x2&#xFF09;&#x8FD9;&#x91CC;&#x6700;&#x540E;&#x6062;&#x590D;&#x662F;&#x4E3A;&#x4E86;&#x4E0A;&#x9762;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528; LOAD &#x5B8F;
     LOAD    x2, 2
@@ -1391,7 +1351,7 @@ __restore:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"状态的保存与恢复","level":"3.2.5","depth":2,"next":{"title":"进入中断处理流程","level":"3.2.6","depth":2,"path":"docs/lab-1/guide/part-5.md","ref":"docs/lab-1/guide/part-5.md","articles":[]},"previous":{"title":"程序运行状态","level":"3.2.4","depth":2,"path":"docs/lab-1/guide/part-3.md","ref":"docs/lab-1/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-4.md","mtime":"2020-07-20T08:29:45.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-21T01:58:42.625Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"状态的保存与恢复","level":"3.2.5","depth":2,"next":{"title":"进入中断处理流程","level":"3.2.6","depth":2,"path":"docs/lab-1/guide/part-5.md","ref":"docs/lab-1/guide/part-5.md","articles":[]},"previous":{"title":"程序运行状态","level":"3.2.4","depth":2,"path":"docs/lab-1/guide/part-3.md","ref":"docs/lab-1/guide/part-3.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hide-element","chapter-fold","katex","alerts","emphasize","mermaid-gb3","codeblock-label","code","search-pro","click-reveal","expandable-chapters-interactive","localized-footer"],"pluginsConfig":{"chapter-fold":{},"emphasize":{},"codeblock-label":{},"search-pro":{},"search":{},"localized-footer":{"filename":"gitalk.html","hline":"true"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"hide-element":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":1},"click-reveal":{},"highlight":{},"mermaid-gb3":{},"expandable-chapters-interactive":{},"alerts":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docs/lab-1/guide/part-4.md","mtime":"2020-07-22T01:25:16.443Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-22T01:25:32.400Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
